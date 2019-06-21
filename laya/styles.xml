@@ -1,0 +1,9 @@
+<res>
+   <item name="comp/button.png" type="Button" compress="0" pack="0" quality="80" props="" picType="0" scale="0"/>
+   <item name="MainUI/zhu_bg_2.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=26,27,25,27" picType="0" scale="0"/>
+   <item name="rankUI/top.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=0,117,0,101" picType="0" scale="0"/>
+   <item name="rankUI/ty_kuang_di.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=115,90,140,96" picType="0" scale="0"/>
+   <item name="rankUI/hy_di.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=36,37,44,41" picType="0" scale="0"/>
+   <item name="MainUI/BtnSmallYellow_UI_TEX.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=0,50,0,61" picType="0" scale="0"/>
+   <item name="rankUI/tx_kuang.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=22,25,36,20" picType="0" scale="0"/>
+</res>
