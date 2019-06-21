@@ -43,7 +43,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"top":255,"text":"黄金矿工超级版","fontSize":45,"font":"Microsoft YaHei","color":"#f9f9f9","centerX":0},
+            "props":{"wordWrap":true,"width":1006,"top":261,"height":524,"fontSize":45,"font":"Microsoft YaHei","color":"#f9f9f9","centerX":0},
             "nodeParent":1,
             "label":"Label",
             "isDirectory":false,

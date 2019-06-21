@@ -59,7 +59,7 @@ class GameGoalUiController extends ui.GameGoalUI
         if (LevelData.Instance.LevelItems[PlayerData.Instance.level] != null)
         {
             var lev:LevelItem = LevelData.Instance.LevelItems[PlayerData.Instance.level];
-            this.label_level.text = "关卡" + lev.level;
+            this.label_level.text = StringTool.format("关卡({0}/{1})", lev.level, PlayerData.MaxLevel);
             this.label_goal.text = LevelData.Instance.LevelItems[PlayerData.Instance.level].Goal.toFixed(0);
         }
         else

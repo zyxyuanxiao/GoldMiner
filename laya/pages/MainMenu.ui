@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":1,
-    "selecteID":3,
+    "selectedBox":14,
+    "selecteID":15,
     "props":{"width":1920,"sceneColor":"#000000","height":1080},
     "nodeParent":-1,
     "label":"View",
@@ -41,44 +41,31 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"width":650,"var":"label_title","text":"黄金矿工","strokeColor":"#f67109","stroke":10,"overflow":"hidden","fontSize":132,"font":"SimHei","color":"#eabdbd","centerY":-247,"centerX":-3,"borderColor":"#1c1b1b","bold":true,"blendMode":"lighter","bgColor":"#100909","align":"center"},
+            "props":{"width":650,"var":"label_title","text":"地牢矿工","strokeColor":"#f67109","stroke":10,"overflow":"hidden","fontSize":132,"font":"SimHei","color":"#eabdbd","centerY":-247,"centerX":-3,"borderColor":"#1c1b1b","bold":true,"blendMode":"lighter","bgColor":"#100909","align":"center"},
             "nodeParent":1,
             "label":"Label(label_title)",
             "isOpen":true,
-            "isDirectory":true,
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
+            "hasChild":false,
             "compId":8,
             "child":[
-                {
-                    "x":30,
-                    "type":"Label",
-                    "props":{"y":150,"text":"中文加强版","strokeColor":"#f67109","stroke":10,"fontSize":65,"font":"SimHei","color":"#f8f3f3","centerX":0,"bold":true,"align":"center"},
-                    "nodeParent":8,
-                    "label":"Label",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":12,
-                    "child":[
-                        ]
-                }],
+                ],
             "$HIDDEN":false
         },
         {
             "x":15,
             "type":"Image",
-            "props":{"width":304,"var":"btn_start","skin":"style1/button-sheet0.png","height":110,"centerY":126,"centerX":-11},
+            "props":{"width":304,"var":"btn_start","skin":"style1/button-sheet0.png","scaleY":1.3,"scaleX":1.3,"height":110,"centerY":325,"centerX":0},
             "nodeParent":1,
             "label":"Image(btn_start)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":9,
             "child":[
                 {
-                    "x":30,
                     "type":"Label",
                     "props":{"width":176,"text":"开始","height":64,"fontSize":64,"color":"#fff9f9","centerY":-10,"centerX":19,"bold":true},
                     "nodeParent":9,
@@ -87,6 +74,32 @@
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":11,
+                    "child":[
+                        ]
+                }]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "props":{"width":1000,"skin":"MainUI/zhe_hei.png","height":350,"centerY":36,"centerX":0},
+            "nodeParent":1,
+            "label":"Image",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":14,
+            "child":[
+                {
+                    "x":30,
+                    "type":"Label",
+                    "props":{"wordWrap":true,"top":45,"text":"爱丽丝受到女巫的诅咒\\n牧师告诉巴巴罗萨在矿洞深处地牢里有\\n一颗名为生命之心的水晶可以延续女儿的生命\\n于是巴巴罗萨开始了拯救女儿之路。","right":0,"left":0,"leading":10,"fontSize":44,"color":"#f9f6f6","bottom":45,"align":"center"},
+                    "nodeParent":14,
+                    "label":"Label",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":15,
                     "child":[
                         ]
                 }]

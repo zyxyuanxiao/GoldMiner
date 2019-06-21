@@ -56,10 +56,10 @@ class GameResultDialogController extends ui.GameResultUI
     {
         super();
         this.win = data.win;
-        this.label_result.text = data.win ? "胜利":"失败";
+        this.label_result.text = data.win ? StringTool.format("胜利({0}/{1})", PlayerData.Instance.level + 1, PlayerData.MaxLevel):"失败";
         if (data.win)
         {
-            if (PlayerData.Instance.level >= PlayerData.MaxLevel)
+            if (PlayerData.Instance.level > PlayerData.MaxLevel)
                 MainAudioPlayer.Instance.PlayGameWin();
             else
                 MainAudioPlayer.Instance.PlayWin();
@@ -68,8 +68,8 @@ class GameResultDialogController extends ui.GameResultUI
         {
             MainAudioPlayer.Instance.PlayGameOver();
         }
-        this.label_goal.text = data.goal.toFixed(0);
-        this.label_gold.text = data.gold.toFixed(0);
+        this.label_goal.text = StringTool.format("目标:{0}", data.goal.toFixed(0));
+        this.label_gold.text = StringTool.format("当前:{0}", data.gold.toFixed(0));
         this.btn_play.on(Laya.Event.CLICK, this, this.OnPlay);
         this.btn_play.skin = this.win ? "style1/button_next-sheet1.png":"style1/button_restart-sheet1.png";
         this.OnResize();
@@ -87,7 +87,7 @@ class GameResultDialogController extends ui.GameResultUI
         {
             PlayerData.Instance.level += 1;
             PlayerData.Instance.ResetStatus();
-            if (PlayerData.Instance.level == PlayerData.MaxLevel)
+            if (PlayerData.Instance.level > PlayerData.MaxLevel)
             {
                 FlutterManager.Instance.OpenFlutterManager("恭喜已通关");
                 Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.RankState);

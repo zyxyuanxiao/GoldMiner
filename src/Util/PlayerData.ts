@@ -18,7 +18,7 @@ class PlayerData{
     nickName:string;//角色昵称
     gold:number = 0;
     level:number = 0;//默认第一关
-    static MaxLevel:number = 101;
+    static MaxLevel:number = 20;
 
     constructor()
     {
