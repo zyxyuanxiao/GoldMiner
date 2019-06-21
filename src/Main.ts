@@ -12,6 +12,7 @@ class Main {
     public loading:boolean = false;
     public debugPanel:DebugUI;
     public meterPanel:MeterPanel;
+    public WeChatManager:WeChatManager;
     constructor() {
         //初始化引擎
         Laya.MiniAdpter.init();
@@ -40,6 +41,7 @@ class Main {
         Main.Instance = this;
         this.DialogStateManager = new MainDialogStateManager();
         this.GameStateManager = new MainGameStateManager();
+        this.WeChatManager = new WeChatManager();
         MainGameStateManager.Instance.Init();
         Laya.timer.frameLoop(1, this, this.Update);
     }

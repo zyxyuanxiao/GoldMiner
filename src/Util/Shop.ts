@@ -9,14 +9,3 @@ enum ToolType
     PowerTool,//无视拉取时物品的重量.
     LuckyGrass,//幸运草 +10幸运值.
 }
-
-class Shop
-{
-    public static OnGetItem(tool:ToolType)
-    {
-        switch (tool)
-        {
-
-        }
-    }
-}

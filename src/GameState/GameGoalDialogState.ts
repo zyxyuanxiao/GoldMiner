@@ -40,6 +40,7 @@ class GameGoalDialogState extends CommonDialogState<GameGoalUiController>
             Main.Instance.DialogStateManager.ChangeState(null);
             break;
             case DialogAction.Restart:
+            PlayerData.Instance.Reset();
             Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
             Main.Instance.DialogStateManager.ChangeState(null);
             break;

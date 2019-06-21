@@ -30,6 +30,8 @@ class RankDialogState extends CommonDialogState<RankUIController> {
     public OnAction(dialogAction: DialogAction, data: any) {
         switch (dialogAction) {
             case DialogAction.Close:
+                //关闭排行榜后，清空玩家数据.
+                PlayerData.Instance.Reset();
                 this.ChangeState(null);
                 break;
         }

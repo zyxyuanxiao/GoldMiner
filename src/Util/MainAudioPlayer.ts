@@ -1,6 +1,6 @@
 class MainAudioPlayer {
     private static _Instance: MainAudioPlayer;
-    public static get Instance(): MainAudioPlayer  {
+    public static get Instance(): MainAudioPlayer {
         if (MainAudioPlayer._Instance == null)
             MainAudioPlayer._Instance = new MainAudioPlayer();
         return MainAudioPlayer._Instance;
@@ -9,18 +9,18 @@ class MainAudioPlayer {
      * 播放绳子伸缩声音
      */
     Rope: Laya.SoundChannel;
-    PlayRopeSound()  {
+    PlayRopeSound() {
         if (this.Rope == null)
             this.Rope = Laya.SoundManager.playSound("Sounds/winch.wav", 0, Laya.Handler.create(this, this.OnWinchComplete, null, false));
     }
 
-    OnWinchComplete()  {
+    OnWinchComplete() {
         if (this.Rope != null)
             this.Rope.play();
     }
 
-    StopRopeSound()  {
-        if (this.Rope != null)  {
+    StopRopeSound() {
+        if (this.Rope != null) {
             console.log("rope sound stoped");
             this.Rope.stop();
             this.Rope = null;
@@ -28,17 +28,17 @@ class MainAudioPlayer {
     }
 
     Timers: Laya.SoundChannel;
-    PlayTimer()  {
+    PlayTimer() {
         if (this.Timers == null)
             this.Timers = Laya.SoundManager.playSound("Sounds/timer.wav", 1, Laya.Handler.create(this, this.OnTimerComplete, null, true));
     }
 
-    OnTimerComplete()  {
+    OnTimerComplete() {
         this.StopTimerSound();
     }
 
-    StopTimerSound()  {
-        if (this.Timers != null)  {
+    StopTimerSound() {
+        if (this.Timers != null) {
             this.Timers.stop();
             this.Timers = null;
         }
@@ -47,109 +47,127 @@ class MainAudioPlayer {
     /**
      * 啥也没捡到
      */
-    PlayMiss()  {
+    PlayMiss() {
         Laya.SoundManager.playSound("Sounds/miss.wav", 1);
     }
 
     /**
      * 捡到金子
      */
-    PlayGold()  {
+    PlayGold() {
         Laya.SoundManager.playSound("Sounds/gold.wav", 1);
     }
 
     /**
      * 龙骨头
      */
-    PlaySkull()  {
+    PlaySkull() {
         Laya.SoundManager.playSound("Sounds/skull.wav", 1);
     }
 
     /**
      * 石头
      */
-    PlayStone()  {
+    PlayStone() {
         Laya.SoundManager.playSound("Sounds/stone.wav", 1);
     }
 
     /**
      * 钻石
      */
-    PlayJewel()  {
+    PlayJewel() {
         Laya.SoundManager.playSound("Sounds/jewel.wav", 1);
     }
 
     /**
      * 银矿
      */
-    PlaySilver()  {
+    PlaySilver() {
         Laya.SoundManager.playSound("Sounds/silver.wav", 1);
     }
 
     /**
      * 加分
      */
-    PlayScore()  {
+    PlayScore() {
         Laya.SoundManager.playSound("Sounds/score.wav", 1);
     }
 
     /**
      * 游戏关卡胜利.
      */
-    PlayWin()  {
+    PlayWin() {
         Laya.SoundManager.playSound("Sounds/level_completed.wav", 1);
     }
 
     /**
      * 游戏整体胜利.
      */
-    PlayGameWin()  {
+    PlayGameWin() {
         Laya.SoundManager.playSound("Sounds/game_won.wav", 1);
     }
 
     /**
      * 关卡失败
      */
-    PlayGameOver()  {
+    PlayGameOver() {
         Laya.SoundManager.playSound("Sounds/game_over.wav", 1);
     }
 
     /**
      * 拾取到骨头
      */
-    PlayBones()  {
+    PlayBones() {
         Laya.SoundManager.playSound("Sounds/bone.wav", 1);
     }
 
     /**
      * 炸药
      */
-    PlayBomb()  {
+    PlayBomb() {
         Laya.SoundManager.playSound("Sounds/bomb.wav", 1);
     }
 
     /**
      * 炸药桶
      */
-    PlayTnt()  {
+    PlayTnt() {
         Laya.SoundManager.playSound("Sounds/explosion.wav", 1);
     }
 
     /**
      * 额外奖金-钱袋子-power
      */
-    PlayBonus()  {
+    PlayBonus() {
         Laya.SoundManager.playSound("Sounds/bonus.wav", 1);
     }
 
     /**
      * 商店购买到一件物品
      */
-    PlayBuyItem()  {
+    PlayBuyItem() {
         Laya.SoundManager.playSound("Sounds/buy.wav", 1);
     }
 
-    PlayAnimal()  {
+    PlayAnimal() {
         Laya.SoundManager.playSound("Sounds/mole.wav", 1);
+    }
+
+    isPauseSound: boolean = false;
+    public set PauseSound(pause: boolean) {
+        this.isPauseSound = pause;
+        if (pause) {
+            this.StopSound();
+            Laya.SoundManager.stopAll();
+        }
+    }
+    
+    public AudioSource: Laya.SoundChannel = null;
+    public StopSound() {
+        if (this.AudioSource != null) {
+            this.AudioSource.completeHandler = null;
+            this.AudioSource.stop();
+            this.AudioSource = null;
+        }
     }
 }

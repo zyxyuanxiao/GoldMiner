@@ -1,5 +1,4 @@
 class MainGameStateManager extends GameStateManager<BaseGameState, GameAction> {
-    private readonly LastStateKey: string = "LAST_STATE";
     private readonly AutoOpenedCommonRoomStates: Array<IAutoOpenState>;
     public readonly CheckAndOpenCommonRoomStatesFunct: Function;
     public LastActionPosition: number = -1;
@@ -9,9 +8,6 @@ class MainGameStateManager extends GameStateManager<BaseGameState, GameAction> {
     public MenuState:MenuState;
     public GameBattleState:GameBattleState;
     public ShopState:ShopState;
-    public static ClearPrefs(): void {
-        // UserPrefs.Remove(this.LastStateKey);
-    }
 
     constructor() {
         super();

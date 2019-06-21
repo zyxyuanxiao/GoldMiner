@@ -171,8 +171,6 @@ class BattleUiCtrl extends ui.MainUiUI {
         this.TimeLeft.text = this.lev.time.toFixed(0);
         this.label_level.text = this.lev.level.toFixed(0);
         this.time = this.lev.time + PlayerData.Instance.ExtraTime;
-        if (PlayerData.Instance.DoubleTime)
-            this.time *= 2;
         this.gameOver = true;
     }
 
@@ -336,7 +334,6 @@ class BattleUiCtrl extends ui.MainUiUI {
             if (this.HookStep == 1)  {
                 if (this.Item != null)  {
                     this.PlayDust(this.HookHolder);
-                    this.PlayIdle();
                     if (this.Item instanceof Animal)
                         this.HookHolder.removeChild(this.Item.ani);
                     else
@@ -389,7 +386,7 @@ class BattleUiCtrl extends ui.MainUiUI {
                     if (rewardTool)
                         this.UpdateTools();
                 }
-
+                this.PlayIdle();
                 this._Explosion = false;
                 this.Playing = false;
                 MainAudioPlayer.Instance.StopRopeSound();
@@ -532,6 +529,7 @@ class BattleUiCtrl extends ui.MainUiUI {
             this.hookPoint = this.HookHolder.localToGlobal(this.hookPoint);
             if (s.hitTestPoint(this.hookPoint.x, this.hookPoint.y))  {
                 this.HookStep = 1;
+                this.PlayRecover();
                 this.takeBackTime = 0.0;
                 this._Explosion = false;
                 MainAudioPlayer.Instance.PlayMiss();

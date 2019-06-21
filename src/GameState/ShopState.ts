@@ -169,11 +169,11 @@ class ShopUiController extends ui.ShopUI
                             FlutterManager.Instance.OpenFlutterManager("关卡额外时间+10秒");
                             break;
                             case 1:
-                            PlayerData.Instance.ExtraTime = 30;
+                            PlayerData.Instance.ExtraTime = 15;
                             FlutterManager.Instance.OpenFlutterManager("关卡额外时间+30秒");
                             break;
                             case 2:
-                            PlayerData.Instance.DoubleTime = true;
+                            PlayerData.Instance.ExtraTime = 20;
                             FlutterManager.Instance.OpenFlutterManager("关卡额外时间翻倍");
                             break;
                         }

@@ -14,7 +14,6 @@ class PlayerData{
     Lucky:number = 0;//0-100,每次买草可叠加.
     PowerOn:boolean = false;//无视物体重量
     ExtraTime:number = 0;
-    DoubleTime:boolean = false;//如果有双倍时间，先用关卡时间加上额外时间再翻倍.
     avatarUrl:string;//角色url
     nickName:string;//角色昵称
     gold:number = 0;
@@ -23,19 +22,55 @@ class PlayerData{
 
     constructor()
     {
-        this.Reset();
+        this.Load();
     }
 
-    //重置关卡状态道具，书-
+    public Save()
+    {
+        UserPrefs.SetBool("StoneBook", this.StoneBook);
+        UserPrefs.SetBool("DiamondBook", this.DiamondBook);
+        UserPrefs.SetInt("BombCount", this.BombCount);
+        UserPrefs.SetInt("Lucky", this.Lucky);
+        UserPrefs.SetBool("PowerOn", this.PowerOn);
+        UserPrefs.SetDouble("ExtraTime", this.ExtraTime);
+        UserPrefs.SetInt("gold", this.gold);
+        UserPrefs.SetInt("level", this.level);
+    }
+
+    public ClearPrefs()
+    {
+        UserPrefs.Remove("gold");
+        UserPrefs.Remove("level");
+        UserPrefs.Remove("PowerOn");
+        UserPrefs.Remove("StoneBook");
+        UserPrefs.Remove("DiamondBook");
+        UserPrefs.Remove("BombCount");
+        UserPrefs.Remove("Lucky");
+        UserPrefs.Remove("ExtraTime");
+    }
+
+    //重置关卡状态道具，书
     public ResetStatus()
     {
         this.PowerOn = false;
         this.StoneBook = false;
         this.DiamondBook = false;
-        this.DoubleTime = false;
         this.ExtraTime = 0;
     }
     
+    public Load()
+    {
+        this.gold = UserPrefs.GetInt("gold", 0);
+        this.level = UserPrefs.GetInt("level", 0);
+        //状态清空，保存不保存关卡内状态.
+        //this.PowerOn = UserPrefs.GetBool("PowerOn", false);
+        //this.StoneBook = UserPrefs.GetBool("StoneBook", false);
+        //this.DiamondBook = UserPrefs.GetBool("DiamondBook", false);
+        this.BombCount = UserPrefs.GetInt("BombCount", 0);
+        this.Lucky = UserPrefs.GetInt("Lucky", 0);
+        //this.ExtraTime = UserPrefs.GetInt("ExtraTime", 0);
+    }
+
     public Reset()
     {
         this.gold = 0;
@@ -45,7 +80,6 @@ class PlayerData{
         this.DiamondBook = false;
         this.BombCount = 0;
         this.Lucky = 0;
-        this.DoubleTime = false;
         this.ExtraTime = 0;
         this.nickName = "";
     }
@@ -118,13 +152,13 @@ class PlayerData{
             }
             else if (r > 36 && r <= 42)
             {
-                FlutterManager.Instance.OpenFlutterManager("时间+30S");
-                BattleUiCtrl.Instance.AddTime(30);
+                FlutterManager.Instance.OpenFlutterManager("时间+15S");
+                BattleUiCtrl.Instance.AddTime(15);
             }
             else if (r > 42 && r <= 45)
             {
-                FlutterManager.Instance.OpenFlutterManager("时间翻倍");
-                BattleUiCtrl.Instance.DoubleTime();
+                FlutterManager.Instance.OpenFlutterManager("时间+20S");
+                BattleUiCtrl.Instance.AddTime(20);
             }
             else if (r > 45 && r <= 60)
             {

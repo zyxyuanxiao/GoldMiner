@@ -132,6 +132,7 @@ class Mine
             this.ani.size(100,66);
             this.ani.pos(this.pos.x, this.pos.y);
             this.ani.play();
+            this.ani.scaleX = this.left ? -1 : 1;
             this.tween = Laya.Tween.to(this.ani, {x:this.pos.x + (this.left ? -this.moveRange: this.moveRange)}, this.animTime, Laya.Ease.linearNone, Laya.Handler.create(this, function(){
                 this.ani.stop();
                 Laya.timer.once(this.stopTime, this, this.OnGotoTheEnd);

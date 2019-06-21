@@ -21,7 +21,7 @@ class MenuState extends BaseGameState
         switch (gameAction)
         {
             case GameAction.Start:
-            PlayerData.Instance.Reset();
+            PlayerData.Instance.Load();
             var lev:LevelItem = LevelData.Instance.LevelItems[PlayerData.Instance.level];
             Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.GameBattleState, lev);
             Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.GameGoalState);
