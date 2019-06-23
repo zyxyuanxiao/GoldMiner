@@ -26,6 +26,9 @@ class MenuState extends BaseGameState
             Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.GameBattleState, lev);
             Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.GameGoalState);
             break;
+            case GameAction.EditLevel:
+            Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.LevelEditState);
+            break;
         }
     }
 

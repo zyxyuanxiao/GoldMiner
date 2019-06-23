@@ -8,13 +8,14 @@ class MainGameStateManager extends GameStateManager<BaseGameState, GameAction> {
     public MenuState:MenuState;
     public GameBattleState:GameBattleState;
     public ShopState:ShopState;
-
+    public LevelEditState:LevelEditState;
     constructor() {
         super();
         this.StartUpState = new StartUpState(this);
         this.MenuState = new MenuState(this);
         this.GameBattleState = new GameBattleState(this);
         this.ShopState = new ShopState(this);
+        this.LevelEditState = new LevelEditState(this);
         MainGameStateManager.Instance = this;
         this.CheckAndOpenCommonRoomStatesFunct = this.CheckAndOpenCommonRoomStates;
     }

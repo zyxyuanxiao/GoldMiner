@@ -63,85 +63,85 @@ class LevelData
         var Dragon:Mine = MineFactory.CreateMine(MineType.Dragon, 1, 280, 325);
         for (var i = 0; i < 5; i++)
         {
-            var x:number = Math.random() * (Laya.stage.width - 250);
-            var y:number = Math.random() * (Laya.stage.height - 520) + 30;
+            var x:number = Math.ceil(Math.random() * (Laya.stage.width - 250));
+            var y:number = Math.ceil(Math.random() * (Laya.stage.height - 520) + 30);
             var stone:Stone = MineFactory.CreateMine(MineType.Stone, Math.random() * 9 + 1, x, y);
             lev.Add(stone);
         }
         for (var i = 0; i < 5; i++)
         {
-            var x:number = Math.random() * (Laya.stage.width - 250);
-            var y:number = Math.random() * (Laya.stage.height - 520) + 30;
+            var x:number = Math.ceil(Math.random() * (Laya.stage.width - 250));
+            var y:number = Math.ceil(Math.random() * (Laya.stage.height - 520) + 30);
             var gold:Gold = MineFactory.CreateMine(MineType.Gold, Math.random() * 9 + 1, x, y);
             lev.Add(gold);
         }
         for (var i = 0; i < 5; i++)
         {
-            var x:number = Math.random() * (Laya.stage.width - 250);
-            var y:number = Math.random() * (Laya.stage.height - 520) + 30;
+            var x:number = Math.ceil(Math.random() * (Laya.stage.width - 250));
+            var y:number = Math.ceil(Math.random() * (Laya.stage.height - 520) + 30);
             var sliver:Silver = MineFactory.CreateMine(MineType.Sliver, Math.random() * 9 + 1, x, y);
             lev.Add(sliver);
         }
         for (var i = 0; i < 2; i++)
         {
-            var x:number = Math.random() * (Laya.stage.width - 250);
-            var y:number = Math.random() * (Laya.stage.height - 520) + 30;
+            var x:number = Math.ceil(Math.random() * (Laya.stage.width - 250));
+            var y:number = Math.ceil(Math.random() * (Laya.stage.height - 520) + 30);
             var tnt:Tnt = MineFactory.CreateMine(MineType.Tnt, 0, x, y);
             lev.Add(tnt);
         }
         for (var i = 0; i < 1; i++)
         {
-            var x:number = Math.random() * (Laya.stage.width - 250);
-            var y:number = Math.random() * (Laya.stage.height - 520) + 30;
+            var x:number = Math.ceil(Math.random() * (Laya.stage.width - 250));
+            var y:number = Math.ceil(Math.random() * (Laya.stage.height - 520) + 30);
             var bone:Bone = MineFactory.CreateMine(MineType.Bone, 0, x, y);
             lev.Add(bone);
         }
         for (var i = 0; i < 4; i++)
         {
-            var x:number = Math.random() * (Laya.stage.width - 250);
-            var y:number = Math.random() * (Laya.stage.height - 520) + 30;
+            var x:number = Math.ceil(Math.random() * (Laya.stage.width - 250));
+            var y:number = Math.ceil(Math.random() * (Laya.stage.height - 520) + 30);
             var bag:Bag = MineFactory.CreateMine(MineType.Bag, 0, x, y);
             lev.Add(bag);
         }
         for (var i = 0; i < 1; i++)
         {
-            var x:number = Math.random() * (Laya.stage.width - 250);
-            var y:number = Math.random() * (Laya.stage.height - 520) + 30;
+            var x:number = Math.ceil(Math.random() * (Laya.stage.width - 250));
+            var y:number = Math.ceil(Math.random() * (Laya.stage.height - 520) + 30);
             var dia:RedDiamond = MineFactory.CreateMine(MineType.RedDiamond, 0, x, y);
             lev.Add(dia);
         }
         for (var i = 0; i < 1; i++)
         {
-            var x:number = Math.random() * (Laya.stage.width - 250);
-            var y:number = Math.random() * (Laya.stage.height - 520) + 30;
+            var x:number = Math.ceil(Math.random() * (Laya.stage.width - 250));
+            var y:number = Math.ceil(Math.random() * (Laya.stage.height - 520) + 30);
             var dia:GreenDiamond = MineFactory.CreateMine(MineType.GreenDiamond, 0, x, y);
             lev.Add(dia);
         }
         for (var i = 0; i < 1; i++)
         {
-            var x:number = Math.random() * (Laya.stage.width - 250);
-            var y:number = Math.random() * (Laya.stage.height - 520) + 30;
+            var x:number = Math.ceil(Math.random() * (Laya.stage.width - 250));
+            var y:number = Math.ceil(Math.random() * (Laya.stage.height - 520) + 30);
             var p:Animal = MineFactory.CreateMine(MineType.Animal, 0, x, y);
             lev.Add(p);
         }
         for (var i = 0; i < 1; i++)
         {
-            var x:number = Math.random() * (Laya.stage.width - 250);
-            var y:number = Math.random() * (Laya.stage.height - 520) + 30;
+            var x:number = Math.ceil(Math.random() * (Laya.stage.width - 250));
+            var y:number = Math.ceil(Math.random() * (Laya.stage.height - 520) + 30);
             var p:AnimalA = MineFactory.CreateMine(MineType.AnimalA, 0, x, y);
             lev.Add(p);
         }
         for (var i = 0; i < 1; i++)
         {
-            var x:number = Math.random() * (Laya.stage.width - 250);
-            var y:number = Math.random() * (Laya.stage.height - 520) + 30;
+            var x:number = Math.ceil(Math.random() * (Laya.stage.width - 250));
+            var y:number = Math.ceil(Math.random() * (Laya.stage.height - 520) + 30);
             var p:AnimalB = MineFactory.CreateMine(MineType.AnimalB, 0, x, y);
             lev.Add(p);
         }
         for (var i = 0; i < 1; i++)
         {
-            var x:number = Math.random() * (Laya.stage.width - 250);
-            var y:number = Math.random() * (Laya.stage.height - 520) + 30;
+            var x:number = Math.ceil(Math.random() * (Laya.stage.width - 250));
+            var y:number = Math.ceil(Math.random() * (Laya.stage.height - 520) + 30);
             var p:AnimalC = MineFactory.CreateMine(MineType.AnimalC, 0, x, y);
             lev.Add(p);
         }
@@ -180,7 +180,7 @@ class LevelData
     constructor()
     {
         this.Reset();
-        for (var i = 1; i < 101; i++)
+        for (var i = 1; i <= 20; i++)
         {
             var lev:LevelItem = this.CreateLevel(i);
             this.LevelItems.push(lev);

@@ -6,4 +6,5 @@ enum GameAction {
     BackButton,
     Restart,
     NextLevel,
+    EditLevel,
 }

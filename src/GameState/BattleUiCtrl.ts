@@ -32,8 +32,6 @@ class BattleUiCtrl extends ui.MainUiUI {
         this.btn_shop.on(Laya.Event.CLICK, this, this.OnPassLevel);
         this.btn_pause.on(Laya.Event.CLICK, this, this.OnPause);
         this.btn_mute.on(Laya.Event.CLICK, this, this.OnMute);
-        for (var i = 0; i < 10; i++)
-            this.holdlevel.push(this.HookHolder.getChildByName("hold_level" + (i + 1)) as Laya.Image);
         this.player0.interval = 80;
         this.player_idle.interval = 80;
         this.player1.interval = 80;
@@ -191,7 +189,6 @@ class BattleUiCtrl extends ui.MainUiUI {
         this.Currency_gold.text = g.toFixed(0);
     }
 
-    holdlevel: Array<Laya.Image> = new Array<Laya.Image>();
     rotationSpeed = 1.0;//旋转速度
     turnRight = true;//向右
     Playing: boolean = false;//是否在伸展
@@ -375,6 +372,7 @@ class BattleUiCtrl extends ui.MainUiUI {
                         this.label_score.text = "+" + Math.ceil(t - f);
                         this.label_score.pos(this.hookPoint.x, this.hookPoint.y);
                         this.label_score.visible = true;
+                        this.label_score.alpha = 0.2;
                         Laya.Tween.to(this.label_score, { x: this.avatarUrl.x, y: this.avatarUrl.y + 200, alpha:1.0}, 500, Laya.Ease.cubicIn, Laya.Handler.create(this, function () {
                             Laya.Tween.to(this.label_score, { x: this.Currency_gold.x + 30, y: this.Currency_gold.y + 5, alpha:0.2}, 1800, Laya.Ease.expoInOut, Laya.Handler.create(this, function () {
                                 this.StartScoreUpdate(f, t);

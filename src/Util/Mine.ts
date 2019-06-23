@@ -17,6 +17,40 @@ enum MineType
     Power,//力量药剂
 }
 
+class MineJson
+{
+    constructor(t:MineType, l:number, x:number, y:number)
+    {
+        this.type = t;
+        this.level = l;
+        this.x = x;
+        this.y = y;
+    }
+    type:MineType;
+    level:number;
+    x:number;
+    y:number;
+}
+
+class LevelItemJson
+{
+    constructor(l:number, g:number, t:number)
+    {
+        this.level = l;
+        this.goal = g;
+        this.time = t;
+        this.mines = new Array<MineJson>();
+    }
+    level:number;
+    goal:number;
+    time:number;
+    mines:Array<MineJson>;
+    Push(m:MineJson)
+    {
+        this.mines.push(m);
+    }
+}
+
 class Mine
 {
     static weightBase:number = 10;//基本单位重量
@@ -30,6 +64,7 @@ class Mine
                 prefix = "0" + prefix;
             this.skinPath = StringTool.format("style1/stone_{0}-sheet0.png", prefix);
             this.backPath = StringTool.format("style1/stone_{0}-sheet0_trace.png", prefix);
+            this.name = "石头";
             break;
             case MineType.Gold:
             var prefix:string = level.toFixed(0);
@@ -37,6 +72,7 @@ class Mine
                 prefix = "0" + prefix;
             this.skinPath = StringTool.format("style1/gold_{0}-sheet0.png", prefix);
             this.backPath = StringTool.format("style1/gold_{0}-sheet0_trace.png", prefix);
+            this.name = "金子";
             break;
             case MineType.Sliver:
             var prefix:string = level.toFixed(0);
@@ -44,47 +80,59 @@ class Mine
                 prefix = "0" + prefix;
             this.skinPath = StringTool.format("style1/silver_{0}-sheet0.png", prefix);
             this.backPath = StringTool.format("style1/silver_{0}-sheet0_trace.png", prefix);
+            this.name = "银子";
             break;
             case MineType.Diamond:
             this.skinPath = "style1/diamond-sheet0.png";
             this.backPath = "style1/diamond_trace-sheet0.png";
+            this.name = "钻石";
             break;
             case MineType.Dragon:
             this.skinPath = "style1/skull-sheet0.png";
             this.backPath = "style1/skull_trace-sheet0.png";
+            this.name = "龙头骨";
             break;
             //这4种用动画做.
             case MineType.Animal://动物
             this.aniPath = "mole0.ani";
+            this.name = "动物";
             break;
             case MineType.AnimalA://动物钻石
             this.aniPath = "mole1.ani";
+            this.name = "动物钻";
             break;
             case MineType.AnimalB://动物红宝石
             this.aniPath = "mole2.ani";
+            this.name = "动物红钻";
             break;
             case MineType.AnimalC://动物绿宝石
             this.aniPath = "mole3.ani";
+            this.name = "动物绿钻";
             break;
             case MineType.RedDiamond://红宝石
             this.skinPath = "style1/ruby-sheet0.png";
             this.backPath = "style1/ruby_trace-sheet0.png";
+            this.name = "红宝石";
             break;
             case MineType.GreenDiamond://绿宝石
             this.skinPath = "style1/emerald-sheet0.png";
             this.backPath = "style1/emerald_trace-sheet0.png";
+            this.name = "绿宝石";
             break;
             case MineType.Tnt://炸药桶
             this.skinPath = "style1/barrel-sheet0.png";
             this.backPath = "style1/barrel_trace-sheet0.png";
+            this.name = "炸药桶";
             break;
             case MineType.Bone://单根骨头
             this.skinPath = "style1/bone-sheet0.png";
             this.backPath = "style1/bone_trace-sheet0.png";
+            this.name = "骨头";
             break;
             case MineType.Bag://钱袋子
             this.skinPath = "style1/bag-sheet0.png";
             this.backPath = "style1/bag_trace-sheet0.png";
+            this.name = "随机袋";
             break;
             case MineType.Power://强力
             this.skinPath = "style1/bonus_power-sheet0.png";
@@ -97,6 +145,7 @@ class Mine
         this.type = type;
     }
 
+    name:string = "";
     left:boolean = false;
     public OnGotoTheEnd():void
     {
