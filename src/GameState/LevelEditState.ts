@@ -49,6 +49,7 @@ class LevelEditController extends ui.LevelEditorUI {
         this.btn_LevelGoal.on(Laya.Event.CLICK, this, this.LevelGoal);
         this.btn_openlevel.on(Laya.Event.CLICK, this, this.ShowLevel);
         this.btn_addmine.on(Laya.Event.CLICK, this, this.ShowMine);
+        this.label_value.text = "关卡投放:0"; 
         this.levelDataSource = Array<{}>();
         this.OnResize();
         for (var i = 0; i < LevelData.Instance.LevelItems.length; i++) {
@@ -161,11 +162,14 @@ class LevelEditController extends ui.LevelEditorUI {
         this.label_level.text = StringTool.format("当前关卡:{0}", this.level.level);
         this.level_goal.text = "关卡目标:" + this.level.Goal.toFixed(0);
         this.level_time.text = "关卡限时:" + this.level.time.toFixed(0);
+        var t:number = 0;
         for (var i:number = 0; i < this.level.Mines.length; i++)
         {
            var m:Mine = this.level.Mines[i];
            m.LoadOnEditor(this.MineRoot);
+           t += m.value;
         }
+        this.label_value.text = StringTool.format("关卡投放:{0}", t);
     }
 
     levelExpand: boolean = false;
