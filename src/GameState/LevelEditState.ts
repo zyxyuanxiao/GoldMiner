@@ -134,9 +134,11 @@ class LevelEditController extends ui.LevelEditorUI {
         levelcell.label_level.text = cell.dataSource["text"]["text"];
         levelcell.on(Laya.Event.CLICK, this, function () {
             console.log("click lev:", index);
+            if (this.level != null)
+                this.ClearLevel();
             this.level = LevelData.Instance.LevelItems[index];
             this.OnOpenLevel();
-            this.ShowLevel();
+            //this.ShowLevel();
             //this.label_level.text;
         }.bind(this), null);
     }
@@ -151,7 +153,7 @@ class LevelEditController extends ui.LevelEditorUI {
             levelcell.label_mine.text = m.name;
         levelcell.on(Laya.Event.CLICK, this, function () {
             this.AddMine(m);
-            this.ShowMine();
+            //this.ShowMine();
         }.bind(this), null);
     }
 
