@@ -178,8 +178,3 @@ class GlobalData {
         return true;
     }
 }
-
-class GameDataLoad {
-    constructor() {
-    }
-}

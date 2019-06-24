@@ -33,18 +33,6 @@ class EditDialogState extends CommonDialogState<EditController>
 
     public OnAction(gameAction:DialogAction, data:Object):void{
         super.OnAction(gameAction, data);
-        switch (gameAction)
-        {
-            case DialogAction.Start:
-            Main.Instance.GameStateManager.GameBattleState.Play();
-            Main.Instance.DialogStateManager.ChangeState(null);
-            break;
-            case DialogAction.Restart:
-            PlayerData.Instance.Reset();
-            Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
-            Main.Instance.DialogStateManager.ChangeState(null);
-            break;
-        }
     }
 }
 
@@ -55,7 +43,6 @@ class EditController extends ui.EditDialogUI
     {
         super();
         this.level = lev;
-        this.OnResize();
         this.btn_close.on(Laya.Event.CLICK, this, function(){
             Main.Instance.DialogStateManager.ChangeState(null);
         }.bind(this));
@@ -64,11 +51,8 @@ class EditController extends ui.EditDialogUI
         }.bind(this));
         this.edit_goal.text = this.level.Goal.toFixed(0);
         this.edit_time.text = this.level.time.toFixed(0);
-    }
-
-    OnResize() {
-        this.width = Laya.stage.width;
-        this.height = Laya.stage.height;
+        this.centerX = 0;
+        this.centerY = 0;
     }
 
     OnApply()

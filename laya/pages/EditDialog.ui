@@ -2,8 +2,8 @@
     "x":0,
     "type":"Dialog",
     "selectedBox":1,
-    "selecteID":10,
-    "props":{"width":600,"sceneColor":"#000000","height":400},
+    "selecteID":7,
+    "props":{"width":769,"sceneColor":"#000000","height":450},
     "nodeParent":-1,
     "label":"Dialog",
     "isOpen":true,
@@ -28,7 +28,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":17,"width":150,"valign":"middle","text":"时间限制(秒):","height":75,"fontSize":35,"color":"#0f0e0e","centerX":-97,"align":"center"},
+            "props":{"y":92,"width":150,"valign":"middle","text":"时间限制(秒):","height":75,"fontSize":35,"color":"#0f0e0e","centerX":-249,"align":"center"},
             "nodeParent":1,
             "label":"Label",
             "isDirectory":false,
@@ -80,7 +80,7 @@
         {
             "x":15,
             "type":"Text",
-            "props":{"y":14,"x":288,"width":275,"var":"edit_time","height":85,"fontSize":35,"color":"#060606"},
+            "props":{"y":100,"x":333,"width":275,"var":"edit_time","valign":"middle","height":85,"fontSize":35,"color":"#060606"},
             "nodeParent":1,
             "label":"Text(edit_time)",
             "isDirectory":false,
@@ -93,7 +93,7 @@
         {
             "x":15,
             "type":"Text",
-            "props":{"y":104,"x":288,"width":275,"var":"edit_goal","height":85,"fontSize":35,"color":"#060606"},
+            "props":{"y":214,"x":333,"width":275,"var":"edit_goal","valign":"middle","height":85,"fontSize":35,"color":"#060606"},
             "nodeParent":1,
             "label":"Text(edit_goal)",
             "isDirectory":false,
@@ -106,7 +106,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":114,"x":10,"width":150,"valign":"middle","text":"关卡目标(金):","height":75,"fontSize":35,"color":"#0f0e0e","centerX":-97,"align":"center"},
+            "props":{"y":213,"width":150,"valign":"middle","text":"关卡目标(金):","height":75,"fontSize":35,"color":"#0f0e0e","centerX":-245,"align":"center"},
             "nodeParent":1,
             "label":"Label",
             "isDirectory":false,

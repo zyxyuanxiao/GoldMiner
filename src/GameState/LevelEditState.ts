@@ -32,6 +32,11 @@ class LevelEditState extends BaseGameState {
         // (this.Controller as BattleUiCtrl).LoadLevel(level);
         // (this.Controller as BattleUiCtrl).StartGame();
     }
+
+    public OnDeleteMine(m:Mine)
+    {
+        this.Controller.OnDeleteMine(m);
+    }
 }
 
 class LevelEditController extends ui.LevelEditorUI {
@@ -42,14 +47,10 @@ class LevelEditController extends ui.LevelEditorUI {
         super();
         this.btn_saveLevel.on(Laya.Event.CLICK, this, this.SaveLevel);
         this.btn_LevelGoal.on(Laya.Event.CLICK, this, this.LevelGoal);
-        this.btn_testLevel.on(Laya.Event.CLICK, this, this.TestLevel);
         this.btn_openlevel.on(Laya.Event.CLICK, this, this.ShowLevel);
         this.btn_addmine.on(Laya.Event.CLICK, this, this.ShowMine);
         this.levelDataSource = Array<{}>();
         this.OnResize();
-
-
-
         for (var i = 0; i < LevelData.Instance.LevelItems.length; i++) {
             var _data = {
                 text: { text: StringTool.format("关卡:{0}", LevelData.Instance.LevelItems[i].level), color: "#000000" },
@@ -64,15 +65,24 @@ class LevelEditController extends ui.LevelEditorUI {
         this.mineDataSource = Array<{}>();
         for (var i: number = 1; i <= 10; i++)  {
             var m: Mine = MineFactory.CreateMine(MineType.Stone, i, 0, 0);
-            this.mineDataSource.push(m);
+            var mdata = {
+                mine:m
+            }
+            this.mineDataSource.push(mdata);
         }
         for (var i: number = 1; i <= 10; i++)  {
             var m: Mine = MineFactory.CreateMine(MineType.Sliver, i, 0, 0);
-            this.mineDataSource.push(m);
+            var mdata = {
+                mine:m
+            }
+            this.mineDataSource.push(mdata);
         }
         for (var i: number = 1; i <= 10; i++)  {
             var m: Mine = MineFactory.CreateMine(MineType.Gold, i, 0, 0);
-            this.mineDataSource.push(m);
+            var mdata = {
+                mine:m
+            }
+            this.mineDataSource.push(mdata);
         }
         var m0: Mine = MineFactory.CreateMine(MineType.Diamond, 1, 0, 0);
         var m1: Mine = MineFactory.CreateMine(MineType.Dragon, 1, 0, 0);
@@ -85,26 +95,45 @@ class LevelEditController extends ui.LevelEditorUI {
         var m8: Mine = MineFactory.CreateMine(MineType.AnimalB, 1, 0, 0);
         var m9: Mine = MineFactory.CreateMine(MineType.AnimalC, 1, 0, 0);
         var m10: Mine = MineFactory.CreateMine(MineType.AnimalA, 1, 0, 0);
-        this.mineDataSource.push(m0, m1, m2, m3, m4, m5, m6, m7, m8, m9, m10);
+        var mdata = {mine:m0}
+        this.mineDataSource.push(mdata);
+        var mdata = {mine:m1}
+        this.mineDataSource.push(mdata);
+        var mdata = {mine:m2}
+        this.mineDataSource.push(mdata);
+        var mdata = {mine:m3}
+        this.mineDataSource.push(mdata);
+        var mdata = {mine:m4}
+        this.mineDataSource.push(mdata);
+        var mdata = {mine:m5}
+        this.mineDataSource.push(mdata);
+        var mdata = {mine:m6}
+        this.mineDataSource.push(mdata);
+        var mdata = {mine:m7}
+        this.mineDataSource.push(mdata);
+        var mdata = {mine:m8}
+        this.mineDataSource.push(mdata);
+        var mdata = {mine:m9}
+        this.mineDataSource.push(mdata);
+        var mdata = {mine:m10}
+        this.mineDataSource.push(mdata);
         this.mineList.array = this.mineDataSource;
-        this.mineList.renderHandler = new Laya.Handler(this, this.RenderMine);
+        this.mineList.renderHandler = new Laya.Handler(this, this.RenderMine, null, false);
     }
 
     OnResize()  {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
+        this.HookHead.x = Laya.stage.width / 2;
+        this.hookAnchor.x = this.HookHead.x;
     }
 
     RenderLevel(cell: Laya.Box, index: number)  {
-        console.log(cell, index);
+        //console.log(cell, index);
         var levelcell: ui.LevelButtonUI = cell.getChildAt(0) as ui.LevelButtonUI;
         levelcell.label_level.text = cell.dataSource["text"]["text"];
         levelcell.on(Laya.Event.CLICK, this, function () {
             console.log("click lev:", index);
-            if (this.level != null)  {
-                this.SaveLevel();
-                this.level = null;
-            }
             this.level = LevelData.Instance.LevelItems[index];
             this.OnOpenLevel();
             this.ShowLevel();
@@ -113,12 +142,13 @@ class LevelEditController extends ui.LevelEditorUI {
     }
 
     RenderMine(cell: Laya.Box, index: number)  {
-        var levelcell: ui.LevelButtonUI = cell.getChildAt(0) as ui.LevelButtonUI;
-        var m:Mine = cell.dataSource as Mine;
+        //console.log(cell, index);
+        var levelcell: ui.MineButtonUI = cell.getChildAt(0) as ui.MineButtonUI;
+        var m:Mine = cell.dataSource["mine"] as Mine;
         if (m.type == MineType.Stone || m.type == MineType.Gold || m.type == MineType.Sliver)
-            levelcell.label_level.text = StringTool.format("{0}-{1}-{2}", m.name, m.level, m.value);
+            levelcell.label_mine.text = StringTool.format("{0}-{1}-{2}", m.name, m.level, m.value);
         else
-            levelcell.label_level.text = m.name;
+            levelcell.label_mine.text = m.name;
         levelcell.on(Laya.Event.CLICK, this, function () {
             this.AddMine(m);
             this.ShowMine();
@@ -126,11 +156,14 @@ class LevelEditController extends ui.LevelEditorUI {
     }
 
     OnOpenLevel()  {
-        
         this.label_level.text = StringTool.format("当前关卡:{0}", this.level.level);
         this.level_goal.text = "关卡目标:" + this.level.Goal.toFixed(0);
         this.level_time.text = "关卡限时:" + this.level.time.toFixed(0);
-
+        for (var i:number = 0; i < this.level.Mines.length; i++)
+        {
+           var m:Mine = this.level.Mines[i];
+           m.LoadOnEditor(this.MineRoot);
+        }
     }
 
     levelExpand: boolean = false;
@@ -149,7 +182,7 @@ class LevelEditController extends ui.LevelEditorUI {
     mineExpand: boolean = false;
     ShowMine()  {
         if (this.mineExpand)  {
-            Laya.Tween.to(this.mineList, { right: -540 }, 500, Laya.Ease.cubicOut, Laya.Handler.create(this, ()=>{
+            Laya.Tween.to(this.mineList, { right: -940 }, 500, Laya.Ease.cubicOut, Laya.Handler.create(this, ()=>{
                 this.mineExpand = false;
             }), 500);
         }
@@ -162,7 +195,16 @@ class LevelEditController extends ui.LevelEditorUI {
 
     AddMine(m:Mine)
     {
-
+        if (this.level == null)  {
+            FlutterManager.Instance.OpenFlutterManager("还未打开任何关卡");
+            return;
+        }
+        if (this.level != null)
+        {
+            var clone:Mine = new Mine(m.level, m.type, Laya.stage.width / 2, Laya.stage.height / 2, m.value);
+            this.level.Mines.push(clone);
+            clone.LoadOnEditor(this.MineRoot);
+        }
     }
 
     SaveLevel()  {
@@ -184,10 +226,20 @@ class LevelEditController extends ui.LevelEditorUI {
             }
             var levelJson:string = JSON.stringify(leveldata);
             console.log(levelJson);
-            var file:File = new File([levelJson], "data.txt", {type: "text/plain;charset=utf-8"});
+            var file:File = new File([levelJson], "Level.json", {type: "text/plain;charset=utf-8"});
             saveAs(file);
-            this.level = null;
+            this.ClearLevel();
         }
+    }
+
+    ClearLevel()
+    {
+        for (var i:number = 0; i < this.level.Mines.length; i++)
+        {
+           var m:Mine = this.level.Mines[i];
+           m.Reset();
+        }
+        this.level = null;
     }
 
     LevelGoal()  {
@@ -198,7 +250,13 @@ class LevelEditController extends ui.LevelEditorUI {
         Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.EditDialogState, this.level);
     }
 
-    TestLevel()  {
-
+    //当某个被删除时
+    OnDeleteMine(m:Mine)
+    {
+        if (this.level != null)
+        {
+            this.level.Mines.splice(this.level.Mines.indexOf(m), 1);
+            m.Reset();
+        }
     }
 }

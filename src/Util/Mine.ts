@@ -164,6 +164,100 @@ class Mine
     static PaddingWidth:number = 250;
     static PaddingHeight:number = 550;
     tween:Laya.Tween;
+
+    dragRect:Laya.Rectangle = new Laya.Rectangle(0, 0, Laya.stage.width - 250, Laya.stage.height - 550);
+    label_value:Laya.Label;
+    public LoadOnEditor(parent:Laya.Node)
+    {
+        if (this.label_value == null)
+        {
+            this.label_value = new Laya.Label();
+            this.label_value.mouseEnabled = false;
+            this.label_value.mouseThrough = true;
+        }
+        this.label_value.text = StringTool.format("价值:{0}", this.value.toFixed(0));
+        this.label_value.fontSize = 32;
+        this.label_value.color = "#FFFFFF";
+        this.label_value.align = "center";
+        this.label_value.valign = "middle";
+        if (this.aniPath != null)
+        {
+            this.ani = new Laya.Animation();
+            this.ani.loadAnimation(this.aniPath);
+            this.ani.zOrder = 999;
+            this.moveSpeed = 30 + Math.random() * 50;
+            this.ani.interval = 160 - this.moveSpeed;
+            this.moveRange = (Laya.stage.width - Mine.PaddingWidth) / 4;
+            this.animTime = (1000.0 * this.moveRange / this.moveSpeed);
+            this.stopTime = 500 + Math.random() * 1000;
+            parent.addChild(this.ani);
+            this.ani.addChild(this.label_value);
+            this.ani.size(100,66);
+            this.ani.pos(this.pos.x, this.pos.y);
+            this.ani.play();
+            this.ani.scaleX = this.left ? -1 : 1;
+            this.ani.on(Laya.Event.MOUSE_DOWN, this, this.onStartDrag);
+            this.ani.on(Laya.Event.MOUSE_UP, this, this.onEndDrag);
+            this.ani.on(Laya.Event.MOUSE_OUT, this, this.onEndDrag);
+            this.ani.on(Laya.Event.RIGHT_CLICK, this, this.onDelete);
+            // this.tween = Laya.Tween.to(this.ani, {x:this.pos.x + (this.left ? -this.moveRange: this.moveRange)}, this.animTime, Laya.Ease.linearNone, Laya.Handler.create(this, function(){
+            //     this.ani.stop();
+            //     Laya.timer.once(this.stopTime, this, this.OnGotoTheEnd);
+            // }.bind(this)));
+        }
+        if (this.sprite == null && this.skinPath != null)
+        {
+            this.sprite = new Laya.Image();
+            this.sprite.skin = this.skinPath;
+            parent.addChild(this.sprite);
+            this.sprite.addChild(this.label_value);
+            this.sprite.pos(this.pos.x, this.pos.y);
+            this.sprite.anchorX = 0.5;
+            this.sprite.anchorY = 0.5;
+            this.sprite.on(Laya.Event.MOUSE_DOWN, this, this.onStartDrag);
+            this.sprite.on(Laya.Event.MOUSE_UP, this, this.onEndDrag);
+            this.sprite.on(Laya.Event.MOUSE_OUT, this, this.onEndDrag);
+            this.sprite.on(Laya.Event.RIGHT_CLICK, this, this.onDelete);
+            if (this.type == MineType.Dragon || 
+                this.type == MineType.Bag || 
+                this.type == MineType.Diamond || 
+                this.type == MineType.RedDiamond || 
+                this.type == MineType.GreenDiamond || 
+                this.type == MineType.Tnt)
+                this.sprite.rotation = 0;
+            else
+                this.sprite.rotation = Math.random() * 360;
+        }
+    }
+
+    onDelete(e)
+    {
+        if (Main.Instance.GameStateManager.LevelEditState != null)
+            Main.Instance.GameStateManager.LevelEditState.OnDeleteMine(this);
+    }
+
+    onStartDrag(e)
+	{
+        if (this.ani != null)
+		    this.ani.startDrag(this.dragRect, true, 100);
+        else if (this.sprite != null)
+            this.sprite.startDrag(this.dragRect, true, 100);
+	}
+
+    onEndDrag(e)
+    {
+        if (this.ani != null)
+        {
+		    this.pos.x = Math.ceil(this.ani.x);
+            this.pos.y = Math.ceil(this.ani.y);
+        }
+        else if (this.sprite != null)
+        {
+            this.pos.x = Math.ceil(this.sprite.x);
+            this.pos.y = Math.ceil(this.sprite.y);
+        }
+    }
+
     //把图片加载出来，放到舞台
     public Load(parent:Laya.Node, backparent:Laya.Node)
     {
@@ -244,14 +338,22 @@ class Mine
 
     Reset()
     {
+        if (this.label_value != null)
+        {
+            this.label_value.removeSelf();
+            this.label_value = null;
+        }
+
         this.Hooked = false;
         this.hookPoint.x = 0;
         this.hookPoint.y = 0;
+
         if (this.tween != null)
         {
             this.tween.clear();
             this.tween = null;
         }
+
         if (this.sprite != null)
         {
             this.sprite.removeSelf();
@@ -266,7 +368,6 @@ class Mine
 
         this.sprite = null;
         this.spriteTrace = null;
-
         this.ResetAni();
     }
 

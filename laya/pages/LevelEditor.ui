@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":88,
-    "selecteID":77,
+    "selectedBox":1,
+    "selecteID":106,
     "props":{"width":1920,"sceneColor":"#000000","height":1080},
     "nodeParent":-1,
     "label":"View",
@@ -32,13 +32,14 @@
             "props":{"var":"Map","top":0,"right":0,"left":0,"bottom":0},
             "nodeParent":1,
             "label":"Panel(Map)",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":15,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"var":"MineBackground","top":450,"right":125,"left":125,"bottom":100},
                     "nodeParent":15,
@@ -51,6 +52,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":42,"var":"player","skin":"Player/miner-sheet_01.png","centerX":45,"anchorY":0,"anchorX":0.5},
                     "nodeParent":15,
@@ -63,6 +65,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":290,"x":960,"width":70,"var":"hookAnchor","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
                     "nodeParent":15,
@@ -114,6 +117,7 @@
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":290,"x":960,"width":65,"var":"HookHead","skin":"style1/rope.png","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
                     "nodeParent":15,
@@ -127,6 +131,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"var":"MineRoot","top":450,"right":125,"left":125,"bottom":100},
                     "nodeParent":15,
@@ -188,19 +193,6 @@
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":77,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Button",
-                    "props":{"width":200,"var":"btn_testLevel","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"测试关卡","height":85},
-                    "nodeParent":88,
-                    "label":"Button(btn_testLevel)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":79,
                     "child":[
                         ]
                 },
@@ -286,46 +278,6 @@
         },
         {
             "x":15,
-            "type":"List",
-            "props":{"width":540,"var":"mineList","top":25,"right":-540,"repeatY":12,"repeatX":4,"renderType":"render","bottom":25},
-            "nodeParent":1,
-            "label":"List(mineList)",
-            "isOpen":true,
-            "isDirectory":true,
-            "isAniNode":true,
-            "hasChild":true,
-            "compId":93,
-            "child":[
-                {
-                    "x":30,
-                    "type":"Box",
-                    "props":{"renderType":"render"},
-                    "nodeParent":93,
-                    "label":"Box",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":false,
-                    "hasChild":true,
-                    "compId":101,
-                    "child":[
-                        {
-                            "x":45,
-                            "type":"UIView",
-                            "source":"LevelButton.ui",
-                            "props":{"width":135,"height":85},
-                            "nodeParent":101,
-                            "label":"UIView",
-                            "isDirectory":false,
-                            "isAniNode":false,
-                            "hasChild":false,
-                            "compId":103,
-                            "child":[
-                                ]
-                        }]
-                }]
-        },
-        {
-            "x":15,
             "type":"Label",
             "props":{"y":10,"width":255,"var":"label_level","valign":"middle","top":168,"text":"当前关卡:无","left":0,"height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
             "nodeParent":1,
@@ -336,6 +288,46 @@
             "compId":100,
             "child":[
                 ]
+        },
+        {
+            "x":15,
+            "type":"List",
+            "props":{"width":940,"var":"mineList","spaceY":20,"spaceX":10,"right":-940,"repeatY":10,"repeatX":4,"height":850,"centerY":0},
+            "nodeParent":1,
+            "label":"List(mineList)",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":106,
+            "child":[
+                {
+                    "x":30,
+                    "type":"Box",
+                    "props":{"renderType":"render"},
+                    "nodeParent":106,
+                    "label":"Box",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":false,
+                    "hasChild":true,
+                    "compId":107,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"UIView",
+                            "source":"MineButton.ui",
+                            "props":{},
+                            "nodeParent":107,
+                            "label":"UIView",
+                            "isDirectory":false,
+                            "isAniNode":false,
+                            "hasChild":false,
+                            "compId":109,
+                            "child":[
+                                ]
+                        }]
+                }]
         }],
     "animations":[
         {

@@ -77,6 +77,7 @@ class StartUpState extends BaseGameState {
         this.progress = 0.0;
         this.toprogress = 0.0;
         var res:Array<any> = [
+         {url:"Level.json", type:Laya.Loader.JSON},
          {url:"res/atlas/Player.atlas",type:Laya.Loader.ATLAS},
          {url:"res/atlas/Player.png",type:Laya.Loader.IMAGE},
          {url:"res/atlas/MainUI.atlas",type:Laya.Loader.ATLAS},
@@ -143,6 +144,5 @@ class StartUpState extends BaseGameState {
         PlayerData.Instance.nickName = user.nickName;
         PlayerData.Instance.avatarUrl = user.avatarUrl;
         Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
-        
     }
 }

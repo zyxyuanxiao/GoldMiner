@@ -1,16 +1,22 @@
 class LevelJson
 {
-    public static LEVELDATA_PATH: string = "LayaJson/Level.json";
+    public static LEVELDATA_PATH: string = "Level.json";
+    public static Instance:LevelJson;
     constructor() {
+        if (this.level == null)
+            this.level = {};
         var allLevel:JSON = Laya.Loader.getRes(LevelJson.LEVELDATA_PATH);
         if (allLevel == null)
             return;
         for(var i in allLevel){
             var levelItem = allLevel[i];
-            var key = levelItem.Id;
+            var key = levelItem.level;
             this.level[key] = levelItem;
+            LevelData.Instance.AddLevel(levelItem);
         };
         Laya.loader.clearRes(LevelJson.LEVELDATA_PATH);
+        LevelJson.Instance = this;
+        
     }
     level:{};
 }
@@ -48,6 +54,22 @@ class LevelData
     public Reset()
     {
         this.LevelItems.splice(0);
+    }
+
+    public AddLevel(l:JSON)
+    {
+        var lev:LevelItem = new LevelItem();
+        lev.Goal = l["goal"];
+        lev.time = l["time"];
+        lev.level = l["level"];
+        lev.Mines = new Array<Mine>();
+        var m = l["mines"];
+        for (var i = 0; i < m.length; i++)
+        {
+            var ms:Mine = MineFactory.CreateMine(m[i]["type"] as MineType, m[i]["level"], m[i]["x"], m[i]["y"]);
+            lev.Mines.push(ms);
+        }
+        this.LevelItems.push(lev);
     }
 
     //创建一个随机关卡.关卡数，道具配置要合理，否则可能无法过关
@@ -180,14 +202,14 @@ class LevelData
     constructor()
     {
         this.Reset();
-        for (var i = 1; i <= 20; i++)
-        {
-            var lev:LevelItem = this.CreateLevel(i);
-            this.LevelItems.push(lev);
-        }
+        // for (var i = 1; i <= 20; i++)
+        // {
+        //     var lev:LevelItem = this.CreateLevel(i);
+        //     this.LevelItems.push(lev);
+        // }
 
-        var lev0:LevelItem = this.CreateDebugLevel0();
-        this.DebugLevel.push(lev0);
+        // var lev0:LevelItem = this.CreateDebugLevel0();
+        // this.DebugLevel.push(lev0);
     }
 
     //场景中间一个大石头
