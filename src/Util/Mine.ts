@@ -23,8 +23,8 @@ class MineJson
     {
         this.type = t;
         this.level = l;
-        this.x = x;
-        this.y = y;
+        this.x = Math.ceil(x);
+        this.y = Math.ceil(y);
     }
     type:MineType;
     level:number;

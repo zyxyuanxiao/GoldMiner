@@ -2,21 +2,24 @@ class LevelJson
 {
     public static LEVELDATA_PATH: string = "Level.json";
     public static Instance:LevelJson;
+    width:number = 0;
+    height:number = 0;
     constructor() {
+        LevelJson.Instance = this;
         if (this.level == null)
             this.level = {};
         var allLevel:JSON = Laya.Loader.getRes(LevelJson.LEVELDATA_PATH);
         if (allLevel == null)
             return;
-        for(var i in allLevel){
-            var levelItem = allLevel[i];
+        this.width = allLevel["designW"];
+        this.height = allLevel["designH"];
+        for(var i in allLevel["level"]){
+            var levelItem = allLevel["level"][i];
             var key = levelItem.level;
             this.level[key] = levelItem;
             LevelData.Instance.AddLevel(levelItem);
         };
         Laya.loader.clearRes(LevelJson.LEVELDATA_PATH);
-        LevelJson.Instance = this;
-        
     }
     level:{};
 }
@@ -66,7 +69,7 @@ class LevelData
         var m = l["mines"];
         for (var i = 0; i < m.length; i++)
         {
-            var ms:Mine = MineFactory.CreateMine(m[i]["type"] as MineType, m[i]["level"], m[i]["x"], m[i]["y"]);
+            var ms:Mine = MineFactory.CreateMine(m[i]["type"] as MineType, m[i]["level"], m[i]["x"] / LevelJson.Instance.width * Laya.stage.width, m[i]["y"] / LevelJson.Instance.height * Laya.stage.height);
             lev.Mines.push(ms);
         }
         this.LevelItems.push(lev);
