@@ -50,6 +50,7 @@ class LevelEditController extends ui.LevelEditorUI {
         this.btn_openlevel.on(Laya.Event.CLICK, this, this.ShowLevel);
         this.btn_addmine.on(Laya.Event.CLICK, this, this.ShowMine);
         this.label_value.text = "关卡投放:0"; 
+        this.label_totalvalue.text = "总投放:0";
         this.levelDataSource = Array<{}>();
         this.OnResize();
         for (var i = 0; i < LevelData.Instance.LevelItems.length; i++) {
@@ -170,6 +171,16 @@ class LevelEditController extends ui.LevelEditorUI {
            t += m.value;
         }
         this.label_value.text = StringTool.format("关卡投放:{0}", t);
+        for (var j:number = 0; j < LevelData.Instance.LevelItems.length; j++)
+        {
+            if (LevelData.Instance.LevelItems[j].level == this.level.level)
+                break;
+            for (var k:number = 0; k < LevelData.Instance.LevelItems[j].Mines.length; k++)
+            {
+                t += LevelData.Instance.LevelItems[j].Mines[k].value;
+            }
+        }
+        this.label_totalvalue.text = StringTool.format("总投放:{0}", t);
     }
 
     levelExpand: boolean = false;
@@ -217,7 +228,7 @@ class LevelEditController extends ui.LevelEditorUI {
         if (this.level != null)
         {
             LevelData.Instance.LevelItems[this.level.level - 1] = this.level;
-            var leveldata:Array<LevelJson> = new Array<LevelJson>();
+            var leveldata:Array<LevelItemJson> = new Array<LevelItemJson>();
             for (var i = 0; i < LevelData.Instance.LevelItems.length; i++)
             {
                 var lev:LevelItem = LevelData.Instance.LevelItems[i];
@@ -230,10 +241,11 @@ class LevelEditController extends ui.LevelEditorUI {
                 }
                 leveldata.push(levSave);
             }
-            var levelJson:string = JSON.stringify(leveldata);
-            console.log(levelJson);
-            var file:File = new File([levelJson], "Level.json", {type: "text/plain;charset=utf-8"});
-            saveAs(file);
+            var data = {designW:Laya.stage.width, designH:Laya.stage.height, level:leveldata};
+            var levelJson:string = JSON.stringify(data);
+            // console.log(levelJson);
+            // var file:File = new File([levelJson], "Level.json", {type: "text/plain;charset=utf-8"});
+            // saveAs(file);
             this.ClearLevel();
         }
     }
