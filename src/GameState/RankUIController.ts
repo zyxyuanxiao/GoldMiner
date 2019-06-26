@@ -19,10 +19,13 @@ class RankUIController extends ui.RankUI {
                 this.btn_prevpage.on(Laya.Event.CLICK, this, function () {
                     WXMgr.postMessage(PostType.pagePrev);
                 });
-
-                Laya.timer.once(500, this, () => {
-                    this.openTexture = new Laya.Texture(Laya.Browser.window.sharedCanvas);
-                });
+                
+                if (Laya.Browser.onMobile)
+                {
+                    Laya.timer.once(500, this, () => {
+                        this.openTexture = new Laya.Texture(Laya.Browser.window.sharedCanvas);
+                    });
+                }
             }.bind(this))
         }.bind(this));
 
@@ -45,21 +48,29 @@ class RankUIController extends ui.RankUI {
 
     UploadScore(success: Function) {
         var wx = Laya.Browser.window.wx;
-        wx.setUserCloudStorage({
-            KVDataList: [{ key: 'score', value: PlayerData.Instance.gold.toFixed(0) }],
-            success: res => {
-                console.log(res);
-                if (success)
-                    success();
-                // let openDataContext = wx.getOpenDataContext();
-                // openDataContext.postMessage({
-                //     type: 'updateMaxScore',
-                // });
-            },
-            fail: res => {
-                console.log(res);
-            }
-        });
+        if (wx != null)
+        {
+            wx.setUserCloudStorage({
+                KVDataList: [{ key: 'score', value: PlayerData.Instance.gold.toFixed(0) }],
+                success: res => {
+                    console.log(res);
+                    if (success)
+                        success();
+                    // let openDataContext = wx.getOpenDataContext();
+                    // openDataContext.postMessage({
+                    //     type: 'updateMaxScore',
+                    // });
+                },
+                fail: res => {
+                    console.log(res);
+                }
+            });
+        }
+        else
+        {
+            if (success)
+                success();
+        }
     }
 }
 

@@ -97,6 +97,7 @@ class LevelEditController extends ui.LevelEditorUI {
         var m8: Mine = MineFactory.CreateMine(MineType.AnimalB, 1, 0, 0);
         var m9: Mine = MineFactory.CreateMine(MineType.AnimalC, 1, 0, 0);
         var m10: Mine = MineFactory.CreateMine(MineType.AnimalA, 1, 0, 0);
+        var m11: Mine = MineFactory.CreateMine(MineType.CrystalHeart, 1, 0, 0);
         var mdata = {mine:m0}
         this.mineDataSource.push(mdata);
         var mdata = {mine:m1}
@@ -118,6 +119,8 @@ class LevelEditController extends ui.LevelEditorUI {
         var mdata = {mine:m9}
         this.mineDataSource.push(mdata);
         var mdata = {mine:m10}
+        this.mineDataSource.push(mdata);
+        var mdata = {mine:m11};
         this.mineDataSource.push(mdata);
         this.mineList.array = this.mineDataSource;
         this.mineList.renderHandler = new Laya.Handler(this, this.RenderMine, null, false);
@@ -243,7 +246,7 @@ class LevelEditController extends ui.LevelEditorUI {
             }
             var data = {designW:Laya.stage.width, designH:Laya.stage.height, level:leveldata};
             var levelJson:string = JSON.stringify(data);
-            // console.log(levelJson);
+            console.log(levelJson);
             // var file:File = new File([levelJson], "Level.json", {type: "text/plain;charset=utf-8"});
             // saveAs(file);
             this.ClearLevel();

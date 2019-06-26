@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":111,
+    "selecteID":106,
     "props":{"width":1920,"sceneColor":"#000000","height":1080},
     "nodeParent":-1,
     "label":"View",
@@ -292,7 +292,7 @@
         {
             "x":15,
             "type":"List",
-            "props":{"width":940,"var":"mineList","spaceY":20,"spaceX":10,"right":-940,"repeatY":10,"repeatX":4,"height":850,"centerY":0},
+            "props":{"width":940,"var":"mineList","spaceY":20,"spaceX":10,"right":-940,"repeatY":12,"repeatX":4,"height":1000,"centerY":0},
             "nodeParent":1,
             "label":"List(mineList)",
             "isOpen":true,

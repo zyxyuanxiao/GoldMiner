@@ -39,6 +39,8 @@ class BattleUiCtrl extends ui.MainUiUI {
 
     debugExpand: boolean = false;
     OnDebug()  {
+        if (!Const.LocalDebug)
+            return;
         if (this.debugExpand)  {
             Laya.Tween.to(this.debug_panel, { right: -200 }, 500, Laya.Ease.expoInOut, Laya.Handler.create(this, function () { this.debugExpand = false; }));
         }
@@ -165,8 +167,8 @@ class BattleUiCtrl extends ui.MainUiUI {
             this.mines.Add(this.lev.Mines[i]);
         }
 
-        this.goal.text = this.lev.Goal.toFixed(0);
-        this.TimeLeft.text = this.lev.time.toFixed(0);
+        this.goal.text = StringTool.format("关卡目标:{0}", this.lev.Goal.toFixed(0));
+        this.TimeLeft.text = StringTool.format("剩余时间:{0}", this.lev.time.toFixed(0));
         this.label_level.text = this.lev.level.toFixed(0);
         this.time = this.lev.time + PlayerData.Instance.ExtraTime;
         this.gameOver = true;
@@ -186,7 +188,7 @@ class BattleUiCtrl extends ui.MainUiUI {
     }
 
     OnGoldChanged(g: number)  {
-        this.Currency_gold.text = g.toFixed(0);
+        this.Currency_gold.text = StringTool.format("当前金矿:{0}", g.toFixed(0));
     }
 
     rotationSpeed = 1.0;//旋转速度
@@ -308,10 +310,10 @@ class BattleUiCtrl extends ui.MainUiUI {
         else  {
             r = this.frameScore++;
         }
-        this.Currency_gold.text = r.toFixed(0);
+        this.Currency_gold.text = StringTool.format("当前金矿:{0}", r.toFixed(0));
         if (r >= this.toScore)  {
             this.fromScore = r;
-            this.Currency_gold.text = this.toScore.toFixed(0);
+            this.Currency_gold.text = StringTool.format("当前金矿:{0}", this.toScore.toFixed(0));
             if (this.toScore > this.lev.Goal && !this.passLevel)  {
                 this.passLevel = true;
                 this.Currency_gold.color = "#15f315";
@@ -331,13 +333,14 @@ class BattleUiCtrl extends ui.MainUiUI {
             if (this.HookStep == 1)  {
                 if (this.Item != null)  {
                     this.PlayDust(this.HookHolder);
-                    if (this.Item instanceof Animal)
+                    if (this.Item instanceof Animal || this.Item instanceof Heart)
                         this.HookHolder.removeChild(this.Item.ani);
                     else
                         this.HookHolder.removeChild(this.Item.sprite);
                     var rewardTool: boolean = false;
                     var f: number = 0;
                     var t: number = 0;
+                    PlayerData.Instance.AddMineOnBag(this.Item);
                     //播放得到矿的时候加音效和结算和爆炸
                     if (this.Item.value != 0)  {
                         f = PlayerData.Instance.gold;
@@ -346,7 +349,7 @@ class BattleUiCtrl extends ui.MainUiUI {
                     }
                     else  {
                         //价值为0，表明有特殊效果，类似
-                        if (this.Item instanceof Power)  {
+                        if (this.Item instanceof Heart)  {
                             PlayerData.Instance.PowerOn = true;
                         }
                         else if (this.Item instanceof Bag)  {
@@ -357,7 +360,7 @@ class BattleUiCtrl extends ui.MainUiUI {
                         }
                     }
                     this.mines.Remove(this.Item);
-                    if (this.Item instanceof Animal)
+                    if (this.Item instanceof Animal || this.Item instanceof Heart)
                         this.Item.ResetAni();
                     else
                         this.Item.ResetMine();
@@ -374,7 +377,7 @@ class BattleUiCtrl extends ui.MainUiUI {
                         this.label_score.visible = true;
                         this.label_score.alpha = 0.2;
                         Laya.Tween.to(this.label_score, { x: this.avatarUrl.x, y: this.avatarUrl.y + 200, alpha:1.0}, 500, Laya.Ease.cubicIn, Laya.Handler.create(this, function () {
-                            Laya.Tween.to(this.label_score, { x: this.Currency_gold.x + 30, y: this.Currency_gold.y + 5, alpha:0.2}, 1800, Laya.Ease.expoInOut, Laya.Handler.create(this, function () {
+                            Laya.Tween.to(this.label_score, { x: this.Currency_gold.x + 100, y: this.Currency_gold.y + 5, alpha:0.2}, 1800, Laya.Ease.expoInOut, Laya.Handler.create(this, function () {
                                 this.StartScoreUpdate(f, t);
                                 this.label_score.visible = false;
                             }.bind(this)), null);
@@ -447,7 +450,7 @@ class BattleUiCtrl extends ui.MainUiUI {
                 if (s.hitTestPoint(this.hookPoint.x, this.hookPoint.y))  {
                     this.HookStep = 1;
                     this.Item = this.mines.At(i);
-                    if (this.Item instanceof Animal)  {
+                    if (this.Item instanceof Animal || this.Item instanceof Heart)  {
                         this.MineRoot.removeChild(this.Item.ani);
                         this.HookHolder.addChild(this.Item.ani);
                         this.Item.ani.pos(0, 0);
@@ -470,7 +473,7 @@ class BattleUiCtrl extends ui.MainUiUI {
                 if (this.hookCollision[j].hitTestPoint(this.hookPoint.x, this.hookPoint.y))  {
                     this.HookStep = 1;
                     this.Item = this.mines.At(i);
-                    if (this.Item instanceof Animal)  {
+                    if (this.Item instanceof Animal || this.Item instanceof Heart)  {
                         this.MineRoot.removeChild(this.Item.ani);
                         this.HookHolder.addChild(this.Item.ani);
                         this.Item.ani.pos(0, 0);
@@ -505,7 +508,7 @@ class BattleUiCtrl extends ui.MainUiUI {
                 this.Item = null;
                 this.PlayIdle();
             }
-            else if (this.Item instanceof Animal || this.Item instanceof AnimalA || this.Item instanceof AnimalB || this.Item instanceof AnimalC)  {
+            else if (this.Item instanceof Animal || this.Item instanceof AnimalA || this.Item instanceof AnimalB || this.Item instanceof AnimalC || this.Item instanceof Heart)  {
                 this.Item.OnHook();
             }
         }
@@ -561,7 +564,7 @@ class BattleUiCtrl extends ui.MainUiUI {
         if (this.time <= 0)  {
             this.OnGameResult();
         }
-        this.TimeLeft.text = Math.max(0, this.time).toFixed(0);
+        this.TimeLeft.text = StringTool.format("剩余时间:{0}", Math.max(0, this.time).toFixed(0));
         if (this.time < 10 && this.time > 0)  {
             if (!this.PlayTimeSound)  {
                 Laya.timer.loop(1000, this, this.PlayTimeSounds);

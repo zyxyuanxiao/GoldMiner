@@ -59,7 +59,7 @@ class GameResultDialogController extends ui.GameResultUI
         this.label_result.text = data.win ? StringTool.format("胜利({0}/{1})", PlayerData.Instance.level + 1, PlayerData.MaxLevel):"失败";
         if (data.win)
         {
-            if (PlayerData.Instance.level > PlayerData.MaxLevel)
+            if (PlayerData.Instance.level >= PlayerData.MaxLevel)
                 MainAudioPlayer.Instance.PlayGameWin();
             else
                 MainAudioPlayer.Instance.PlayWin();
@@ -87,10 +87,13 @@ class GameResultDialogController extends ui.GameResultUI
         {
             PlayerData.Instance.level += 1;
             PlayerData.Instance.ResetStatus();
-            if (PlayerData.Instance.level > PlayerData.MaxLevel)
+            PlayerData.Instance.Save();
+            if (PlayerData.Instance.level >= PlayerData.MaxLevel)
             {
-                FlutterManager.Instance.OpenFlutterManager("恭喜已通关");
-                Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.RankState);
+                if (PlayerData.Instance.MineBag[MineType.CrystalHeart] >= 1)
+                    Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.GameEnd);
+                else
+                    Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.RankState);
             }
             else
             {

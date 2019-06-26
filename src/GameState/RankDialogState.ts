@@ -32,6 +32,7 @@ class RankDialogState extends CommonDialogState<RankUIController> {
             case DialogAction.Close:
                 //关闭排行榜后，清空玩家数据.
                 PlayerData.Instance.Reset();
+                Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
                 this.ChangeState(null);
                 break;
         }
