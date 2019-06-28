@@ -15,6 +15,7 @@ class PlayerData{
     BombCount:number = 0;//炸弹数量
     Lucky:number = 0;//0-100,每次买草可叠加.
     PowerOn:boolean = false;//无视物体重量
+    MineBag:Array<number>;
     ExtraTime:number = 0;
     avatarUrl:string;//角色url
     nickName:string;//角色昵称
@@ -64,8 +65,15 @@ class PlayerData{
     
     public Load()
     {
-        this.gold = UserPrefs.GetInt("gold", 0);
         this.level = UserPrefs.GetInt("level", 0);
+        if (this.level >= PlayerData.MaxLevel)
+        {
+            this.Reset();
+            this.ResetStatus();
+            return;
+        }
+        this.gold = UserPrefs.GetInt("gold", 0);
+        
         //状态清空，保存不保存关卡内状态.
         //this.PowerOn = UserPrefs.GetBool("PowerOn", false);
         //this.StoneBook = UserPrefs.GetBool("StoneBook", false);
@@ -73,6 +81,12 @@ class PlayerData{
         this.BombCount = UserPrefs.GetInt("BombCount", 0);
         this.Lucky = UserPrefs.GetInt("Lucky", 0);
         //this.ExtraTime = UserPrefs.GetInt("ExtraTime", 0);
+        if (this.MineBag == null)
+        {
+            this.MineBag = new Array<number>();
+            for (var i = MineType.Stone; i <= MineType.CrystalHeart; i++)
+                this.MineBag.push(0);
+        }
     }
 
     public Reset()
@@ -88,11 +102,21 @@ class PlayerData{
         this.Lucky = 0;
         this.ExtraTime = 0;
         this.nickName = "";
+        if (this.MineBag == null)
+            this.MineBag = new Array<number>();
+        this.MineBag.splice(0);
+        for (var i = MineType.Stone; i <= MineType.CrystalHeart; i++)
+            this.MineBag.push(0);
     }
 
     public Init(hOnChanged:Laya.Handler)
     {
         this.OnChanged = hOnChanged;
+    }
+
+    public AddMineOnBag(i:Mine)
+    {
+        this.MineBag[i.type] += 1;
     }
 
     public OnGetMine(i:Mine)

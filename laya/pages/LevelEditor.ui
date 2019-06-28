@@ -341,6 +341,19 @@
             "compId":110,
             "child":[
                 ]
+        },
+        {
+            "x":15,
+            "type":"Label",
+            "props":{"x":600,"width":298,"var":"label_totalvalue","valign":"middle","top":99,"text":"总投放:0","height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
+            "nodeParent":1,
+            "label":"Label(label_totalvalue)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":111,
+            "child":[
+                ]
         }],
     "animations":[
         {

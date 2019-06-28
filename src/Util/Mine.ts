@@ -14,7 +14,7 @@ enum MineType
     AnimalB,//动物衔着绿色宝石
     AnimalC,//动物衔着红色宝石
     Animal,//纯动物
-    Power,//力量药剂
+    CrystalHeart,//生命水晶,最终目标
 }
 
 class MineJson
@@ -23,8 +23,8 @@ class MineJson
     {
         this.type = t;
         this.level = l;
-        this.x = x;
-        this.y = y;
+        this.x = Math.ceil(x);
+        this.y = Math.ceil(y);
     }
     type:MineType;
     level:number;
@@ -134,9 +134,9 @@ class Mine
             this.backPath = "style1/bag_trace-sheet0.png";
             this.name = "随机袋";
             break;
-            case MineType.Power://强力
-            this.skinPath = "style1/bonus_power-sheet0.png";
-            this.backPath = "";
+            case MineType.CrystalHeart://最终目标
+            this.aniPath = "CrystalHeart.ani";
+            this.name = "生命之心";
             break;
         }
         this.pos = new Laya.Point(x, y);
@@ -192,7 +192,10 @@ class Mine
             this.stopTime = 500 + Math.random() * 1000;
             parent.addChild(this.ani);
             this.ani.addChild(this.label_value);
-            this.ani.size(100,66);
+            if (this.type == MineType.CrystalHeart)
+                this.ani.size(64, 64);
+            else
+                this.ani.size(100,66);
             this.ani.pos(this.pos.x, this.pos.y);
             this.ani.play();
             this.ani.scaleX = this.left ? -1 : 1;
@@ -200,10 +203,6 @@ class Mine
             this.ani.on(Laya.Event.MOUSE_UP, this, this.onEndDrag);
             this.ani.on(Laya.Event.MOUSE_OUT, this, this.onEndDrag);
             this.ani.on(Laya.Event.RIGHT_CLICK, this, this.onDelete);
-            // this.tween = Laya.Tween.to(this.ani, {x:this.pos.x + (this.left ? -this.moveRange: this.moveRange)}, this.animTime, Laya.Ease.linearNone, Laya.Handler.create(this, function(){
-            //     this.ani.stop();
-            //     Laya.timer.once(this.stopTime, this, this.OnGotoTheEnd);
-            // }.bind(this)));
         }
         if (this.sprite == null && this.skinPath != null)
         {
@@ -272,14 +271,20 @@ class Mine
             this.animTime = (1000.0 * this.moveRange / this.moveSpeed);
             this.stopTime = 500 + Math.random() * 1000;
             parent.addChild(this.ani);
-            this.ani.size(100,66);
+            if (this.type == MineType.CrystalHeart)
+                this.ani.size(64, 64);
+            else
+                this.ani.size(100,66);
             this.ani.pos(this.pos.x, this.pos.y);
             this.ani.play();
             this.ani.scaleX = this.left ? -1 : 1;
-            this.tween = Laya.Tween.to(this.ani, {x:this.pos.x + (this.left ? -this.moveRange: this.moveRange)}, this.animTime, Laya.Ease.linearNone, Laya.Handler.create(this, function(){
-                this.ani.stop();
-                Laya.timer.once(this.stopTime, this, this.OnGotoTheEnd);
-            }.bind(this)));
+            if (this.type != MineType.CrystalHeart)
+            {
+                this.tween = Laya.Tween.to(this.ani, {x:this.pos.x + (this.left ? -this.moveRange: this.moveRange)}, this.animTime, Laya.Ease.linearNone, Laya.Handler.create(this, function(){
+                    this.ani.stop();
+                    Laya.timer.once(this.stopTime, this, this.OnGotoTheEnd);
+                }.bind(this)));
+            }
         }
         if (this.sprite == null && this.skinPath != null)
         {
@@ -510,6 +515,17 @@ class Mine
     ani:Laya.Animation;
 }
 
+class Heart extends Mine
+{
+    constructor(x:number, y:number)
+    {
+        super(0, MineType.CrystalHeart, x, y, 5000);
+    }
+    PlaySound()
+    {
+        MainAudioPlayer.Instance.PlayBonus();
+    }
+}
 /**
  * 单独一根骨头
  */
@@ -621,17 +637,17 @@ class GreenDiamond extends Mine
 /**
  * 增加BUFF-X秒内-道具的重量视为1
  */
-class Power extends Mine
-{
-    constructor(x:number, y:number)
-    {
-        super(0, MineType.Power, x, y, 0);
-    }
-    PlaySound()
-    {
-        MainAudioPlayer.Instance.PlayBonus();
-    }
-}
+// class Power extends Mine
+// {
+//     constructor(x:number, y:number)
+//     {
+//         super(0, MineType.Power, x, y, 0);
+//     }
+//     PlaySound()
+//     {
+//         MainAudioPlayer.Instance.PlayBonus();
+//     }
+// }
 
 /**
  * 爆炸-后收回钩子
@@ -746,8 +762,8 @@ class MineFactory
             case MineType.GreenDiamond:
             rMine = new GreenDiamond(x, y);
             break;
-            case MineType.Power:
-            rMine = new Power(x, y);
+            case MineType.CrystalHeart:
+            rMine = new Heart(x, y);
             break;
             case MineType.Tnt:
             rMine = new Tnt(x, y);

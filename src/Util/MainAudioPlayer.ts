@@ -5,24 +5,27 @@ class MainAudioPlayer {
             MainAudioPlayer._Instance = new MainAudioPlayer();
         return MainAudioPlayer._Instance;
     }
+
+    constructor()
+    {
+    }
+
+
     /**
      * 播放绳子伸缩声音
      */
     Rope: Laya.SoundChannel;
     PlayRopeSound() {
+        this.StopRopeSound();
         if (this.Rope == null)
-            this.Rope = Laya.SoundManager.playSound("Sounds/winch.wav", 0, Laya.Handler.create(this, this.OnWinchComplete, null, false));
-    }
-
-    OnWinchComplete() {
-        if (this.Rope != null)
-            this.Rope.play();
+            this.Rope = Laya.SoundManager.playSound("Sounds/winch.wav", 0);
     }
 
     StopRopeSound() {
         if (this.Rope != null) {
             console.log("rope sound stoped");
             this.Rope.stop();
+            Laya.SoundManager.removeChannel(this.Rope);
             this.Rope = null;
         }
     }
@@ -40,6 +43,7 @@ class MainAudioPlayer {
     StopTimerSound() {
         if (this.Timers != null) {
             this.Timers.stop();
+            Laya.SoundManager.removeChannel(this.Timers);
             this.Timers = null;
         }
     }
@@ -157,17 +161,7 @@ class MainAudioPlayer {
     public set PauseSound(pause: boolean) {
         this.isPauseSound = pause;
         if (pause) {
-            this.StopSound();
             Laya.SoundManager.stopAll();
-        }
-    }
-    
-    public AudioSource: Laya.SoundChannel = null;
-    public StopSound() {
-        if (this.AudioSource != null) {
-            this.AudioSource.completeHandler = null;
-            this.AudioSource.stop();
-            this.AudioSource = null;
         }
     }
 }

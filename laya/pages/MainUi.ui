@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":56,
+    "selecteID":3,
     "props":{"width":1920,"sceneColor":"#000000","height":1080},
     "nodeParent":-1,
     "label":"View",
@@ -139,7 +139,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":123,"x":64,"skin":"style1/gui_target-sheet0.png"},
+            "props":{"y":123,"x":64,"visible":false,"skin":"style1/gui_target-sheet0.png"},
             "nodeParent":1,
             "label":"Image",
             "isOpen":true,
@@ -148,25 +148,28 @@
             "hasChild":false,
             "compId":31,
             "child":[
-                ]
+                ],
+            "$HIDDEN":true
         },
         {
             "x":15,
             "type":"Image",
-            "props":{"y":38,"x":64,"skin":"style1/gui_score-sheet0.png"},
+            "props":{"y":38,"x":64,"visible":false,"skin":"style1/gui_score-sheet0.png"},
             "nodeParent":1,
             "label":"Image",
+            "isOpen":true,
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
             "compId":32,
             "child":[
-                ]
+                ],
+            "$HIDDEN":true
         },
         {
             "x":15,
             "type":"Image",
-            "props":{"y":188,"skin":"style1/gui_time-sheet0.png","right":9},
+            "props":{"y":188,"visible":false,"skin":"style1/gui_time-sheet0.png","right":9},
             "nodeParent":1,
             "label":"Image",
             "isDirectory":false,
@@ -174,7 +177,8 @@
             "hasChild":false,
             "compId":33,
             "child":[
-                ]
+                ],
+            "$HIDDEN":true
         },
         {
             "x":15,
@@ -182,14 +186,13 @@
             "props":{"var":"Map","top":0,"right":0,"left":0,"bottom":0},
             "nodeParent":1,
             "label":"Panel(Map)",
-            "isOpen":true,
+            "isOpen":false,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":15,
             "child":[
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"var":"MineBackground","top":450,"right":125,"left":125,"bottom":100},
                     "nodeParent":15,
@@ -202,7 +205,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":42,"var":"player","skin":"Player/miner-sheet_01.png","centerX":45,"anchorY":0,"anchorX":0.5},
                     "nodeParent":15,
@@ -215,7 +217,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":290,"x":960,"width":70,"var":"hookAnchor","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
                     "nodeParent":15,
@@ -227,7 +228,6 @@
                     "compId":82,
                     "child":[
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":5,"x":10,"var":"hookRight","skin":"style1/hook_right-sheet0.png","rotation":90,"pivotY":12,"pivotX":12},
                             "nodeParent":82,
@@ -241,7 +241,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"x":-45,"width":0,"var":"HookHolder","height":0,"anchorY":0.5,"anchorX":0.5},
                             "nodeParent":82,
@@ -255,7 +254,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":-5,"x":10,"var":"hookLeft","skin":"style1/hook_left-sheet0.png","rotation":90,"anchorY":0.15,"anchorX":0.75},
                             "nodeParent":82,
@@ -270,7 +268,6 @@
                         }]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"y":290,"x":960,"width":65,"var":"HookHead","skin":"style1/rope.png","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
                     "nodeParent":15,
@@ -284,7 +281,6 @@
                         ]
                 },
                 {
-                    "x":30,
                     "type":"Image",
                     "props":{"var":"MineRoot","top":450,"right":125,"left":125,"bottom":100},
                     "nodeParent":15,
@@ -314,7 +310,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":40,"x":233,"var":"Currency_gold","text":"$1995","fontSize":55,"color":"#f9f9f9"},
+            "props":{"y":40,"x":50,"var":"Currency_gold","text":"$1995","fontSize":45,"color":"#f9f9f9","align":"left"},
             "nodeParent":1,
             "label":"Label(Currency_gold)",
             "isDirectory":false,
@@ -327,7 +323,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":124,"x":235,"var":"goal","text":"$1995","fontSize":55,"color":"#fdfdfd"},
+            "props":{"y":124,"x":50,"var":"goal","text":"$1995","fontSize":45,"color":"#fdfdfd","align":"left"},
             "nodeParent":1,
             "label":"Label(goal)",
             "isDirectory":false,
@@ -336,20 +332,6 @@
             "compId":4,
             "child":[
                 ]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "props":{"y":124,"x":65,"visible":false,"text":"目标：","fontSize":55,"color":"#fbf6f6"},
-            "nodeParent":1,
-            "label":"Label",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":5,
-            "child":[
-                ],
-            "$HIDDEN":true
         },
         {
             "x":15,
@@ -381,7 +363,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":200,"x":1824,"var":"TimeLeft","text":"35","right":46,"fontSize":45,"color":"#fdfdfd"},
+            "props":{"y":200,"var":"TimeLeft","text":"35","right":25,"fontSize":40,"color":"#fdfdfd"},
             "nodeParent":1,
             "label":"Label(TimeLeft)",
             "isDirectory":false,
@@ -520,7 +502,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":160,"var":"btn_pause","stateNum":"1","skin":"MainUI/button_pause-sheet1.png","right":375},
+            "props":{"y":280,"var":"btn_pause","stateNum":"1","skin":"MainUI/button_pause-sheet1.png","right":167},
             "nodeParent":1,
             "label":"Button(btn_pause)",
             "isOpen":true,
@@ -534,7 +516,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":160,"var":"btn_mute","skin":"MainUI/soundbutton-sheet0.png","scaleY":0.8,"scaleX":0.8,"right":220},
+            "props":{"y":280,"var":"btn_mute","skin":"MainUI/soundbutton-sheet0.png","scaleY":0.8,"scaleX":0.8,"right":25},
             "nodeParent":1,
             "label":"Image(btn_mute)",
             "isDirectory":false,
