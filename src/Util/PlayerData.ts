@@ -9,7 +9,9 @@ class PlayerData{
     }
     
     StoneBook:boolean = false;//石头书状态，每过一关重置
+    StonePer:number = 1;
     DiamondBook:boolean = false;//钻石书状态
+    DiamondPer:number = 1;
     BombCount:number = 0;//炸弹数量
     Lucky:number = 0;//0-100,每次买草可叠加.
     PowerOn:boolean = false;//无视物体重量
@@ -54,7 +56,9 @@ class PlayerData{
     {
         this.PowerOn = false;
         this.StoneBook = false;
+        this.StonePer = 1;
         this.DiamondBook = false;
+        this.DiamondPer = 1;
         this.ExtraTime = 0;
     }
     
@@ -77,7 +81,9 @@ class PlayerData{
         this.level = 0;
         this.PowerOn = false;
         this.StoneBook = false;
+        this.StonePer = 1;
         this.DiamondBook = false;
+        this.DiamondPer = 1;
         this.BombCount = 0;
         this.Lucky = 0;
         this.ExtraTime = 0;
@@ -91,17 +97,17 @@ class PlayerData{
 
     public OnGetMine(i:Mine)
     {
-        if (i instanceof Stone)
+        if (i instanceof Stone　|| i instanceof Silver || i instanceof Gold)
         {
             if (this.StoneBook)
-                this.AddGold(i.value * (5 + Math.random() * 3));
+                this.AddGold(i.value * (5 + Math.random() * 3) * this.StonePer);
             else
                 this.AddGold(i.value);
         }
         else if (i instanceof Diamond || i instanceof RedDiamond || i instanceof GreenDiamond)
         {
             if (this.DiamondBook)
-                this.AddGold(2 * i.value);
+                this.AddGold(2 * i.value * this.DiamondPer);
             else
                 this.AddGold(i.value);
         }
@@ -137,42 +143,72 @@ class PlayerData{
             }
             else if (r > 10 && r <= 17)
             {
-                FlutterManager.Instance.OpenFlutterManager("得到石头书");
-                this.StoneBook = true;
+                
+                if (this.StoneBook)
+                {
+                    this.StonePer *= 2;
+                    FlutterManager.Instance.OpenFlutterManager(StringTool.format("石头价值倍数:{0}", this.StonePer));
+                }
+                else
+                {
+                    FlutterManager.Instance.OpenFlutterManager("得到矿物收藏书");
+                    this.StoneBook = true;
+                }
             }
             else if (r > 17 && r <= 24)
             {
-                FlutterManager.Instance.OpenFlutterManager("得到钻石书");
-                this.DiamondBook = true;
+                if (this.DiamondBook)
+                {
+                    this.DiamondPer *= 2;
+                    FlutterManager.Instance.OpenFlutterManager(StringTool.format("钻石价值翻倍:{0}", this.DiamondPer));
+                }
+                else
+                {
+                    FlutterManager.Instance.OpenFlutterManager("得到宝石收藏书");
+                    this.DiamondBook = true;
+                }
             }
             else if (r > 24 && r <= 36)
-            {
-                FlutterManager.Instance.OpenFlutterManager("时间+10S");
-                BattleUiCtrl.Instance.AddTime(10);
-            }
-            else if (r > 36 && r <= 42)
             {
                 FlutterManager.Instance.OpenFlutterManager("时间+15S");
                 BattleUiCtrl.Instance.AddTime(15);
             }
+            else if (r > 36 && r <= 42)
+            {
+                FlutterManager.Instance.OpenFlutterManager("时间+30S");
+                BattleUiCtrl.Instance.AddTime(30);
+            }
             else if (r > 42 && r <= 45)
             {
-                FlutterManager.Instance.OpenFlutterManager("时间+20S");
-                BattleUiCtrl.Instance.AddTime(20);
+                FlutterManager.Instance.OpenFlutterManager("时间+45S");
+                BattleUiCtrl.Instance.AddTime(45);
             }
             else if (r > 45 && r <= 60)
             {
-                FlutterManager.Instance.OpenFlutterManager("得到力量药剂");
-                this.PowerOn = true;
+                if (this.PowerOn)
+                {
+                    FlutterManager.Instance.OpenFlutterManager("快速旋转");
+                    BattleUiCtrl.Instance.rotationSpeed *= 2;
+                }
+                else
+                {
+                    FlutterManager.Instance.OpenFlutterManager("得到力量药剂");
+                    this.PowerOn = true;
+                }
             }
             else if (r >= 60 && r <= 75)
             {
-                FlutterManager.Instance.OpenFlutterManager("幸运+2");
-                this.Lucky += 2;
+                var l:number =  (5 + Math.random() * 20);
+                FlutterManager.Instance.OpenFlutterManager("幸运提升" + l);
+                this.Lucky += l;
+                if (this.Lucky > 100)
+                    this.Lucky = 100;
             }
             else
             {
-                FlutterManager.Instance.OpenFlutterManager("运气太差了,福袋里什么都没有");
+                var l:number = Math.ceil(1500 + Math.random() * 1500);
+                FlutterManager.Instance.OpenFlutterManager(StringTool.format("太幸运了获得+{0}金", l));
+                this.gold += l;
             }
         }
         return true;

@@ -190,6 +190,7 @@ class BattleUiCtrl extends ui.MainUiUI {
     }
 
     rotationSpeed = 1.0;//旋转速度
+    rotationPer = 1.0;//旋转倍数
     turnRight = true;//向右
     Playing: boolean = false;//是否在伸展
     HandlerClick: boolean = true;//是否能响应点击
@@ -416,11 +417,11 @@ class BattleUiCtrl extends ui.MainUiUI {
             this.hookAnchor.rotation = this.HookHead.rotation;
             if (this.HookHead.rotation > -5)  {
                 this.turnRight = true;
-                this.rotationSpeed = -1.0;
+                this.rotationSpeed = -1.0　* this.rotationPer;
             }
             else if (this.HookHead.rotation <= -165)  {
                 this.turnRight = false;
-                this.rotationSpeed = 1.0;
+                this.rotationSpeed = 1.0 * this.rotationPer;
             }
         }
     }
