@@ -25,7 +25,6 @@ class MainAudioPlayer {
         if (this.Rope != null) {
             console.log("rope sound stoped");
             this.Rope.stop();
-            Laya.SoundManager.removeChannel(this.Rope);
             this.Rope = null;
         }
     }
@@ -43,7 +42,6 @@ class MainAudioPlayer {
     StopTimerSound() {
         if (this.Timers != null) {
             this.Timers.stop();
-            Laya.SoundManager.removeChannel(this.Timers);
             this.Timers = null;
         }
     }
