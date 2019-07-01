@@ -1,3 +1,19 @@
+class SoundWrapper
+{
+    constructor(name:string, au:any)
+    {
+        this.path = name;
+        this.audio = au;
+    }
+
+    destroy()
+    {
+        this.audio.destroy();
+    }
+    path:string;
+    audio:any;
+}
+
 class MainAudioPlayer {
     private static _Instance: MainAudioPlayer;
     public static get Instance(): MainAudioPlayer {
@@ -11,37 +27,41 @@ class MainAudioPlayer {
     }
 
 
+    Reset()
+    {
+         for (var i = 0; i < this.soundPool.length; i++)
+            {
+                this.soundPool[i].destroy();
+            }
+            this.soundPool.splice(0);
+    }
     /**
      * 播放绳子伸缩声音
      */
-    Rope: Laya.SoundChannel;
+    Rope: SoundWrapper;
     PlayRopeSound() {
         this.StopRopeSound();
         if (this.Rope == null)
-            this.Rope = Laya.SoundManager.playSound("Sounds/winch.wav", 0);
+            this.Rope = this.playSound("Sounds/winch.wav", 0);
     }
 
     StopRopeSound() {
         if (this.Rope != null) {
             console.log("rope sound stoped");
-            this.Rope.stop();
+            this.OnSoundEnd(this.Rope);
             this.Rope = null;
         }
     }
 
-    Timers: Laya.SoundChannel;
+    Timers: SoundWrapper;
     PlayTimer() {
         if (this.Timers == null)
-            this.Timers = Laya.SoundManager.playSound("Sounds/timer.wav", 1, Laya.Handler.create(this, this.OnTimerComplete, null, true));
-    }
-
-    OnTimerComplete() {
-        this.StopTimerSound();
+            this.Timers = this.playSound("Sounds/timer.wav", 1);
     }
 
     StopTimerSound() {
         if (this.Timers != null) {
-            this.Timers.stop();
+            this.OnSoundEnd(this.Timers);
             this.Timers = null;
         }
     }
@@ -50,116 +70,149 @@ class MainAudioPlayer {
      * 啥也没捡到
      */
     PlayMiss() {
-        Laya.SoundManager.playSound("Sounds/miss.wav", 1);
+        this.playSound("Sounds/miss.wav", 1);
     }
 
     /**
      * 捡到金子
      */
     PlayGold() {
-        Laya.SoundManager.playSound("Sounds/gold.wav", 1);
+        this.playSound("Sounds/gold.wav", 1);
     }
 
     /**
      * 龙骨头
      */
     PlaySkull() {
-        Laya.SoundManager.playSound("Sounds/skull.wav", 1);
+        this.playSound("Sounds/skull.wav", 1);
     }
 
     /**
      * 石头
      */
     PlayStone() {
-        Laya.SoundManager.playSound("Sounds/stone.wav", 1);
+        this.playSound("Sounds/stone.wav", 1);
     }
 
     /**
      * 钻石
      */
     PlayJewel() {
-        Laya.SoundManager.playSound("Sounds/jewel.wav", 1);
+        this.playSound("Sounds/jewel.wav", 1);
     }
 
     /**
      * 银矿
      */
     PlaySilver() {
-        Laya.SoundManager.playSound("Sounds/silver.wav", 1);
+        this.playSound("Sounds/silver.wav", 1);
     }
 
     /**
      * 加分
      */
     PlayScore() {
-        Laya.SoundManager.playSound("Sounds/score.wav", 1);
+        this.playSound("Sounds/score.wav", 1);
     }
 
     /**
      * 游戏关卡胜利.
      */
     PlayWin() {
-        Laya.SoundManager.playSound("Sounds/level_completed.wav", 1);
+        this.playSound("Sounds/level_completed.wav", 1);
     }
 
     /**
      * 游戏整体胜利.
      */
     PlayGameWin() {
-        Laya.SoundManager.playSound("Sounds/game_won.wav", 1);
+        this.playSound("Sounds/game_won.wav", 1);
     }
 
     /**
      * 关卡失败
      */
     PlayGameOver() {
-        Laya.SoundManager.playSound("Sounds/game_over.wav", 1);
+        this.playSound("Sounds/game_over.wav", 1);
     }
 
     /**
      * 拾取到骨头
      */
     PlayBones() {
-        Laya.SoundManager.playSound("Sounds/bone.wav", 1);
+        this.playSound("Sounds/bone.wav", 1);
     }
 
     /**
      * 炸药
      */
     PlayBomb() {
-        Laya.SoundManager.playSound("Sounds/bomb.wav", 1);
+        this.playSound("Sounds/bomb.wav", 1);
     }
 
     /**
      * 炸药桶
      */
     PlayTnt() {
-        Laya.SoundManager.playSound("Sounds/explosion.wav", 1);
+        this.playSound("Sounds/explosion.wav", 1);
     }
 
     /**
      * 额外奖金-钱袋子-power
      */
     PlayBonus() {
-        Laya.SoundManager.playSound("Sounds/bonus.wav", 1);
+        this.playSound("Sounds/bonus.wav", 1);
     }
 
     /**
      * 商店购买到一件物品
      */
     PlayBuyItem() {
-        Laya.SoundManager.playSound("Sounds/buy.wav", 1);
+        this.playSound("Sounds/buy.wav", 1);
     }
 
     PlayAnimal() {
-        Laya.SoundManager.playSound("Sounds/mole.wav", 1);
+        this.playSound("Sounds/mole.wav", 1);
     }
 
     isPauseSound: boolean = false;
     public set PauseSound(pause: boolean) {
         this.isPauseSound = pause;
         if (pause) {
-            Laya.SoundManager.stopAll();
+           this.Reset();
         }
+    }
+
+    soundPool:Array<SoundWrapper> = new Array<SoundWrapper>();
+    playSound(path:string, count:number, h:Laya.Handler = null):SoundWrapper
+    {
+        if (Laya.Browser.onPC)
+        {
+            Laya.SoundManager.playSound(path, count);
+            return null;
+        }
+        var wx = window["wx"];
+        var audio = wx.createInnerAudioContext();
+        if (audio == null)
+            return;
+        audio.src = Laya.URL.basePath + path;// src 可以设置 http(s) 的路径，本地文件路径或者代码包文件路径
+        audio.loop = (count != 1);
+        audio.play();
+        var audioWrapper = new SoundWrapper(audio.src, audio);
+        this.soundPool.push(audioWrapper);
+        audio.onEnded(function(){
+            this.OnSoundEnd(audioWrapper);
+        }.bind(this));
+        return audioWrapper;
+    }
+
+    OnSoundEnd(sound:SoundWrapper)
+    {
+        var i:number = this.soundPool.indexOf(sound);
+        if (i != -1)
+        {
+            this.soundPool.splice(i, 1);
+        }
+        sound.destroy();
     }
 }

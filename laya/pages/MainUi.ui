@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":3,
+    "selecteID":57,
     "props":{"width":1920,"sceneColor":"#000000","height":1080},
     "nodeParent":-1,
     "label":"View",
@@ -186,13 +186,14 @@
             "props":{"var":"Map","top":0,"right":0,"left":0,"bottom":0},
             "nodeParent":1,
             "label":"Panel(Map)",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":15,
             "child":[
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"var":"MineBackground","top":450,"right":125,"left":125,"bottom":100},
                     "nodeParent":15,
@@ -205,6 +206,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":42,"var":"player","skin":"Player/miner-sheet_01.png","centerX":45,"anchorY":0,"anchorX":0.5},
                     "nodeParent":15,
@@ -217,6 +219,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":290,"x":960,"width":70,"var":"hookAnchor","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
                     "nodeParent":15,
@@ -228,6 +231,7 @@
                     "compId":82,
                     "child":[
                         {
+                            "x":45,
                             "type":"Image",
                             "props":{"y":5,"x":10,"var":"hookRight","skin":"style1/hook_right-sheet0.png","rotation":90,"pivotY":12,"pivotX":12},
                             "nodeParent":82,
@@ -241,6 +245,21 @@
                                 ]
                         },
                         {
+                            "x":45,
+                            "type":"Image",
+                            "props":{"y":-5,"x":10,"var":"hookLeft","skin":"style1/hook_left-sheet0.png","rotation":90,"anchorY":0.15,"anchorX":0.75},
+                            "nodeParent":82,
+                            "label":"Image(hookLeft)",
+                            "isOpen":true,
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":19,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
                             "type":"Image",
                             "props":{"x":-45,"width":0,"var":"HookHolder","height":0,"anchorY":0.5,"anchorX":0.5},
                             "nodeParent":82,
@@ -254,20 +273,34 @@
                                 ]
                         },
                         {
+                            "x":45,
                             "type":"Image",
-                            "props":{"y":-5,"x":10,"var":"hookLeft","skin":"style1/hook_left-sheet0.png","rotation":90,"anchorY":0.15,"anchorX":0.75},
+                            "props":{"width":20,"var":"hookRightPoint","height":20,"centerY":45,"centerX":-80,"anchorY":0.5,"anchorX":0.5},
                             "nodeParent":82,
-                            "label":"Image(hookLeft)",
-                            "isOpen":true,
+                            "label":"Image(hookRightPoint)",
                             "isDirectory":false,
                             "isAniNode":true,
                             "hasChild":false,
-                            "compId":19,
+                            "compId":88,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "x":45,
+                            "type":"Image",
+                            "props":{"width":20,"var":"hookLeftPoint","height":20,"centerY":-45,"centerX":-75,"anchorY":0.5,"anchorX":0.5},
+                            "nodeParent":82,
+                            "label":"Image(hookLeftPoint)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":89,
                             "child":[
                                 ]
                         }]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"y":290,"x":960,"width":65,"var":"HookHead","skin":"style1/rope.png","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
                     "nodeParent":15,
@@ -281,6 +314,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Image",
                     "props":{"var":"MineRoot","top":450,"right":125,"left":125,"bottom":100},
                     "nodeParent":15,
@@ -390,7 +424,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":199,"var":"nickName","text":"Winson","fontSize":32,"font":"Microsoft YaHei","color":"#f6f4f4","centerX":0},
+            "props":{"y":199,"visible":false,"var":"nickName","text":"Winson","fontSize":32,"font":"Microsoft YaHei","color":"#f6f4f4","centerX":0},
             "nodeParent":1,
             "label":"Label(nickName)",
             "isDirectory":false,

@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":106,
+    "selecteID":15,
     "props":{"width":1920,"sceneColor":"#000000","height":1080},
     "nodeParent":-1,
     "label":"View",
@@ -352,6 +352,19 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":111,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Label",
+            "props":{"y":168,"x":600,"width":298,"var":"label_diff","valign":"middle","text":"关卡勾取目标:0","height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
+            "nodeParent":1,
+            "label":"Label(label_diff)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":112,
             "child":[
                 ]
         }],

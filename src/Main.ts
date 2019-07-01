@@ -25,6 +25,8 @@ class Main {
         //开启统计信息
         //Laya.Stat.show();
         //常驻场景
+        if (!Laya.Browser.onPC)
+            Laya.URL.basePath = "https://mtt-cdn.jinkejoy.com/mta/GoldMiner/";
         this.PersistScene = new Laya.Scene();
         this.PersistScene.name = "DontDestroyOnLoad";
         this.PersistContainer = new Laya.Sprite3D("Persist");
@@ -44,6 +46,47 @@ class Main {
         this.WeChatManager = new WeChatManager();
         MainGameStateManager.Instance.Init();
         Laya.timer.frameLoop(1, this, this.Update);
+        Laya.stage.on(Laya.Event.KEY_UP, this, this.OnKeyUp);
+        if (Laya.Browser.onMobile)
+        {
+            window["wx"].onShow(function () 
+            {
+                this.onShow();
+            }.bind(this))
+        }
+    }
+
+    //从后台进入到小游戏
+    onShow()
+    {
+        MainAudioPlayer.Instance.Reset();
+    }
+
+    OnKeyUp(e:KeyboardEvent)
+    {
+        if (e.keyCode == Laya.Keyboard.D)
+        {
+            this.OnOpenDebug();
+        }
+    }
+
+    OnOpenDebug()  {
+        var res: Array<string> = [
+            "res/atlas/MainUI.atlas",
+            "res/atlas/comp.atlas",
+            "res/atlas/LetterCard.atlas"
+        ];
+
+        Laya.loader.load(res, Laya.Handler.create(this, () => {
+            if (Main.Instance.debugPanel == null)
+                Main.Instance.debugPanel = new DebugUI();
+            if (Laya.stage.getChildIndex(Main.Instance.debugPanel) == -1) {
+                Main.Instance.debugPanel.zOrder = 10000;
+                Laya.stage.addChildAt(Main.Instance.debugPanel, Laya.stage.numChildren);
+            }
+            else
+                Laya.stage.removeChild(Main.Instance.debugPanel);
+        }));
     }
 
     Update()

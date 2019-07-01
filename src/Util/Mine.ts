@@ -34,15 +34,13 @@ class MineJson
 
 class LevelItemJson
 {
-    constructor(l:number, g:number, t:number)
+    constructor(l:number, t:number)
     {
         this.level = l;
-        this.goal = g;
         this.time = t;
         this.mines = new Array<MineJson>();
     }
     level:number;
-    goal:number;
     time:number;
     mines:Array<MineJson>;
     Push(m:MineJson)
@@ -519,13 +517,15 @@ class Heart extends Mine
 {
     constructor(x:number, y:number)
     {
-        super(0, MineType.CrystalHeart, x, y, 5000);
+        super(0, MineType.CrystalHeart, x, y, 3000);
     }
+
     PlaySound()
     {
         MainAudioPlayer.Instance.PlayBonus();
     }
 }
+
 /**
  * 单独一根骨头
  */
@@ -564,7 +564,7 @@ class Stone extends Mine
 {
     constructor(level:number, x:number, y:number)
     {
-        super(level, MineType.Stone, x, y, level * 2);
+        super(level, MineType.Stone, x, y, level * level);
     }
 
     PlaySound()
@@ -577,7 +577,7 @@ class Silver extends Mine
 {
     constructor(level:number, x:number, y:number)
     {
-        super(level, MineType.Sliver, x, y, Math.floor(level * level * 1.5));
+        super(level, MineType.Sliver, x, y, Math.floor(level * level * 2));
     }
     PlaySound()
     {
@@ -589,7 +589,7 @@ class Gold extends Mine
 {
     constructor(level:number, x:number, y:number)
     {
-        super(level, MineType.Gold, x, y, level * 5 * level);
+        super(level, MineType.Gold, x, y, level * level * 5);
     }
 
     PlaySound()

@@ -9,9 +9,15 @@ class DebugUI extends ui.DebugPanelUI
         Laya.stage.on(Laya.Event.MOUSE_UP, this, this.OnMouseUp);
         this.btn_play0.on(Laya.Event.CLICK, this, this.OnPlayLevel, [0]);
         this.btn_close.on(Laya.Event.CLICK, this, function(){this.removeSelf();}.bind(this));
-        this.zOrder = 500;
+        this.btn_delete.on(Laya.Event.CLICK, this, this.DeletePlayer);
         this.left = 100;
         this.top = 45;
+    }
+
+    DeletePlayer()
+    {
+        PlayerData.Instance.Reset();
+        PlayerData.Instance.Save();
     }
 
     OnPlayLevel(l:number)

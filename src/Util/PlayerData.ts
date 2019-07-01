@@ -9,9 +9,7 @@ class PlayerData{
     }
     
     StoneBook:boolean = false;//石头书状态，每过一关重置
-    StonePer:number = 1;
     DiamondBook:boolean = false;//钻石书状态
-    DiamondPer:number = 1;
     BombCount:number = 0;//炸弹数量
     Lucky:number = 0;//0-100,每次买草可叠加.
     PowerOn:boolean = false;//无视物体重量
@@ -57,10 +55,11 @@ class PlayerData{
     {
         this.PowerOn = false;
         this.StoneBook = false;
-        this.StonePer = 1;
         this.DiamondBook = false;
-        this.DiamondPer = 1;
         this.ExtraTime = 0;
+        if (BattleUiCtrl.Instance != null)
+            BattleUiCtrl.Instance.rotationPer = BattleUiCtrl.RotateDefault;
+        
     }
     
     public Load()
@@ -78,7 +77,7 @@ class PlayerData{
         //this.PowerOn = UserPrefs.GetBool("PowerOn", false);
         //this.StoneBook = UserPrefs.GetBool("StoneBook", false);
         //this.DiamondBook = UserPrefs.GetBool("DiamondBook", false);
-        this.BombCount = UserPrefs.GetInt("BombCount", 0);
+        this.BombCount = UserPrefs.GetInt("BombCount", 1);
         this.Lucky = UserPrefs.GetInt("Lucky", 0);
         //this.ExtraTime = UserPrefs.GetInt("ExtraTime", 0);
         if (this.MineBag == null)
@@ -95,10 +94,8 @@ class PlayerData{
         this.level = 0;
         this.PowerOn = false;
         this.StoneBook = false;
-        this.StonePer = 1;
         this.DiamondBook = false;
-        this.DiamondPer = 1;
-        this.BombCount = 0;
+        this.BombCount = 1;
         this.Lucky = 0;
         this.ExtraTime = 0;
         this.nickName = "";
@@ -121,17 +118,17 @@ class PlayerData{
 
     public OnGetMine(i:Mine)
     {
-        if (i instanceof Stone　|| i instanceof Silver || i instanceof Gold)
+        if (i instanceof Stone)
         {
             if (this.StoneBook)
-                this.AddGold(i.value * (5 + Math.random() * 3) * this.StonePer);
+                this.AddGold(i.value * (1 + Math.ceil(Math.random() * 4)));
             else
                 this.AddGold(i.value);
         }
         else if (i instanceof Diamond || i instanceof RedDiamond || i instanceof GreenDiamond)
         {
             if (this.DiamondBook)
-                this.AddGold(2 * i.value * this.DiamondPer);
+                this.AddGold(i.value * 2);
             else
                 this.AddGold(i.value);
         }
@@ -170,8 +167,10 @@ class PlayerData{
                 
                 if (this.StoneBook)
                 {
-                    this.StonePer *= 2;
-                    FlutterManager.Instance.OpenFlutterManager(StringTool.format("石头价值倍数:{0}", this.StonePer));
+                    this.Lucky += 1;
+                    FlutterManager.Instance.OpenFlutterManager("幸运提升" + 1);
+                    if (this.Lucky > 100)
+                        this.Lucky = 100;
                 }
                 else
                 {
@@ -183,8 +182,10 @@ class PlayerData{
             {
                 if (this.DiamondBook)
                 {
-                    this.DiamondPer *= 2;
-                    FlutterManager.Instance.OpenFlutterManager(StringTool.format("钻石价值翻倍:{0}", this.DiamondPer));
+                    this.Lucky += 1;
+                    FlutterManager.Instance.OpenFlutterManager("幸运提升" + 1);
+                    if (this.Lucky > 100)
+                        this.Lucky = 100;
                 }
                 else
                 {
@@ -194,17 +195,17 @@ class PlayerData{
             }
             else if (r > 24 && r <= 36)
             {
-                FlutterManager.Instance.OpenFlutterManager("时间+15S");
+                FlutterManager.Instance.OpenFlutterManager("时间+10S");
                 BattleUiCtrl.Instance.AddTime(15);
             }
             else if (r > 36 && r <= 42)
             {
-                FlutterManager.Instance.OpenFlutterManager("时间+30S");
+                FlutterManager.Instance.OpenFlutterManager("时间+20S");
                 BattleUiCtrl.Instance.AddTime(30);
             }
             else if (r > 42 && r <= 45)
             {
-                FlutterManager.Instance.OpenFlutterManager("时间+45S");
+                FlutterManager.Instance.OpenFlutterManager("时间+30S");
                 BattleUiCtrl.Instance.AddTime(45);
             }
             else if (r > 45 && r <= 60)
@@ -212,7 +213,7 @@ class PlayerData{
                 if (this.PowerOn)
                 {
                     FlutterManager.Instance.OpenFlutterManager("快速旋转");
-                    BattleUiCtrl.Instance.rotationSpeed *= 2;
+                    BattleUiCtrl.Instance.rotationPer *= 2;
                 }
                 else
                 {
@@ -220,19 +221,20 @@ class PlayerData{
                     this.PowerOn = true;
                 }
             }
-            else if (r >= 60 && r <= 75)
+            else if (r > 60 && r <= 75)
             {
-                var l:number =  (5 + Math.random() * 20);
-                FlutterManager.Instance.OpenFlutterManager("幸运提升" + l);
-                this.Lucky += l;
+                var m:number =  Math.ceil(5 + Math.random() * 5);
+                FlutterManager.Instance.OpenFlutterManager("幸运提升" + m);
+                this.Lucky += m;
                 if (this.Lucky > 100)
                     this.Lucky = 100;
             }
             else
             {
-                var l:number = Math.ceil(1500 + Math.random() * 1500);
-                FlutterManager.Instance.OpenFlutterManager(StringTool.format("太幸运了获得+{0}金", l));
-                this.gold += l;
+                this.Lucky += 1;
+                FlutterManager.Instance.OpenFlutterManager("幸运提升" + 1);
+                if (this.Lucky > 100)
+                    this.Lucky = 100;
             }
         }
         return true;

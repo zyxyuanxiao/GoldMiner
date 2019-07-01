@@ -62,9 +62,11 @@ class LevelData
     public AddLevel(l:JSON)
     {
         var lev:LevelItem = new LevelItem();
-        lev.Goal = l["goal"];
-        lev.time = l["time"];
         lev.level = l["level"];
+        lev.Goal = this.CalcGoal(lev.level);
+        if (this.cache.length < lev.level)
+            this.cache.push(lev.Goal);
+        lev.time = 45;//l["time"];
         lev.Mines = new Array<Mine>();
         var m = l["mines"];
         for (var i = 0; i < m.length; i++)
@@ -179,27 +181,14 @@ class LevelData
         return lev;
     }
 
-    cache:Array<number> = new Array<number>(650, 1195);
+    cache:Array<number> = new Array<number>();
     CalcGoal(l:number):number
     {
-        if (this.cache.length > l - 1)
+        if (this.cache.length > l)
             return this.cache[l - 1];
         if (l == 1)
-            return this.cache[0];
-        else if (l == 2)
-            return this.cache[1];
-        else
-        {
-            var m:number = l-1;
-            var n:number = l-2;
-            var mv:number = this.CalcGoal(m);
-            if (this.cache.length < m)
-                this.cache.push(mv);
-            var nv:number = this.CalcGoal(n);
-            if (this.cache.length < n)
-                this.cache.push(nv);
-            return 2 * mv - nv + 270;
-        }
+            return 650;
+        return l * 650 + this.CalcGoal(l - 1);
     }
 
     constructor()

@@ -92,8 +92,8 @@ class GameResultDialogController extends ui.GameResultUI
             {
                 if (PlayerData.Instance.MineBag[MineType.CrystalHeart] >= 1)
                     Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.GameEnd);
-                else
-                    Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.RankState);
+                // else
+                //     Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.RankState);
             }
             else
             {
@@ -106,7 +106,7 @@ class GameResultDialogController extends ui.GameResultUI
         {
             //输了，重新开始
             Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
-            Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.RankState);
+            // Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.RankState);
         }
     }
 }

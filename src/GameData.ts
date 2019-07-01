@@ -1,5 +1,5 @@
 class Const {
-    public static readonly GameVersion: string = "1.1.1";
+    public static readonly GameVersion: string = "1.2.0";
     public static readonly WechatAppId = "wx9cd567c0c030561b";
     public static readonly LocalDebug:boolean = false;//本地强制开启调试，用于微信开发者工具读取线上未开启调试时
     public static readonly ShareTitle:string = "";

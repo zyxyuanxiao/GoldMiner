@@ -17,6 +17,8 @@ class BattleUiCtrl extends ui.MainUiUI {
         this.hookCollision.push(this.HookHolder);
         this.hookCollision.push(this.hookRight);
         this.hookCollision.push(this.hookLeft);
+        this.hookCollision.push(this.hookLeftPoint);
+        this.hookCollision.push(this.hookRightPoint);
         this.avatarUrl.skin = PlayerData.Instance.avatarUrl;
         this.nickName.text = PlayerData.Instance.nickName;
         this.light.play();
@@ -71,21 +73,9 @@ class BattleUiCtrl extends ui.MainUiUI {
         }));
     }
 
-    OnOpenDebug()  {
-        var res: Array<string> = [
-            "res/atlas/MainUI.atlas",
-            "res/atlas/comp.atlas"
-        ];
-
-        Laya.loader.load(res, Laya.Handler.create(this, () => {
-            if (Main.Instance.debugPanel == null)
-                Main.Instance.debugPanel = new DebugUI();
-            if (Laya.stage.getChildIndex(Main.Instance.debugPanel) == -1) {
-                Laya.stage.addChild(Main.Instance.debugPanel);
-            }
-            else
-                Laya.stage.removeChild(Main.Instance.debugPanel);
-        }));
+    OnOpenDebug()
+    {
+        Main.Instance.OnOpenDebug();
     }
 
     OnPause()  {
@@ -191,8 +181,9 @@ class BattleUiCtrl extends ui.MainUiUI {
         this.Currency_gold.text = StringTool.format("当前金矿:{0}", g.toFixed(0));
     }
 
+    static readonly RotateDefault = 1.5;
     rotationSpeed = 1.0;//旋转速度
-    rotationPer = 1.0;//旋转倍数
+    rotationPer = BattleUiCtrl.RotateDefault;//旋转倍数
     turnRight = true;//向右
     Playing: boolean = false;//是否在伸展
     HandlerClick: boolean = true;//是否能响应点击
@@ -323,6 +314,7 @@ class BattleUiCtrl extends ui.MainUiUI {
         }
     }
 
+    scoreTween:Laya.Tween;
     UpdateRope()  {
         if (!this.Playing)
             return;
@@ -373,16 +365,21 @@ class BattleUiCtrl extends ui.MainUiUI {
                         this.hookPoint.x = 0;
                         this.hookPoint.y = 0;
                         this.hookPoint = this.HookHolder.localToGlobal(this.hookPoint);
+                        if (this.scoreTween != null)
+                        {
+                            this.scoreTween._clear();
+                            this.scoreTween = null;
+                        }
                         this.label_score.text = "+" + Math.ceil(t - f);
                         this.label_score.pos(this.hookPoint.x, this.hookPoint.y);
                         this.label_score.visible = true;
                         this.label_score.alpha = 0.2;
-                        Laya.Tween.to(this.label_score, { x: this.avatarUrl.x, y: this.avatarUrl.y + 200, alpha:1.0}, 500, Laya.Ease.cubicIn, Laya.Handler.create(this, function () {
-                            Laya.Tween.to(this.label_score, { x: this.Currency_gold.x + 100, y: this.Currency_gold.y + 5, alpha:0.2}, 1800, Laya.Ease.expoInOut, Laya.Handler.create(this, function () {
+                        this.scoreTween = Laya.Tween.to(this.label_score, { x: this.avatarUrl.x, y: this.avatarUrl.y + 200, alpha:1.0}, 500, Laya.Ease.cubicIn, Laya.Handler.create(this, function () {
+                           this.scoreTween = Laya.Tween.to(this.label_score, { x: this.Currency_gold.x + 100, y: this.Currency_gold.y + 5, alpha:0.2}, 1800, Laya.Ease.expoInOut, Laya.Handler.create(this, function () {
                                 this.StartScoreUpdate(f, t);
                                 this.label_score.visible = false;
                             }.bind(this)), null);
-                        }))
+                        }.bind(this)))
                     }
                     this.Item = null;
                     if (rewardTool)
@@ -501,7 +498,7 @@ class BattleUiCtrl extends ui.MainUiUI {
         if (this.Item != null)  {
             if (this.Item instanceof Tnt)  {
                 //会让钩子更快缩回去.
-                this.Item.PlayExplosion(this.HookHolder);
+                this.Item.PlayExplosion(this.Item.sprite);
                 this.barrel.push(this.Item);
                 this.barrelTick = Laya.timer.currTimer;
                 this._Explosion = true;

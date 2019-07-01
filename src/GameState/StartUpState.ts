@@ -132,17 +132,16 @@ class StartUpState extends BaseGameState {
         }
         Laya.timer.clear(this, this.OnUpdate);
         Main.Instance.Init();
-        if (Laya.Browser.onPC)
-            Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
-        else
-            WechatHelper.WXManager.GetInstance().Login(this.OnLogin);
+        Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
+        // else
+        //     WechatHelper.WXManager.GetInstance().Login(this.OnLogin);
     }
 
     OnLogin(user:any)
     {
-        console.log(user);
-        PlayerData.Instance.nickName = user.nickName;
-        PlayerData.Instance.avatarUrl = user.avatarUrl;
+        //console.log(user);
+        // PlayerData.Instance.nickName = user.nickName;
+        // PlayerData.Instance.avatarUrl = user.avatarUrl;
         Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
     }
 }

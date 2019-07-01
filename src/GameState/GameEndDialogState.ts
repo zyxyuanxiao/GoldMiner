@@ -11,7 +11,7 @@ class GameEndDialogState extends CommonDialogState<GameEndUIController> {
         switch (dialogAction) {
             case DialogAction.Close:
                 //关闭过场后，进入排行榜界面.
-                this.ChangeState(Main.Instance.DialogStateManager.RankState);
+                this.ChangeState(null);
                 break;
         }
     }

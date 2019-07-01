@@ -22,9 +22,18 @@ class MenuState extends BaseGameState
         {
             case GameAction.Start:
             PlayerData.Instance.Load();
-            var lev:LevelItem = LevelData.Instance.LevelItems[PlayerData.Instance.level];
-            Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.GameBattleState, lev);
-            Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.GameGoalState);
+            if (PlayerData.Instance.gold == 0)
+            {
+                var lev:LevelItem = LevelData.Instance.LevelItems[PlayerData.Instance.level];
+                Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.GameBattleState, lev);
+                Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.GameGoalState);
+            }
+            else
+            {
+                //进商店.
+                Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.ShopState);
+                Main.Instance.DialogStateManager.ChangeState(null);
+            }
             break;
             case GameAction.EditLevel:
             Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.LevelEditState);

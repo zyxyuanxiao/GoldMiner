@@ -23,7 +23,7 @@ class ShopState extends BaseGameState
 
 class ShopUiController extends ui.ShopUI
 {
-    price:Array<number> = new Array<number>();
+    price:Array<number> = new Array<number>(100, 500, 800, 150, 100, 300);
     count:Array<number> = new Array<number>(1, 1, 1, 1, 1, 1);
     constructor()
     {
@@ -39,10 +39,8 @@ class ShopUiController extends ui.ShopUI
         this.btn_buytime.on(Laya.Event.CLICK, this, this.ShowDesc, [5]);
         
         this.btn_buy.on(Laya.Event.CLICK, this, this.OnBuyItem);
-        for (var i:number = 0; i < 6; i++)
-        {
-            this.price.push(Math.ceil(Math.random() * 300));
-        }
+
+            //this.price.push(Math.ceil(Math.random() * 300));
         this.btn_play.on(Laya.Event.CLICK, this, this.OnPlay);
         this.label_des.text = "";
         this.UpdateUI();
@@ -70,13 +68,13 @@ class ShopUiController extends ui.ShopUI
             this.label_des.text = "力量药剂:挖到物品时，拉物品的速度提升，下一关内有效";
             break;
             case 2:
-            this.label_des.text = "宝石书:挖到宝石时，宝石的价值提升至200%";
+            this.label_des.text = "宝石收藏书:挖到宝石时，宝石的价值提升至200%";
             break;
             case 3:
             this.label_des.text = "福袋：增加2-5点幸运值，挖矿更幸运";
             break;
             case 4:
-            this.label_des.text = "石头书:当你挖到时候时，石头的价值提升至500%-800%";
+            this.label_des.text = "石头书:当你挖到时候时，石头的价值提升至100%-500%";
             break;
             case 5:
             this.label_des.text = "时间沙漏:随机增加关卡时间10-30秒时间，最长翻倍";
