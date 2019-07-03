@@ -13,6 +13,7 @@ class PlayerData{
     BombCount:number = 0;//炸弹数量
     Lucky:number = 0;//0-100,每次买草可叠加.
     PowerOn:boolean = false;//无视物体重量
+    ExtraSpeed:number = 0;//出钩加速 (0-5),每一关重置
     MineBag:Array<number>;
     ExtraTime:number = 0;
     avatarUrl:string;//角色url
@@ -28,12 +29,8 @@ class PlayerData{
 
     public Save()
     {
-        UserPrefs.SetBool("StoneBook", this.StoneBook);
-        UserPrefs.SetBool("DiamondBook", this.DiamondBook);
         UserPrefs.SetInt("BombCount", this.BombCount);
         UserPrefs.SetInt("Lucky", this.Lucky);
-        UserPrefs.SetBool("PowerOn", this.PowerOn);
-        UserPrefs.SetDouble("ExtraTime", this.ExtraTime);
         UserPrefs.SetInt("gold", this.gold);
         UserPrefs.SetInt("level", this.level);
     }
@@ -42,12 +39,8 @@ class PlayerData{
     {
         UserPrefs.Remove("gold");
         UserPrefs.Remove("level");
-        UserPrefs.Remove("PowerOn");
-        UserPrefs.Remove("StoneBook");
-        UserPrefs.Remove("DiamondBook");
         UserPrefs.Remove("BombCount");
         UserPrefs.Remove("Lucky");
-        UserPrefs.Remove("ExtraTime");
     }
 
     //重置关卡状态道具，书
@@ -57,9 +50,7 @@ class PlayerData{
         this.StoneBook = false;
         this.DiamondBook = false;
         this.ExtraTime = 0;
-        if (BattleUiCtrl.Instance != null)
-            BattleUiCtrl.Instance.rotationPer = BattleUiCtrl.RotateDefault;
-        
+        this.ExtraSpeed = 0;
     }
     
     public Load()
@@ -95,6 +86,7 @@ class PlayerData{
         this.PowerOn = false;
         this.StoneBook = false;
         this.DiamondBook = false;
+        this.ExtraSpeed = 0;
         this.BombCount = 1;
         this.Lucky = 0;
         this.ExtraTime = 0;
@@ -212,8 +204,10 @@ class PlayerData{
             {
                 if (this.PowerOn)
                 {
-                    FlutterManager.Instance.OpenFlutterManager("快速旋转");
-                    BattleUiCtrl.Instance.rotationPer *= 2;
+                    FlutterManager.Instance.OpenFlutterManager("速度加快");
+                    this.ExtraSpeed += 1;
+                    if (this.ExtraSpeed >= 5.0)
+                        this.ExtraSpeed = 5.0;
                 }
                 else
                 {

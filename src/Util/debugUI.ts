@@ -1,5 +1,6 @@
 class DebugUI extends ui.DebugPanelUI
 {
+    levelDataSource:Array<{}>;
     constructor()
     {
         super();
@@ -7,11 +8,32 @@ class DebugUI extends ui.DebugPanelUI
         Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.OnMouseDown);
         Laya.stage.on(Laya.Event.MOUSE_MOVE, this, this.OnMouseMove);
         Laya.stage.on(Laya.Event.MOUSE_UP, this, this.OnMouseUp);
-        this.btn_play0.on(Laya.Event.CLICK, this, this.OnPlayLevel, [0]);
         this.btn_close.on(Laya.Event.CLICK, this, function(){this.removeSelf();}.bind(this));
         this.btn_delete.on(Laya.Event.CLICK, this, this.DeletePlayer);
+        this.level_lst.scrollBar.visible = false;
+        this.levelDataSource = new Array<{}>();
+        for (var i:number = 0; i < PlayerData.MaxLevel; i++)
+        {
+            var mdata = {
+                level:i
+            }
+            this.levelDataSource.push(mdata);
+        }
+
+        this.level_lst.array = this.levelDataSource;
+        this.level_lst.renderHandler = new Laya.Handler(this, this.RenderLevel, null, false);
         this.left = 100;
         this.top = 45;
+    }
+
+    RenderLevel(cell: Laya.Box, index: number)
+    {
+        var levelcell:ui.LevelButtonUI = cell.getChildAt(0) as ui.LevelButtonUI;
+        var l:number = <number>cell.dataSource["level"];
+        levelcell.label_level.text = (l + 1).toFixed(0);
+        levelcell.on(Laya.Event.CLICK, this, function () {
+            this.OnPlayLevel(l);
+        }.bind(this), null);
     }
 
     DeletePlayer()
@@ -22,7 +44,9 @@ class DebugUI extends ui.DebugPanelUI
 
     OnPlayLevel(l:number)
     {
-        var lev:LevelItem = LevelData.Instance.DebugLevel[l];
+        var lev:LevelItem = LevelData.Instance.LevelItems[l];
+        if (l != 0)
+            PlayerData.Instance.gold = LevelData.Instance.LevelItems[l - 1].TotalGoal;
         Main.Instance.GameStateManager.GameBattleState.StartLevel(lev);
     }
 

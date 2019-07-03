@@ -17,8 +17,6 @@ class BattleUiCtrl extends ui.MainUiUI {
         this.hookCollision.push(this.HookHolder);
         this.hookCollision.push(this.hookRight);
         this.hookCollision.push(this.hookLeft);
-        this.hookCollision.push(this.hookLeftPoint);
-        this.hookCollision.push(this.hookRightPoint);
         this.avatarUrl.skin = PlayerData.Instance.avatarUrl;
         this.nickName.text = PlayerData.Instance.nickName;
         this.light.play();
@@ -146,6 +144,7 @@ class BattleUiCtrl extends ui.MainUiUI {
      */
     LoadLevel(level: LevelItem)  {
         this.Reset();
+        this.OnGoldChanged(PlayerData.Instance.gold);
         var index: number = level.level;
         this.img_background.left = this.img_background.right = this.img_background.top = this.img_background.bottom = 0;
 
@@ -157,7 +156,7 @@ class BattleUiCtrl extends ui.MainUiUI {
             this.mines.Add(this.lev.Mines[i]);
         }
 
-        this.goal.text = StringTool.format("关卡目标:{0}", this.lev.Goal.toFixed(0));
+        this.goal.text = StringTool.format("关卡目标:{0}", this.lev.TotalGoal.toFixed(0));
         this.TimeLeft.text = StringTool.format("剩余时间:{0}", this.lev.time.toFixed(0));
         this.label_level.text = this.lev.level.toFixed(0);
         this.time = this.lev.time + PlayerData.Instance.ExtraTime;
@@ -181,9 +180,7 @@ class BattleUiCtrl extends ui.MainUiUI {
         this.Currency_gold.text = StringTool.format("当前金矿:{0}", g.toFixed(0));
     }
 
-    static readonly RotateDefault = 1.5;
     rotationSpeed = 1.0;//旋转速度
-    rotationPer = BattleUiCtrl.RotateDefault;//旋转倍数
     turnRight = true;//向右
     Playing: boolean = false;//是否在伸展
     HandlerClick: boolean = true;//是否能响应点击
@@ -271,7 +268,8 @@ class BattleUiCtrl extends ui.MainUiUI {
                 return this._EmptyPullSpeed;
             return 11 - this.Item.level;
         }
-        return this._EmptyPullSpeed + (this._takeBackGravity + (this._Explosion ? this._ExplosionGravity : 0)) * this.takeBackTime;
+        //出钩速度加快speedPer;
+        return (this._EmptyPullSpeed + PlayerData.Instance.ExtraSpeed)+ (this._takeBackGravity + (this._Explosion ? this._ExplosionGravity : 0)) * this.takeBackTime;
     }
 
     toScore: number = 0;
@@ -367,7 +365,7 @@ class BattleUiCtrl extends ui.MainUiUI {
                         this.hookPoint = this.HookHolder.localToGlobal(this.hookPoint);
                         if (this.scoreTween != null)
                         {
-                            this.scoreTween._clear();
+                            this.scoreTween.clear();
                             this.scoreTween = null;
                         }
                         this.label_score.text = "+" + Math.ceil(t - f);
@@ -417,11 +415,11 @@ class BattleUiCtrl extends ui.MainUiUI {
             this.hookAnchor.rotation = this.HookHead.rotation;
             if (this.HookHead.rotation > -5)  {
                 this.turnRight = true;
-                this.rotationSpeed = -1.0　* this.rotationPer;
+                this.rotationSpeed = -1.5;
             }
             else if (this.HookHead.rotation <= -165)  {
                 this.turnRight = false;
-                this.rotationSpeed = 1.0 * this.rotationPer;
+                this.rotationSpeed = 1.5;
             }
         }
     }

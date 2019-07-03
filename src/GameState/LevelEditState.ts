@@ -167,16 +167,6 @@ class LevelEditController extends ui.LevelEditorUI {
         this.level_goal.text = "关卡目标:" + this.level.Goal.toFixed(0);
         this.level_time.text = "关卡限时:" + this.level.time.toFixed(0);
         var lev:LevelItem = null;
-        if (this.level.level == 1)
-        {
-            this.label_diff.text = "关卡勾取目标:" + this.level.Goal;
-        }
-        else
-        {
-            lev = LevelData.Instance.LevelItems[this.level.level - 2];
-            this.label_diff.text = "关卡勾取目标:" + (this.level.Goal - lev.Goal); 
-        }
-        
         var t:number = 0;
         for (var i:number = 0; i < this.level.Mines.length; i++)
         {
@@ -246,7 +236,7 @@ class LevelEditController extends ui.LevelEditorUI {
             for (var i = 0; i < LevelData.Instance.LevelItems.length; i++)
             {
                 var lev:LevelItem = LevelData.Instance.LevelItems[i];
-                var levSave:LevelItemJson = new LevelItemJson(lev.level, lev.time);
+                var levSave:LevelItemJson = new LevelItemJson(lev.level, lev.Goal, lev.time);
                 for (var j:number = 0; j < lev.Mines.length; j++)
                 {
                     var m:Mine = lev.Mines[j];

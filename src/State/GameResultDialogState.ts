@@ -106,6 +106,7 @@ class GameResultDialogController extends ui.GameResultUI
         {
             //输了，重新开始
             Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
+            Main.Instance.DialogStateManager.ChangeState(null);
             // Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.RankState);
         }
     }
