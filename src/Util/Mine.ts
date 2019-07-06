@@ -34,14 +34,16 @@ class MineJson
 
 class LevelItemJson
 {
-    constructor(l:number, t:number)
+    constructor(l:number, g:number, t:number)
     {
         this.level = l;
         this.time = t;
+        this.goal = g;
         this.mines = new Array<MineJson>();
     }
     level:number;
     time:number;
+    goal:number;
     mines:Array<MineJson>;
     Push(m:MineJson)
     {

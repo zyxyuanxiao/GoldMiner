@@ -49,21 +49,16 @@ class LevelEditController extends ui.LevelEditorUI {
         this.btn_LevelGoal.on(Laya.Event.CLICK, this, this.LevelGoal);
         this.btn_openlevel.on(Laya.Event.CLICK, this, this.ShowLevel);
         this.btn_addmine.on(Laya.Event.CLICK, this, this.ShowMine);
+        this.btn_addlevel.on(Laya.Event.CLICK, this, this.AddLevel);
+        this.btn_deletelevel.on(Laya.Event.CLICK, this, this.DeleteLevel);
+        this.btn_resetlevel.on(Laya.Event.CLICK, this, this.ResetLeveel);
+        this.btn_testlevel.on(Laya.Event.CLICK, this, this.OnTestLevel);
+        this.btn_return.on(Laya.Event.CLICK, this, this.OnReturn);
         this.label_value.text = "关卡投放:0"; 
         this.label_totalvalue.text = "总投放:0";
-        this.levelDataSource = Array<{}>();
+        
         this.OnResize();
-        for (var i = 0; i < LevelData.Instance.LevelItems.length; i++) {
-            var _data = {
-                text: { text: StringTool.format("关卡:{0}", LevelData.Instance.LevelItems[i].level), color: "#000000" },
-                type: false
-            };
-            this.levelDataSource.push(_data);
-        }
-
-        this.levelList.array = this.levelDataSource;
-        this.levelList.renderHandler = new Laya.Handler(this, this.RenderLevel, null, false);
-
+        this.RefreshLevel();
         this.mineDataSource = Array<{}>();
         for (var i: number = 1; i <= 10; i++)  {
             var m: Mine = MineFactory.CreateMine(MineType.Stone, i, 0, 0);
@@ -126,6 +121,21 @@ class LevelEditController extends ui.LevelEditorUI {
         this.mineList.renderHandler = new Laya.Handler(this, this.RenderMine, null, false);
     }
 
+    RefreshLevel()
+    {
+        this.levelDataSource = Array<{}>();
+        for (var i = 0; i < LevelData.Instance.LevelItems.length; i++) {
+            var _data = {
+                text: { text: StringTool.format("关卡:{0}", LevelData.Instance.LevelItems[i].level), color: "#000000" },
+                type: false
+            };
+            this.levelDataSource.push(_data);
+        }
+
+        this.levelList.array = this.levelDataSource;
+        this.levelList.renderHandler = new Laya.Handler(this, this.RenderLevel, null, false);
+    }
+
     OnResize()  {
         this.width = Laya.stage.width;
         this.height = Laya.stage.height;
@@ -167,16 +177,6 @@ class LevelEditController extends ui.LevelEditorUI {
         this.level_goal.text = "关卡目标:" + this.level.Goal.toFixed(0);
         this.level_time.text = "关卡限时:" + this.level.time.toFixed(0);
         var lev:LevelItem = null;
-        if (this.level.level == 1)
-        {
-            this.label_diff.text = "关卡勾取目标:" + this.level.Goal;
-        }
-        else
-        {
-            lev = LevelData.Instance.LevelItems[this.level.level - 2];
-            this.label_diff.text = "关卡勾取目标:" + (this.level.Goal - lev.Goal); 
-        }
-        
         var t:number = 0;
         for (var i:number = 0; i < this.level.Mines.length; i++)
         {
@@ -224,6 +224,66 @@ class LevelEditController extends ui.LevelEditorUI {
         }
     }
 
+
+    OnReturn()
+    {
+        Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
+    }
+
+    OnTestLevel()
+    {
+        if (this.level != null)
+        {       
+            Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.GameBattleState, this.level);
+            Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.GameGoalState);
+        }
+        else
+            FlutterManager.Instance.OpenFlutterManager("当前未选择任何关卡");
+    }
+
+    ResetLeveel()
+    {
+        if (this.level != null)
+        {
+            this.level.Mines.splice(0);
+            while (this.MineRoot.numChildren)
+                this.MineRoot.removeChildAt(0);
+            this.OnOpenLevel();
+        }
+    }
+
+    DeleteLevel()
+    {
+        if (LevelData.Instance.LevelItems.length != 0)
+        {
+            LevelData.Instance.LevelItems.splice(0);
+            this.RefreshLevel();
+        }
+    }
+
+    AddLevel()
+    {
+        if (LevelData.Instance.LevelItems.length != 0)
+        {
+            var lev:LevelItem = LevelData.Instance.LevelItems[LevelData.Instance.LevelItems.length - 1];
+            var newlevel:LevelItem = new LevelItem();
+            newlevel.Goal = 0;
+            newlevel.level = lev.level + 1;
+            newlevel.time = 30;
+            newlevel.TotalGoal = 0;
+            LevelData.Instance.LevelItems.push(newlevel);
+            this.RefreshLevel();
+        }
+        else
+        {
+            var level:LevelItem = new LevelItem();
+            level.time = 30;
+            level.level = 1;
+            LevelData.Instance.LevelItems.push(level);
+            this.RefreshLevel();
+        }
+    }
+
     AddMine(m:Mine)
     {
         if (this.level == null)  {
@@ -246,7 +306,7 @@ class LevelEditController extends ui.LevelEditorUI {
             for (var i = 0; i < LevelData.Instance.LevelItems.length; i++)
             {
                 var lev:LevelItem = LevelData.Instance.LevelItems[i];
-                var levSave:LevelItemJson = new LevelItemJson(lev.level, lev.time);
+                var levSave:LevelItemJson = new LevelItemJson(lev.level, lev.Goal, lev.time);
                 for (var j:number = 0; j < lev.Mines.length; j++)
                 {
                     var m:Mine = lev.Mines[j];
@@ -257,9 +317,9 @@ class LevelEditController extends ui.LevelEditorUI {
             }
             var data = {designW:Laya.stage.width, designH:Laya.stage.height, level:leveldata};
             var levelJson:string = JSON.stringify(data);
-            // console.log(levelJson);
-            // var file:File = new File([levelJson], "Level.json", {type: "text/plain;charset=utf-8"});
-            // saveAs(file);
+            console.log(levelJson);
+            var file:File = new File([levelJson], "Level.json", {type: "text/plain;charset=utf-8"});
+            saveAs(file);
             this.ClearLevel();
         }
     }

@@ -22,10 +22,6 @@ class FlutterManager{
             this.zOrder ++;
         }.bind(this)));
     }
-
-
-    public destory(){
-    }
 }
  
 
@@ -68,6 +64,5 @@ class FlutterDialogController extends ui.FlutterWindowUI{
 
     complete(){
         this.removeSelf();
-        FlutterManager.Instance.destory();
     }
 }

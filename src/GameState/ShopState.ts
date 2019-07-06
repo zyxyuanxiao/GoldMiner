@@ -117,7 +117,7 @@ class ShopUiController extends ui.ShopUI
         this.icon_time.visible = this.count[5] == 1;
         if (this.select != -1)
         {
-            this.label_price.text = this.price[this.select].toFixed(0);
+            this.label_price.text = StringTool.format("${0}", this.price[this.select].toFixed(0));
         }
     }
 

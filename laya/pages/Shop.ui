@@ -2,8 +2,8 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":14,
-    "props":{"width":1920,"sceneColor":"#000000","height":1080},
+    "selecteID":4,
+    "props":{"width":1080,"sceneColor":"#000000","height":1920},
     "nodeParent":-1,
     "label":"View",
     "isOpen":true,
@@ -15,116 +15,64 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"top":0,"skin":"Level/background_shop-sheet0.png","right":0,"left":0,"bottom":0},
+            "props":{"y":0,"x":0,"width":1079,"skin":"MainUI/zhe_hei.png","height":124},
             "nodeParent":1,
             "label":"Image",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":2,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":258,"x":337,"var":"btn_buyBomb","skin":"style1/shop_bomb-sheet1.png"},
-            "nodeParent":1,
-            "label":"Image(btn_buyBomb)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":3,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":0,"skin":"style1/gui_shop-sheet0.png","centerX":0},
-            "nodeParent":1,
-            "label":"Image",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":4,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":263,"x":793,"var":"btn_buypower","skin":"style1/shop_power-sheet1.png"},
-            "nodeParent":1,
-            "label":"Image(btn_buypower)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":5,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":263,"x":1220,"var":"btn_buydiamond","skin":"style1/shop_jewel-sheet1.png"},
-            "nodeParent":1,
-            "label":"Image(btn_buydiamond)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":6,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":631,"x":538,"var":"buy_luck","skin":"style1/shop_bag-sheet1.png"},
-            "nodeParent":1,
-            "label":"Image(buy_luck)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":7,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":627,"x":983,"var":"buy_stonebook","skin":"style1/shop_silver-sheet1.png"},
-            "nodeParent":1,
-            "label":"Image(buy_stonebook)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":8,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":612,"x":71,"width":402,"var":"btn_buytime","skin":"style1/shop_silver-sheet0.png","height":334},
-            "nodeParent":1,
-            "label":"Image(btn_buytime)",
             "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
-            "compId":16,
+            "compId":4,
             "child":[
                 {
                     "x":30,
-                    "type":"Image",
-                    "props":{"var":"icon_time","skin":"style1/shoptime.png","scaleY":0.5,"scaleX":0.5,"rotation":21,"centerY":-53,"centerX":0,"anchorY":0.5,"anchorX":0.5},
-                    "nodeParent":16,
-                    "label":"Image(icon_time)",
+                    "type":"Label",
+                    "props":{"y":40,"var":"label_lucky","text":"幸运:35","fontSize":45,"font":"Arial","color":"#fdf8f8","centerX":-178},
+                    "nodeParent":4,
+                    "label":"Label(label_lucky)",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
-                    "compId":15,
+                    "compId":9,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "props":{"y":40,"var":"label_bomb","text":"炸弹:1","fontSize":45,"font":"Arial","color":"#fdf8f8","centerX":51},
+                    "nodeParent":4,
+                    "label":"Label(label_bomb)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":10,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "props":{"y":40,"var":"label_gold","text":"金币:100000","right":58,"fontSize":45,"font":"Arial","color":"#fdf8f8"},
+                    "nodeParent":4,
+                    "label":"Label(label_gold)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":11,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "props":{"x":25,"text":"商店","fontSize":55,"color":"#f9f8f8","centerY":0},
+                    "nodeParent":4,
+                    "label":"Label",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":12,
                     "child":[
                         ]
                 }]
@@ -132,7 +80,20 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":117,"width":1450,"skin":"MainUI/zhe_hei.png","sizeGrid":"18,20,19,18","height":146,"centerX":0,"alpha":1},
+            "props":{"y":78,"x":-1,"skin":"MainUI/mushi.png","scaleY":2,"scaleX":2},
+            "nodeParent":1,
+            "label":"Image",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":27,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "props":{"y":499,"width":1080,"skin":"MainUI/zhe_hei.png","sizeGrid":"18,20,19,18","height":506,"centerX":0,"alpha":1},
             "nodeParent":1,
             "label":"Image",
             "isOpen":true,
@@ -146,59 +107,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"var":"label_lucky","top":40,"text":"35","fontSize":45,"font":"Arial","color":"#fdf8f8","centerX":-654},
-            "nodeParent":1,
-            "label":"Label(label_lucky)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":9,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "props":{"var":"label_bomb","top":40,"text":"1","fontSize":45,"font":"Arial","color":"#fdf8f8","centerX":-325},
-            "nodeParent":1,
-            "label":"Label(label_bomb)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":10,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "props":{"var":"label_gold","top":40,"text":"100000","fontSize":45,"font":"Arial","color":"#fdf8f8","centerX":142},
-            "nodeParent":1,
-            "label":"Label(label_gold)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":11,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "props":{"y":32,"text":"商店","right":225,"fontSize":55,"color":"#f9f8f8"},
-            "nodeParent":1,
-            "label":"Label",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":12,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "props":{"y":168,"x":280,"var":"label_des","text":"石头书:当你挖到时候时，石头的价值提升至500%-800%","fontSize":50,"color":"#f8f8f8","bold":false},
+            "props":{"wordWrap":true,"var":"label_des","text":"石头书:当你挖到时候时，石头的价值提升至500%-800%","right":50,"left":50,"height":185,"fontSize":50,"color":"#f8f8f8","centerY":166,"bold":false},
             "nodeParent":1,
             "label":"Label(label_des)",
             "isDirectory":false,
@@ -211,7 +120,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"var":"label_price","text":"$125","right":37,"fontSize":185,"font":"Microsoft YaHei","color":"#ffffff","bottom":500},
+            "props":{"var":"label_price","text":"$125","fontSize":185,"font":"Microsoft YaHei","color":"#ffffff","centerY":300,"centerX":0},
             "nodeParent":1,
             "label":"Label(label_price)",
             "isDirectory":false,
@@ -224,7 +133,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"width":285,"var":"btn_buy","skin":"style1/button-sheet0.png","scaleY":1.2,"scaleX":1.2,"right":121,"height":125,"bottom":288},
+            "props":{"width":285,"var":"btn_buy","skin":"style1/button-sheet0.png","scaleY":1.2,"scaleX":1.2,"height":125,"centerY":525,"centerX":-200},
             "nodeParent":1,
             "label":"Image(btn_buy)",
             "isOpen":true,
@@ -250,7 +159,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"width":285,"var":"btn_play","skin":"style1/button-sheet0.png","scaleY":1.2,"scaleX":1.2,"right":121,"height":125,"bottom":114},
+            "props":{"width":285,"var":"btn_play","skin":"style1/button-sheet0.png","scaleY":1.2,"scaleX":1.2,"height":125,"centerY":525,"centerX":200},
             "nodeParent":1,
             "label":"Image(btn_play)",
             "isOpen":true,
@@ -272,6 +181,142 @@
                     "child":[
                         ]
                 }]
+        },
+        {
+            "x":15,
+            "type":"VBox",
+            "props":{"y":500,"right":0,"left":0},
+            "nodeParent":1,
+            "label":"VBox",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":24,
+            "child":[
+                {
+                    "x":30,
+                    "type":"HBox",
+                    "props":{"space":25,"scaleY":1.3,"scaleX":1.3,"right":100,"left":100,"height":200},
+                    "nodeParent":24,
+                    "label":"HBox",
+                    "isOpen":false,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":25,
+                    "child":[
+                        {
+                            "type":"Image",
+                            "props":{"var":"btn_buyBomb","skin":"style1/shop_bomb-sheet1.png","scaleY":0.5,"scaleX":0.5},
+                            "nodeParent":25,
+                            "label":"Image(btn_buyBomb)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":3,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Image",
+                            "props":{"var":"btn_buypower","skin":"style1/shop_power-sheet1.png","scaleY":0.5,"scaleX":0.5},
+                            "nodeParent":25,
+                            "label":"Image(btn_buypower)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":5,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Image",
+                            "props":{"var":"buy_stonebook","skin":"style1/shop_silver-sheet1.png","scaleY":0.5,"scaleX":0.5},
+                            "nodeParent":25,
+                            "label":"Image(buy_stonebook)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":8,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "x":30,
+                    "type":"HBox",
+                    "props":{"space":25,"scaleY":1.3,"scaleX":1.3,"right":100,"left":100,"height":200},
+                    "nodeParent":24,
+                    "label":"HBox",
+                    "isOpen":false,
+                    "isDirectory":true,
+                    "isAniNode":true,
+                    "hasChild":true,
+                    "compId":26,
+                    "child":[
+                        {
+                            "type":"Image",
+                            "props":{"var":"btn_buytime","skin":"style1/shop_silver-sheet0.png","scaleY":0.5,"scaleX":0.5},
+                            "nodeParent":26,
+                            "label":"Image(btn_buytime)",
+                            "isOpen":true,
+                            "isDirectory":true,
+                            "isAniNode":true,
+                            "hasChild":true,
+                            "compId":16,
+                            "child":[
+                                {
+                                    "type":"Image",
+                                    "props":{"var":"icon_time","skin":"style1/shoptime.png","scaleY":0.5,"scaleX":0.5,"rotation":21,"centerY":-53,"centerX":0,"anchorY":0.5,"anchorX":0.5},
+                                    "nodeParent":16,
+                                    "label":"Image(icon_time)",
+                                    "isDirectory":false,
+                                    "isAniNode":true,
+                                    "hasChild":false,
+                                    "compId":15,
+                                    "child":[
+                                        ]
+                                }]
+                        },
+                        {
+                            "type":"Image",
+                            "props":{"var":"buy_luck","skin":"style1/shop_bag-sheet1.png","scaleY":0.5,"scaleX":0.5},
+                            "nodeParent":26,
+                            "label":"Image(buy_luck)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":7,
+                            "child":[
+                                ]
+                        },
+                        {
+                            "type":"Image",
+                            "props":{"var":"btn_buydiamond","skin":"style1/shop_jewel-sheet1.png","scaleY":0.5,"scaleX":0.5},
+                            "nodeParent":26,
+                            "label":"Image(btn_buydiamond)",
+                            "isDirectory":false,
+                            "isAniNode":true,
+                            "hasChild":false,
+                            "compId":6,
+                            "child":[
+                                ]
+                        }]
+                }]
+        },
+        {
+            "x":15,
+            "type":"Label",
+            "props":{"y":245,"x":498,"text":"选择好工具才会事半功倍","fontSize":45,"color":"#f6f4f4"},
+            "nodeParent":1,
+            "label":"Label",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":28,
+            "child":[
+                ]
         }],
     "animations":[
         {

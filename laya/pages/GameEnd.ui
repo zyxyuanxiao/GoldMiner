@@ -3,7 +3,7 @@
     "type":"Dialog",
     "selectedBox":4,
     "selecteID":2,
-    "props":{"width":900,"sceneColor":"#000000","height":650},
+    "props":{"width":1080,"sceneColor":"#000000","height":1920,"bottom":-28},
     "nodeParent":-1,
     "label":"Dialog",
     "isOpen":true,
@@ -28,7 +28,7 @@
         {
             "x":15,
             "type":"Panel",
-            "props":{"width":900,"height":350,"centerY":0,"centerX":0},
+            "props":{"width":900,"height":400,"centerY":-176,"centerX":0},
             "nodeParent":1,
             "label":"Panel",
             "isOpen":true,
@@ -40,7 +40,7 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"y":350,"x":0,"width":900,"var":"pnl_content","skin":"MainUI/zhe_hei.png","height":1000,"centerX":0},
+                    "props":{"y":0,"x":0,"width":900,"var":"pnl_content","skin":"MainUI/zhe_hei.png","height":1000,"centerX":0},
                     "nodeParent":4,
                     "label":"Image(pnl_content)",
                     "isOpen":true,
@@ -67,7 +67,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"width":350,"var":"btn_win","stateNum":"1","skin":"style1/button-sheet0.png","height":150,"centerX":0,"bottom":-150},
+            "props":{"width":350,"var":"btn_win","stateNum":"1","skin":"style1/button-sheet0.png","height":150,"centerX":0,"bottom":300},
             "nodeParent":1,
             "label":"Button(btn_win)",
             "isOpen":true,

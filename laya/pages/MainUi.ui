@@ -1,9 +1,9 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":1,
-    "selecteID":57,
-    "props":{"width":1920,"sceneColor":"#000000","height":1080},
+    "selectedBox":15,
+    "selecteID":82,
+    "props":{"width":1080,"sceneColor":"#000000","height":1920},
     "nodeParent":-1,
     "label":"View",
     "isOpen":true,
@@ -54,87 +54,16 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":0,"x":0,"var":"img_background","top":0,"skin":"Level/background_game-sheet0.png","right":0,"left":0,"bottom":0},
+            "props":{"x":0,"var":"img_background","top":395,"skin":"Level/background_game-sheet0.png","right":0,"left":0,"bottom":0},
             "nodeParent":1,
             "label":"Image(img_background)",
-            "isOpen":false,
-            "isDirectory":true,
+            "isOpen":true,
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
+            "hasChild":false,
             "compId":2,
             "child":[
-                {
-                    "type":"Image",
-                    "props":{"y":44,"skin":"style1/lamps-sheet1.png","right":711},
-                    "nodeParent":2,
-                    "label":"Image",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":68,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "props":{"y":52,"x":25,"skin":"style1/lightsheet3.png","scaleY":1,"scaleX":1,"blendMode":"lighter","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":68,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":69,
-                            "child":[
-                                ]
-                        }]
-                },
-                {
-                    "type":"Image",
-                    "props":{"y":16,"skin":"style1/lamps-sheet1.png","right":313},
-                    "nodeParent":2,
-                    "label":"Image",
-                    "isOpen":false,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":66,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "props":{"y":52,"x":25,"skin":"style1/lightsheet0.png","scaleY":1,"scaleX":1,"blendMode":"lighter","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":66,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":67,
-                            "child":[
-                                ]
-                        }]
-                },
-                {
-                    "type":"Image",
-                    "props":{"y":20,"skin":"style1/lamps-sheet1.png","left":623},
-                    "nodeParent":2,
-                    "label":"Image",
-                    "isOpen":true,
-                    "isDirectory":true,
-                    "isAniNode":true,
-                    "hasChild":true,
-                    "compId":70,
-                    "child":[
-                        {
-                            "type":"Image",
-                            "props":{"y":52,"x":25,"skin":"style1/lightsheet0.png","scaleY":1,"scaleX":1,"blendMode":"lighter","anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":70,
-                            "label":"Image",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":71,
-                            "child":[
-                                ]
-                        }]
-                }]
+                ]
         },
         {
             "x":15,
@@ -183,7 +112,7 @@
         {
             "x":15,
             "type":"Panel",
-            "props":{"var":"Map","top":0,"right":0,"left":0,"bottom":0},
+            "props":{"var":"Map","top":175,"right":0,"left":0,"bottom":0},
             "nodeParent":1,
             "label":"Panel(Map)",
             "isOpen":true,
@@ -195,7 +124,7 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"var":"MineBackground","top":450,"right":125,"left":125,"bottom":100},
+                    "props":{"var":"MineBackground","top":250,"right":35,"left":35,"bottom":235},
                     "nodeParent":15,
                     "label":"Image(MineBackground)",
                     "isDirectory":false,
@@ -208,7 +137,7 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"y":42,"var":"player","skin":"Player/miner-sheet_01.png","centerX":45,"anchorY":0,"anchorX":0.5},
+                    "props":{"y":52,"var":"player","skin":"Player/miner-sheet_01.png","scaleY":0.6,"scaleX":0.6,"centerX":32,"anchorY":0,"anchorX":0.5},
                     "nodeParent":15,
                     "label":"Image(player)",
                     "isDirectory":false,
@@ -221,17 +150,16 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"y":290,"x":960,"width":70,"var":"hookAnchor","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
+                    "props":{"y":200,"x":540,"width":70,"var":"hookAnchor","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
                     "nodeParent":15,
                     "label":"Image(hookAnchor)",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
                     "compId":82,
                     "child":[
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":5,"x":10,"var":"hookRight","skin":"style1/hook_right-sheet0.png","rotation":90,"pivotY":12,"pivotX":12},
                             "nodeParent":82,
@@ -245,7 +173,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":-5,"x":10,"var":"hookLeft","skin":"style1/hook_left-sheet0.png","rotation":90,"anchorY":0.15,"anchorX":0.75},
                             "nodeParent":82,
@@ -259,7 +186,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"x":-45,"width":0,"var":"HookHolder","height":0,"anchorY":0.5,"anchorX":0.5},
                             "nodeParent":82,
@@ -273,7 +199,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"width":20,"var":"hookRightPoint","height":20,"centerY":45,"centerX":-80,"anchorY":0.5,"anchorX":0.5},
                             "nodeParent":82,
@@ -286,7 +211,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"width":20,"var":"hookLeftPoint","height":20,"centerY":-45,"centerX":-75,"anchorY":0.5,"anchorX":0.5},
                             "nodeParent":82,
@@ -302,7 +226,7 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"y":290,"x":960,"width":65,"var":"HookHead","skin":"style1/rope.png","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
+                    "props":{"y":200,"x":540,"width":65,"var":"HookHead","skin":"style1/rope.png","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
                     "nodeParent":15,
                     "label":"Image(HookHead)",
                     "isOpen":true,
@@ -316,7 +240,7 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"var":"MineRoot","top":450,"right":125,"left":125,"bottom":100},
+                    "props":{"var":"MineRoot","top":250,"right":35,"left":35,"bottom":235},
                     "nodeParent":15,
                     "label":"Image(MineRoot)",
                     "isDirectory":false,
@@ -326,7 +250,8 @@
                     "child":[
                         ],
                     "$HIDDEN":false
-                }]
+                }],
+            "$HIDDEN":false
         },
         {
             "x":15,
@@ -437,7 +362,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":210,"var":"btn_toolBomb","skin":"style1/bonus_bomb-sheet0.png","centerX":210},
+            "props":{"y":267,"var":"btn_toolBomb","skin":"style1/bonus_bomb-sheet0.png","centerX":146},
             "nodeParent":1,
             "label":"Image(btn_toolBomb)",
             "isDirectory":false,
@@ -450,7 +375,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"var":"label_bombNum","top":300,"text":"X150","fontSize":45,"font":"Arial","color":"#ffffff","centerX":210},
+            "props":{"var":"label_bombNum","top":369,"text":"X150","fontSize":45,"font":"Arial","color":"#ffffff","centerX":137},
             "nodeParent":1,
             "label":"Label(label_bombNum)",
             "isDirectory":false,
@@ -536,7 +461,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":280,"var":"btn_pause","stateNum":"1","skin":"MainUI/button_pause-sheet1.png","right":167},
+            "props":{"var":"btn_pause","stateNum":"1","skin":"MainUI/button_pause-sheet1.png","right":25,"bottom":55},
             "nodeParent":1,
             "label":"Button(btn_pause)",
             "isOpen":true,
@@ -550,7 +475,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":280,"var":"btn_mute","skin":"MainUI/soundbutton-sheet0.png","scaleY":0.8,"scaleX":0.8,"right":25},
+            "props":{"var":"btn_mute","skin":"MainUI/soundbutton-sheet0.png","scaleY":0.8,"scaleX":0.8,"right":20,"bottom":182},
             "nodeParent":1,
             "label":"Image(btn_mute)",
             "isDirectory":false,

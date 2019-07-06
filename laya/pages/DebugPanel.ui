@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"Dialog",
-    "selectedBox":148,
-    "selecteID":149,
+    "selectedBox":1,
+    "selecteID":136,
     "props":{"width":900,"sceneWidth":900,"sceneHeight":1350,"sceneColor":"#000000","height":724},
     "nodeParent":-1,
     "label":"Dialog",
@@ -42,7 +42,7 @@
         {
             "x":15,
             "type":"HBox",
-            "props":{"top":125,"staticCache":true,"right":45,"left":45,"cacheAsBitmap":true,"cacheAs":"bitmap","bottom":35},
+            "props":{"top":125,"staticCache":true,"right":96,"left":45,"bottom":157},
             "nodeParent":1,
             "label":"HBox",
             "isOpen":true,
@@ -53,72 +53,63 @@
             "child":[
                 {
                     "x":30,
-                    "type":"VBox",
-                    "props":{"width":175},
+                    "type":"Panel",
+                    "props":{"y":0,"x":0,"width":275,"height":460},
                     "nodeParent":136,
-                    "label":"VBox",
-                    "isOpen":false,
+                    "label":"Panel",
+                    "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
-                    "compId":21,
+                    "compId":153,
                     "child":[
                         {
-                            "type":"Button",
-                            "props":{"width":185,"var":"btn_play0","skin":"comp/button.png","labelSize":35,"label":"调试关卡1","height":85},
-                            "nodeParent":21,
-                            "label":"Button(btn_play0)",
-                            "isDirectory":false,
+                            "x":45,
+                            "type":"List",
+                            "props":{"y":5,"x":5,"width":229,"var":"level_lst","vScrollBarSkin":"LetterCard/vscroll.png","spaceY":2,"spaceX":0,"repeatY":30,"repeatX":1,"height":456},
+                            "nodeParent":153,
+                            "label":"List(level_lst)",
+                            "isOpen":true,
+                            "isDirectory":true,
                             "isAniNode":true,
-                            "hasChild":false,
-                            "compId":144,
+                            "hasChild":true,
+                            "compId":150,
                             "child":[
-                                ]
-                        },
-                        {
-                            "type":"Button",
-                            "props":{"width":185,"var":"btn_play1","skin":"comp/button.png","labelSize":35,"label":"调试关卡2","height":85},
-                            "nodeParent":21,
-                            "label":"Button(btn_play1)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":145,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Button",
-                            "props":{"width":185,"var":"btn_play2","skin":"comp/button.png","labelSize":35,"label":"调试关卡3","height":85},
-                            "nodeParent":21,
-                            "label":"Button(btn_play2)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":146,
-                            "child":[
-                                ]
-                        },
-                        {
-                            "type":"Button",
-                            "props":{"width":185,"var":"btn_play3","skin":"comp/button.png","labelSize":35,"label":"调试关卡4","height":85},
-                            "nodeParent":21,
-                            "label":"Button(btn_play3)",
-                            "isDirectory":false,
-                            "isAniNode":true,
-                            "hasChild":false,
-                            "compId":147,
-                            "child":[
-                                ]
-                        }],
-                    "$HIDDEN":false
+                                {
+                                    "x":60,
+                                    "type":"Box",
+                                    "props":{"width":185,"renderType":"render","height":65},
+                                    "nodeParent":150,
+                                    "label":"Box",
+                                    "isOpen":true,
+                                    "isDirectory":true,
+                                    "isAniNode":false,
+                                    "hasChild":true,
+                                    "compId":151,
+                                    "child":[
+                                        {
+                                            "x":75,
+                                            "type":"UIView",
+                                            "source":"LevelButton.ui",
+                                            "props":{"width":185,"height":65},
+                                            "nodeParent":151,
+                                            "label":"UIView",
+                                            "isDirectory":false,
+                                            "isAniNode":false,
+                                            "hasChild":false,
+                                            "compId":154,
+                                            "child":[
+                                                ]
+                                        }]
+                                }]
+                        }]
                 }],
-            "$HIDDEN":true
+            "$HIDDEN":false
         },
         {
             "x":15,
             "type":"Image",
-            "props":{"y":386,"x":117,"width":206,"var":"btn_delete","skin":"LetterCard/button_bg_greel.png","sizeGrid":"25,39,44,36","height":83},
+            "props":{"width":206,"var":"btn_delete","skin":"LetterCard/button_bg_greel.png","sizeGrid":"25,39,44,36","right":85,"height":83,"bottom":55},
             "nodeParent":1,
             "label":"Image(btn_delete)",
             "isOpen":true,
