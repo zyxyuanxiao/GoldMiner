@@ -367,7 +367,7 @@ class BattleUiCtrl extends ui.MainUiUI {
                         this.hookPoint = this.HookHolder.localToGlobal(this.hookPoint);
                         if (this.scoreTween != null)
                         {
-                            this.scoreTween._clear();
+                            this.scoreTween.clear();
                             this.scoreTween = null;
                         }
                         this.label_score.text = "+" + Math.ceil(t - f);
