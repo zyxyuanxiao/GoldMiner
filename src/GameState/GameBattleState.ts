@@ -47,3 +47,21 @@ class GameBattleState extends BaseGameState
         (this.Controller as BattleUiCtrl).StartGame();
     }
 }
+
+class NullState extends BaseGameState
+{
+    Controller:any;
+    OnEnter(previousState: BaseGameState, data: Object):void
+    {
+        
+    }
+
+    public OnUpdate():void {
+        super.OnUpdate();
+
+    }
+
+    public OnExit(nextState:BaseGameState, data:Object) {
+        super.OnExit(nextState, data);
+    }
+}

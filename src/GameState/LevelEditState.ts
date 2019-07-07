@@ -174,7 +174,8 @@ class LevelEditController extends ui.LevelEditorUI {
 
     OnOpenLevel()  {
         this.label_level.text = StringTool.format("当前关卡:{0}", this.level.level);
-        this.level_goal.text = "关卡目标:" + this.level.Goal.toFixed(0);
+        this.level_goal.text = "关卡总目标:" + this.level.Goal.toFixed(0);
+        this.label_goalex.text = "关卡目标:" + (this.level.level == 1 ? this.level.Goal : this.level.Goal - LevelData.Instance.LevelItems[this.level.level - 1].Goal).toFixed(0); 
         this.level_time.text = "关卡限时:" + this.level.time.toFixed(0);
         var lev:LevelItem = null;
         var t:number = 0;
@@ -267,10 +268,9 @@ class LevelEditController extends ui.LevelEditorUI {
         {
             var lev:LevelItem = LevelData.Instance.LevelItems[LevelData.Instance.LevelItems.length - 1];
             var newlevel:LevelItem = new LevelItem();
-            newlevel.Goal = 0;
             newlevel.level = lev.level + 1;
-            newlevel.time = 30;
-            newlevel.TotalGoal = 0;
+            newlevel.Goal = Util.CalcGoal(newlevel.level);
+            newlevel.time = 50;
             LevelData.Instance.LevelItems.push(newlevel);
             this.RefreshLevel();
         }

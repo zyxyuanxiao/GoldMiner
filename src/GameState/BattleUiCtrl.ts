@@ -31,7 +31,6 @@ class BattleUiCtrl extends ui.MainUiUI {
         this.btn_nextLevel.on(Laya.Event.CLICK, this, this.OnNextLevel);
         this.btn_shop.on(Laya.Event.CLICK, this, this.OnPassLevel);
         this.btn_pause.on(Laya.Event.CLICK, this, this.OnPause);
-        this.btn_mute.on(Laya.Event.CLICK, this, this.OnMute);
         this.player0.interval = 80;
         this.player_idle.interval = 80;
         this.player1.interval = 80;
@@ -76,17 +75,37 @@ class BattleUiCtrl extends ui.MainUiUI {
         Main.Instance.OnOpenDebug();
     }
 
+
+    //player0 放开
+    //player1 收回
+    //playeridle 待机
+
+    player0Playing:boolean = false;
+    player1Playing:boolean = false;
+
     OnPause()  {
         this.pause = !this.pause;
-        this.btn_pause.skin = this.pause ? "MainUI/button_next-sheet1.png" : "MainUI/button_pause-sheet1.png";
         for (var i: number = 0; i < this.mines.length; i++)  {
             if (this.pause)
                 this.mines.At(i).Pause();
             else
                 this.mines.At(i).Resume();
         }
+        
         if (this.pause)
-            this.Mute();
+        {
+            this.player0Playing = this.player0.isPlaying;
+            this.player1Playing = this.player1.isPlaying;
+            this.player0.stop();
+            this.player1.stop();
+            Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.PauseDialogState);
+        }
+        else
+        {
+            this.player0Playing && this.player0.play();
+            this.player1Playing && this.player1.play();
+            this.player0Playing = this.player1Playing = false;
+        }
     }
 
     OnNextLevel()  {
@@ -105,18 +124,6 @@ class BattleUiCtrl extends ui.MainUiUI {
         this.hookAnchor.x = this.HookHead.x;
     }
 
-    mute: boolean = false;
-    OnMute()  {
-        this.mute = !this.mute;
-        this.btn_mute.skin = this.mute ? "MainUI/soundbutton-sheet1.png" : "MainUI/soundbutton-sheet0.png";
-        Laya.SoundManager.soundMuted = this.mute;
-    }
-
-    Mute()  {
-        this.mute = true;
-        this.btn_mute.skin = this.mute ? "MainUI/soundbutton-sheet1.png" : "MainUI/soundbutton-sheet0.png";
-        Laya.SoundManager.soundMuted = this.mute;
-    }
     /**
      * 重置关卡
      */
@@ -156,7 +163,7 @@ class BattleUiCtrl extends ui.MainUiUI {
             this.mines.Add(this.lev.Mines[i]);
         }
 
-        this.goal.text = StringTool.format("关卡目标:{0}", this.lev.TotalGoal.toFixed(0));
+        this.goal.text = StringTool.format("关卡目标:{0}", this.lev.Goal.toFixed(0));
         this.TimeLeft.text = StringTool.format("剩余时间:{0}", this.lev.time.toFixed(0));
         this.label_level.text = this.lev.level.toFixed(0);
         this.time = this.lev.time + PlayerData.Instance.ExtraTime;
@@ -257,7 +264,7 @@ class BattleUiCtrl extends ui.MainUiUI {
         MainAudioPlayer.Instance.PlayBomb();
     }
 
-    public _EmptyPullSpeed = 12;//基础速度-无视 80/12
+    public _EmptyPullSpeed = 9;//基础速度-无视 80/12
     _Explosion: boolean = false;//如果触发了炸药桶，钩子会回来的更快。
     _ExplosionGravity: number = 15;
     _takeBackGravity: number = 15;
@@ -266,7 +273,10 @@ class BattleUiCtrl extends ui.MainUiUI {
         if (this.Item != null)  {
             if (PlayerData.Instance.PowerOn)
                 return this._EmptyPullSpeed;
-            return 11 - this.Item.level;
+            if (this.Item instanceof Stone || this.Item instanceof Gold || this.Item instanceof Silver)
+                return  2 + 8 / (this.Item.level);
+            else
+                return this._EmptyPullSpeed;
         }
         //出钩速度加快speedPer;
         return (this._EmptyPullSpeed + PlayerData.Instance.ExtraSpeed)+ (this._takeBackGravity + (this._Explosion ? this._ExplosionGravity : 0)) * this.takeBackTime;

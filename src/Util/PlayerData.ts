@@ -20,6 +20,7 @@ class PlayerData{
     nickName:string;//角色昵称
     gold:number = 0;
     level:number = 0;//默认第一关
+    mute:boolean = false;
     public static get MaxLevel():number
     {
         return LevelData.Instance.LevelItems.length;
@@ -27,7 +28,7 @@ class PlayerData{
 
     constructor()
     {
-        this.Load();
+
     }
 
     public Save()
@@ -116,7 +117,7 @@ class PlayerData{
         if (i instanceof Stone)
         {
             if (this.StoneBook)
-                this.AddGold(i.value * (1 + Math.ceil(Math.random() * 4)));
+                this.AddGold(i.value * 3);
             else
                 this.AddGold(i.value);
         }

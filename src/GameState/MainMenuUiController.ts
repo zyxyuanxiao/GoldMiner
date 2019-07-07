@@ -27,6 +27,7 @@ class MainMenuUiController extends ui.MainMenuUI {
 
     OnStart()
     {
+        PlayerData.Instance.Load();
         Main.Instance.GameStateManager.FireAction(GameAction.Start);
     }
 

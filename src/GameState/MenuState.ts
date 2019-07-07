@@ -21,7 +21,6 @@ class MenuState extends BaseGameState
         switch (gameAction)
         {
             case GameAction.Start:
-            PlayerData.Instance.Load();
             if (PlayerData.Instance.gold == 0)
             {
                 var lev:LevelItem = LevelData.Instance.LevelItems[PlayerData.Instance.level];

@@ -44,8 +44,14 @@ class ShopUiController extends ui.ShopUI
         this.btn_play.on(Laya.Event.CLICK, this, this.OnPlay);
         this.label_des.text = "";
         this.UpdateUI();
+        this.OnResize();
     }
 
+    OnResize()
+    {
+        this.width = Laya.stage.width;
+        this.height = Laya.stage.height;
+    }
     select:number = -1;
     ShowDesc(v:number)
     {
@@ -62,19 +68,19 @@ class ShopUiController extends ui.ShopUI
             this.label_des.text = "当前拥有金钱数额";
             break;
             case 0:
-            this.label_des.text = "炸弹：当你挖到废品时，用来炸毁该物品，以便节省时间！";
+            this.label_des.text = "炸弹：用来炸毁重量大价值低的物品，以便节省时间！";
             break;
             case 1:
-            this.label_des.text = "力量药剂:挖到物品时，拉物品的速度提升，下一关内有效";
+            this.label_des.text = "力量药剂:拉物品的速度提升，下一关内有效";
             break;
             case 2:
-            this.label_des.text = "宝石收藏书:挖到宝石时，宝石的价值提升至200%";
+            this.label_des.text = "宝石收藏书:宝石的价值提升至200%";
             break;
             case 3:
             this.label_des.text = "福袋：增加2-5点幸运值，挖矿更幸运";
             break;
             case 4:
-            this.label_des.text = "石头书:当你挖到时候时，石头的价值提升至100%-500%";
+            this.label_des.text = "石头书:石头的价值提升至300%";
             break;
             case 5:
             this.label_des.text = "时间沙漏:随机增加关卡时间10-30秒时间，最长翻倍";

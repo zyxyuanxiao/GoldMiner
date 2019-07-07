@@ -2,8 +2,8 @@
     "x":0,
     "type":"Dialog",
     "selectedBox":1,
-    "selecteID":8,
-    "props":{"width":1080,"sceneColor":"#000000","height":1920},
+    "selecteID":5,
+    "props":{"width":1920,"sceneColor":"#000000","height":1080},
     "nodeParent":-1,
     "label":"Dialog",
     "isOpen":true,
@@ -27,20 +27,7 @@
                 {
                     "x":30,
                     "type":"Label",
-                    "props":{"y":450,"var":"label_goal","text":"胜利","fontSize":35,"font":"Arial","color":"#f6f4f4","centerX":-55},
-                    "nodeParent":2,
-                    "label":"Label(label_goal)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":5,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Label",
-                    "props":{"var":"label_level","top":124,"text":"关卡1-1","fontSize":35,"font":"Arial","color":"#f6f4f4","centerX":0},
+                    "props":{"y":119,"var":"label_level","text":"关卡1-1","fontSize":35,"font":"Arial","color":"#f6f4f4","centerX":0},
                     "nodeParent":2,
                     "label":"Label(label_level)",
                     "isDirectory":false,
@@ -53,7 +40,7 @@
                 {
                     "x":30,
                     "type":"Label",
-                    "props":{"y":300,"x":390,"var":"label_gold","text":"胜利","fontSize":35,"font":"Arial","color":"#f6f4f4","centerX":-55},
+                    "props":{"y":295,"var":"label_gold","text":"胜利","fontSize":35,"font":"Arial","color":"#f6f4f4","centerX":-55},
                     "nodeParent":2,
                     "label":"Label(label_gold)",
                     "isDirectory":false,
@@ -62,12 +49,25 @@
                     "compId":4,
                     "child":[
                         ]
+                },
+                {
+                    "x":30,
+                    "type":"Label",
+                    "props":{"y":445,"var":"label_goal","text":"胜利","fontSize":35,"font":"Arial","color":"#f6f4f4","centerX":-55},
+                    "nodeParent":2,
+                    "label":"Label(label_goal)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":5,
+                    "child":[
+                        ]
                 }]
         },
         {
             "x":15,
             "type":"Image",
-            "props":{"width":304,"var":"btn_play","skin":"style1/button-sheet0.png","sizeGrid":"14,45,38,45","height":124,"centerX":0,"bottom":350},
+            "props":{"width":304,"var":"btn_play","skin":"style1/button-sheet0.png","sizeGrid":"14,45,38,45","height":124,"centerX":-200,"bottom":118},
             "nodeParent":1,
             "label":"Image(btn_play)",
             "isOpen":true,
@@ -79,13 +79,39 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"width":80,"skin":"style1/button_play-sheet0.png","height":80,"centerY":-8,"centerX":0},
+                    "props":{"width":80,"skin":"style1/popupbuttons-sheet1.png","height":80,"centerY":-8,"centerX":0},
                     "nodeParent":8,
                     "label":"Image",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,
                     "compId":11,
+                    "child":[
+                        ]
+                }]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "props":{"width":304,"var":"btn_home","skin":"style1/button-sheet0.png","sizeGrid":"14,45,38,45","height":124,"centerX":200,"bottom":118},
+            "nodeParent":1,
+            "label":"Image(btn_home)",
+            "isOpen":true,
+            "isDirectory":true,
+            "isAniNode":true,
+            "hasChild":true,
+            "compId":12,
+            "child":[
+                {
+                    "x":30,
+                    "type":"Image",
+                    "props":{"width":80,"skin":"style1/popupbuttons-sheet0.png","height":80,"centerY":-8,"centerX":0},
+                    "nodeParent":12,
+                    "label":"Image",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":13,
                     "child":[
                         ]
                 }]

@@ -1,9 +1,9 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":113,
-    "selecteID":121,
-    "props":{"width":1080,"sceneColor":"#000000","height":1920},
+    "selectedBox":1,
+    "selecteID":123,
+    "props":{"width":1920,"sceneColor":"#000000","height":1080},
     "nodeParent":-1,
     "label":"View",
     "isOpen":true,
@@ -15,7 +15,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"x":0,"var":"img_background","top":395,"skin":"Level/background_game-sheet0.png","right":0,"left":0,"bottom":0},
+            "props":{"y":0,"x":0,"var":"img_background","top":0,"skin":"Level/background_game-sheet0.png","right":0,"left":0,"bottom":0},
             "nodeParent":1,
             "label":"Image(img_background)",
             "isOpen":true,
@@ -29,7 +29,7 @@
         {
             "x":15,
             "type":"Panel",
-            "props":{"var":"Map","top":175,"right":0,"left":0,"bottom":0},
+            "props":{"var":"Map","top":0,"right":0,"left":0,"bottom":0},
             "nodeParent":1,
             "label":"Panel(Map)",
             "isOpen":true,
@@ -41,7 +41,7 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"var":"MineBackground","top":250,"right":35,"left":35,"bottom":235},
+                    "props":{"var":"MineBackground","top":450,"right":125,"left":125,"bottom":100},
                     "nodeParent":15,
                     "label":"Image(MineBackground)",
                     "isDirectory":false,
@@ -54,7 +54,7 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"y":52,"visible":false,"var":"player","skin":"Player/miner-sheet_01.png","scaleY":0.6,"scaleX":0.6,"centerX":32,"anchorY":0,"anchorX":0.5},
+                    "props":{"y":42,"var":"player","skin":"Player/miner-sheet_01.png","centerX":45,"anchorY":0,"anchorX":0.5},
                     "nodeParent":15,
                     "label":"Image(player)",
                     "isDirectory":false,
@@ -62,13 +62,12 @@
                     "hasChild":false,
                     "compId":87,
                     "child":[
-                        ],
-                    "$HIDDEN":true
+                        ]
                 },
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"y":200,"x":540,"width":70,"var":"hookAnchor","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
+                    "props":{"y":290,"x":960,"width":70,"var":"hookAnchor","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
                     "nodeParent":15,
                     "label":"Image(hookAnchor)",
                     "isOpen":false,
@@ -120,7 +119,7 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"y":200,"x":540,"width":65,"var":"HookHead","skin":"style1/rope.png","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
+                    "props":{"y":290,"x":960,"width":65,"var":"HookHead","skin":"style1/rope.png","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
                     "nodeParent":15,
                     "label":"Image(HookHead)",
                     "isOpen":true,
@@ -134,7 +133,7 @@
                 {
                     "x":30,
                     "type":"Image",
-                    "props":{"var":"MineRoot","top":250,"right":35,"left":35,"bottom":235},
+                    "props":{"var":"MineRoot","top":450,"right":125,"left":125,"bottom":100},
                     "nodeParent":15,
                     "label":"Image(MineRoot)",
                     "isDirectory":false,
@@ -209,12 +208,77 @@
                     "compId":104,
                     "child":[
                         ]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "props":{"width":200,"var":"btn_addlevel","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"增加关卡","height":85},
+                    "nodeParent":88,
+                    "label":"Button(btn_addlevel)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":118,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "props":{"width":255,"var":"btn_deletelevel","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"删除所有关卡","height":85},
+                    "nodeParent":88,
+                    "label":"Button(btn_deletelevel)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":119,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "props":{"width":200,"var":"btn_resetlevel","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"重置关卡","height":85},
+                    "nodeParent":88,
+                    "label":"Button(btn_resetlevel)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":120,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "props":{"width":200,"var":"btn_testlevel","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"测试关卡","height":85},
+                    "nodeParent":88,
+                    "label":"Button(btn_testlevel)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":121,
+                    "child":[
+                        ]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "props":{"width":200,"var":"btn_return","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"返回","height":85},
+                    "nodeParent":88,
+                    "label":"Button(btn_return)",
+                    "isDirectory":false,
+                    "isAniNode":true,
+                    "hasChild":false,
+                    "compId":122,
+                    "child":[
+                        ]
                 }]
         },
         {
             "x":15,
             "type":"List",
-            "props":{"width":255,"var":"levelList","vScrollBarSkin":"comp/vscroll.png","spaceY":2,"spaceX":2,"repeatY":10,"repeatX":2,"left":-255,"height":670,"centerY":0},
+            "props":{"y":249,"width":255,"var":"levelList","spaceY":2,"spaceX":2,"repeatY":10,"repeatX":2,"left":-255,"height":670},
             "nodeParent":1,
             "label":"List(levelList)",
             "isOpen":true,
@@ -254,7 +318,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"width":255,"var":"level_goal","valign":"middle","top":230,"text":"关卡目标:100","left":300,"height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
+            "props":{"width":255,"var":"level_goal","valign":"middle","top":98,"text":"关卡总目标:100","left":300,"height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
             "nodeParent":1,
             "label":"Label(level_goal)",
             "isDirectory":false,
@@ -267,7 +331,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":287,"width":255,"var":"level_time","valign":"middle","top":168,"text":"关卡时间:100S","left":300,"height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
+            "props":{"width":255,"var":"level_time","valign":"middle","top":168,"text":"关卡时间:100S","left":300,"height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
             "nodeParent":1,
             "label":"Label(level_time)",
             "isDirectory":false,
@@ -280,7 +344,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":287,"width":255,"var":"label_level","valign":"middle","top":168,"text":"当前关卡:无","left":0,"height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
+            "props":{"y":10,"width":255,"var":"label_level","valign":"middle","top":168,"text":"当前关卡:无","left":0,"height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
             "nodeParent":1,
             "label":"Label(label_level)",
             "isDirectory":false,
@@ -333,7 +397,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"width":255,"var":"label_value","valign":"middle","top":235,"text":"关卡投放:","left":0,"height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
+            "props":{"width":255,"var":"label_value","valign":"middle","top":99,"text":"关卡投放:","left":0,"height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
             "nodeParent":1,
             "label":"Label(label_value)",
             "isDirectory":false,
@@ -346,7 +410,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"x":600,"width":298,"var":"label_totalvalue","valign":"middle","top":160,"text":"总投放:0","height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
+            "props":{"x":600,"width":298,"var":"label_totalvalue","valign":"middle","top":99,"text":"总投放:0","height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
             "nodeParent":1,
             "label":"Label(label_totalvalue)",
             "isDirectory":false,
@@ -359,80 +423,29 @@
         {
             "x":15,
             "type":"HBox",
-            "props":{"y":94},
+            "props":{"y":0,"centerX":390},
             "nodeParent":1,
             "label":"HBox",
             "isOpen":true,
-            "isDirectory":true,
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
-            "compId":113,
+            "hasChild":false,
+            "compId":112,
             "child":[
-                {
-                    "x":30,
-                    "type":"Button",
-                    "props":{"width":200,"var":"btn_addlevel","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"增加关卡","height":85},
-                    "nodeParent":113,
-                    "label":"Button(btn_addlevel)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":114,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Button",
-                    "props":{"width":255,"var":"btn_deletelevel","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"删除所有关卡","height":85},
-                    "nodeParent":113,
-                    "label":"Button(btn_deletelevel)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":115,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Button",
-                    "props":{"width":200,"var":"btn_resetlevel","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"重置关卡","height":85},
-                    "nodeParent":113,
-                    "label":"Button(btn_resetlevel)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":119,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Button",
-                    "props":{"width":200,"var":"btn_testlevel","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"测试关卡","height":85},
-                    "nodeParent":113,
-                    "label":"Button(btn_testlevel)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":120,
-                    "child":[
-                        ]
-                },
-                {
-                    "x":30,
-                    "type":"Button",
-                    "props":{"width":200,"var":"btn_return","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"返回","height":85},
-                    "nodeParent":113,
-                    "label":"Button(btn_return)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":121,
-                    "child":[
-                        ]
-                }]
+                ]
+        },
+        {
+            "x":15,
+            "type":"Label",
+            "props":{"width":255,"var":"label_goalex","valign":"middle","top":170,"text":"关卡目标:100","left":598,"height":85,"fontSize":35,"color":"#fdf4f4","align":"left"},
+            "nodeParent":1,
+            "label":"Label(label_goalex)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":123,
+            "child":[
+                ]
         }],
     "animations":[
         {

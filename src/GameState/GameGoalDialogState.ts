@@ -54,6 +54,7 @@ class GameGoalUiController extends ui.GameGoalUI
     {
         super();
         this.OnResize();
+        this.btn_home.on(Laya.Event.CLICK, this, this.OnHome);
         this.btn_play.on(Laya.Event.CLICK, this, this.OnPlay);
         this.label_level.text = "关卡" + "--";
         if (LevelData.Instance.LevelItems[PlayerData.Instance.level] != null)
@@ -80,5 +81,11 @@ class GameGoalUiController extends ui.GameGoalUI
             return;
         }
         Main.Instance.DialogStateManager.FireAction(DialogAction.Start);
+    }
+
+    OnHome()
+    {
+        Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
+        Main.Instance.DialogStateManager.ChangeState(null);
     }
 }

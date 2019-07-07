@@ -17,10 +17,10 @@ class Main {
         //初始化引擎
         Laya.MiniAdpter.init();
         Laya.MiniAdpter.nativefiles = ["sub/source.json", "res/atlas/start.atlas"];
-        Laya3D.init(1080, 1920, false);
+        Laya3D.init(1920, 1080, false);
         //适配模式
         Laya.stage.scaleMode = Laya.Stage.SCALE_FIXED_AUTO;
-        Laya.stage.screenMode = Laya.Stage.SCREEN_VERTICAL;
+        Laya.stage.screenMode = Laya.Stage.SCREEN_HORIZONTAL;
         Material.Init();
         //开启统计信息
         //Laya.Stat.show();
@@ -98,6 +98,8 @@ class Main {
     Init()
     {
         this.level = new LevelJson();
+        //玩家为新玩家，或者接着上次玩
+        Util.start();
     }
 }
 

@@ -21,6 +21,7 @@ class MainDialogStateManager extends DialogStateManager<BaseDialogState, DialogA
     public RankState:RankDialogState;
     public GameEnd:GameEndDialogState;
     public EditDialogState:EditDialogState;
+    public PauseDialogState:PauseDialogState;
     ////////////////////////////////////////
 
 
@@ -33,6 +34,7 @@ class MainDialogStateManager extends DialogStateManager<BaseDialogState, DialogA
         this.RankState = new RankDialogState(this);
         this.EditDialogState = new EditDialogState(this);
         this.GameEnd = new GameEndDialogState(this);
+        this.PauseDialogState = new PauseDialogState(this);
         this.CheckAndOpenCommonRoomDialogsFunct = this.CheckAndOpenDialogStates;
     }
 

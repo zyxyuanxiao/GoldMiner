@@ -28,7 +28,6 @@ class LevelItem
 {
     Mines:Array<Mine> = new Array<Mine>();
     Goal:number = 0;
-    TotalGoal:number = 0;
     public Add(m:Mine)
     {
         this.Mines.push(m);
@@ -63,15 +62,8 @@ class LevelData
     {
         var lev:LevelItem = new LevelItem();
         lev.level = l["level"];
-        if (lev.level == 1)
-        {
-            lev.TotalGoal = lev.Goal;
-            if (lev.TotalGoal == 0)
-                lev.TotalGoal = lev.Goal = 650;
-        }
-        else
-            lev.TotalGoal = LevelData.Instance.LevelItems[lev.level - 2].TotalGoal + lev.Goal;
-        lev.time = l["time"];
+        lev.Goal = Util.CalcGoal(lev.level);
+        lev.time = 50;
         lev.Mines = new Array<Mine>();
         var m = l["mines"];
         for (var i = 0; i < m.length; i++)
@@ -86,4 +78,7 @@ class LevelData
     {
         this.Reset();
     }
+
+
+    //Rn＝105＋545n＋135（n－1）（n－2）
 }

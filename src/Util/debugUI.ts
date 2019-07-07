@@ -46,7 +46,7 @@ class DebugUI extends ui.DebugPanelUI
     {
         var lev:LevelItem = LevelData.Instance.LevelItems[l];
         if (l != 0)
-            PlayerData.Instance.gold = LevelData.Instance.LevelItems[l - 1].TotalGoal;
+            PlayerData.Instance.gold = LevelData.Instance.LevelItems[l - 1].Goal;
         Main.Instance.GameStateManager.GameBattleState.StartLevel(lev);
     }
 

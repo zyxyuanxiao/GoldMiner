@@ -130,16 +130,10 @@ class StartUpState extends BaseGameState {
         }
         Laya.timer.clear(this, this.OnUpdate);
         Main.Instance.Init();
-        Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
-        // else
-        //     WechatHelper.WXManager.GetInstance().Login(this.OnLogin);
     }
 
     OnLogin(user:any)
     {
-        //console.log(user);
-        // PlayerData.Instance.nickName = user.nickName;
-        // PlayerData.Instance.avatarUrl = user.avatarUrl;
         Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
     }
 }
