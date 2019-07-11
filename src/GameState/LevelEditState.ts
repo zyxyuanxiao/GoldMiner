@@ -28,7 +28,6 @@ class LevelEditState extends BaseGameState {
 
     //调试功能
     public TestLevel(level: LevelItem)  {
-
         // (this.Controller as BattleUiCtrl).LoadLevel(level);
         // (this.Controller as BattleUiCtrl).StartGame();
     }
@@ -234,7 +233,9 @@ class LevelEditController extends ui.LevelEditorUI {
     OnTestLevel()
     {
         if (this.level != null)
-        {       
+        {
+            PlayerData.Instance.Reset();
+            PlayerData.Instance.ResetStatus();
             Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.GameBattleState, this.level);
             Main.Instance.DialogStateManager.ChangeState(Main.Instance.DialogStateManager.GameGoalState);
         }
@@ -270,7 +271,7 @@ class LevelEditController extends ui.LevelEditorUI {
             var newlevel:LevelItem = new LevelItem();
             newlevel.level = lev.level + 1;
             newlevel.Goal = Util.CalcGoal(newlevel.level);
-            newlevel.time = 50;
+            newlevel.time = 60;
             LevelData.Instance.LevelItems.push(newlevel);
             this.RefreshLevel();
         }

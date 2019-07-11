@@ -19,6 +19,6 @@ class Util
 
     public static CalcGoal(n:number)
     {
-        return 105 + 545 * n + 135 * (n-1)*(n-2); 
+        return 105 + 545 * n + 135 * (n-1)*(n-2);
     }
 }

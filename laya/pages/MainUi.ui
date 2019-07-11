@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":81,
+    "selecteID":90,
     "props":{"width":1920,"sceneColor":"#000000","height":1080},
     "nodeParent":-1,
     "label":"View",
@@ -224,14 +224,13 @@
                     "props":{"y":290,"x":960,"width":70,"var":"hookAnchor","sizeGrid":"0,0,0,0,1","rotation":-90,"anchorY":0.5,"anchorX":1},
                     "nodeParent":15,
                     "label":"Image(hookAnchor)",
-                    "isOpen":true,
+                    "isOpen":false,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
                     "compId":82,
                     "child":[
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":5,"x":10,"var":"hookRight","skin":"style1/hook_right-sheet0.png","rotation":90,"pivotY":12,"pivotX":12},
                             "nodeParent":82,
@@ -245,7 +244,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"y":-5,"x":10,"var":"hookLeft","skin":"style1/hook_left-sheet0.png","rotation":90,"anchorY":0.15,"anchorX":0.75},
                             "nodeParent":82,
@@ -259,7 +257,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"x":-45,"width":0,"var":"HookHolder","height":0,"anchorY":0.5,"anchorX":0.5},
                             "nodeParent":82,
@@ -273,7 +270,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"width":20,"var":"hookRightPoint","height":20,"centerY":45,"centerX":-80,"anchorY":0.5,"anchorX":0.5},
                             "nodeParent":82,
@@ -286,7 +282,6 @@
                                 ]
                         },
                         {
-                            "x":45,
                             "type":"Image",
                             "props":{"width":20,"var":"hookLeftPoint","height":20,"centerY":-45,"centerX":-75,"anchorY":0.5,"anchorX":0.5},
                             "nodeParent":82,
@@ -544,6 +539,20 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":80,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Button",
+            "props":{"visible":false,"var":"btn_pass","stateNum":"1","skin":"MainUI/button_next-sheet1.png","right":10,"centerY":-125},
+            "nodeParent":1,
+            "label":"Button(btn_pass)",
+            "isOpen":true,
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":90,
             "child":[
                 ]
         }],

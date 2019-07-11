@@ -34,6 +34,14 @@ class BattleUiCtrl extends ui.MainUiUI {
         this.player0.interval = 80;
         this.player_idle.interval = 80;
         this.player1.interval = 80;
+        this.btn_pass.visible = false;
+        this.btn_pass.on(Laya.Event.CLICK, this, this.OnPassLevel);
+    }
+
+    destroy()
+    {
+        super.destroy();
+        Laya.stage.off(Laya.Event.RESIZE, this, this.OnResize);
     }
 
     debugExpand: boolean = false;
@@ -46,6 +54,15 @@ class BattleUiCtrl extends ui.MainUiUI {
         else  {
             Laya.Tween.to(this.debug_panel, { right: 0 }, 500, Laya.Ease.expoInOut, Laya.Handler.create(this, function () { this.debugExpand = true; }));
         }
+    }
+
+    /**
+     * 金币超过关卡的目标,可以直接过关
+     */
+    PassLevel()
+    {
+        if (PlayerData.Instance.gold > this.lev.Goal)
+            this.OnGameResult();
     }
 
     OnPassLevel()  {
@@ -264,7 +281,7 @@ class BattleUiCtrl extends ui.MainUiUI {
         MainAudioPlayer.Instance.PlayBomb();
     }
 
-    public _EmptyPullSpeed = 9;//基础速度-无视 80/12
+    public _EmptyPullSpeed = 9;//基础速度
     _Explosion: boolean = false;//如果触发了炸药桶，钩子会回来的更快。
     _ExplosionGravity: number = 15;
     _takeBackGravity: number = 15;
@@ -274,7 +291,7 @@ class BattleUiCtrl extends ui.MainUiUI {
             if (PlayerData.Instance.PowerOn)
                 return this._EmptyPullSpeed;
             if (this.Item instanceof Stone || this.Item instanceof Gold || this.Item instanceof Silver)
-                return  2 + 8 / (this.Item.level);
+                return  2 + 7 / (this.Item.level);
             else
                 return this._EmptyPullSpeed;
         }
@@ -347,6 +364,8 @@ class BattleUiCtrl extends ui.MainUiUI {
                         f = PlayerData.Instance.gold;
                         PlayerData.Instance.OnGetMine(this.Item);
                         t = PlayerData.Instance.gold;
+                        if (t >= this.lev.Goal && !this.btn_pass.visible)
+                            this.btn_pass.visible = true;
                     }
                     else  {
                         //价值为0，表明有特殊效果，类似
