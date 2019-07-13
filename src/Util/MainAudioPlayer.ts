@@ -10,6 +10,11 @@ class SoundWrapper
     {
         this.audio.destroy();
     }
+
+    mute(mute:boolean)
+    {
+        this.audio.volume = mute ? 0 : 1;
+    }
     path:string;
     audio:any;
 }
@@ -191,6 +196,8 @@ class MainAudioPlayer {
             Laya.SoundManager.playSound(path, count);
             return null;
         }
+        if (PlayerData.Instance.mute)
+            return;
         var wx = window["wx"];
         var audio = wx.createInnerAudioContext();
         if (audio == null)
@@ -214,5 +221,11 @@ class MainAudioPlayer {
             this.soundPool.splice(i, 1);
         }
         sound.destroy();
+    }
+
+    OnMuteChanged()
+    {
+        for (var i = 0; i < this.soundPool.length; i++)
+            this.soundPool[i].mute(PlayerData.Instance.mute);
     }
 }

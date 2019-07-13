@@ -319,8 +319,8 @@ class LevelEditController extends ui.LevelEditorUI {
             var data = {designW:Laya.stage.width, designH:Laya.stage.height, level:leveldata};
             var levelJson:string = JSON.stringify(data);
             console.log(levelJson);
-            var file:File = new File([levelJson], "Level.json", {type: "text/plain;charset=utf-8"});
-            saveAs(file);
+            // var file:File = new File([levelJson], "Level.json", {type: "text/plain;charset=utf-8"});
+            // saveAs(file);
             this.ClearLevel();
         }
     }

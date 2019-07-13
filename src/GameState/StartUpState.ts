@@ -51,10 +51,7 @@ class StartUpState extends BaseGameState {
             this.Controller.mouseThrough = true;
             Laya.stage.addChild(this.Controller);
         }.bind(this)));
-        if (Laya.Browser.onPC)
-            this.GameInit();
-        else
-            WechatHelper.WXManager.GetInstance().LoadZip(this.resZip, this.resZipName, function(){this.GameInit();}.bind(this), function(progress){this.toprogress = progress;}.bind(this), null);
+        this.GameInit();
     }
 
     public OnAction(gameAction:GameAction, data:Object):void{
@@ -88,25 +85,6 @@ class StartUpState extends BaseGameState {
          {url:"res/atlas/style1.png",type:Laya.Loader.IMAGE},
          {url:"res/atlas/comp.atlas",type:Laya.Loader.ATLAS},
          {url:"res/atlas/comp.png",type:Laya.Loader.IMAGE},
-        //  {url:"Sounds/bomb.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/bone.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/bonus.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/button.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/buy.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/explosion.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/game_over.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/game_won.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/gold.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/jewel.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/level_completed.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/miss.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/mole.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/score.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/silver.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/skull.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/stone.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/timer.wav",type:Laya.Loader.SOUND},
-        //  {url:"Sounds/winch.wav",type:Laya.Loader.SOUND}
         ];
         //先加载json文件,动画文件,图集文件
         Laya.loader.load(res, Laya.Handler.create(this, this.OnDataLoaded), Laya.Handler.create(this, this.OnProgress, null, false));

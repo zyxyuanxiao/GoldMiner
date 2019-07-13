@@ -19,6 +19,8 @@ class BattleUiCtrl extends ui.MainUiUI {
         this.hookCollision.push(this.hookLeft);
         this.avatarUrl.skin = PlayerData.Instance.avatarUrl;
         this.nickName.text = PlayerData.Instance.nickName;
+        if (this.nickName.text != "")
+            this.nickName.visible = true;
         this.light.play();
         this.light2.play();
         this.light3.play();
@@ -29,13 +31,13 @@ class BattleUiCtrl extends ui.MainUiUI {
         this.btn_openMeter.on(Laya.Event.CLICK, this, this.OnOpenMeter);
         this.btn_AddTime.on(Laya.Event.CLICK, this, this.AddTime, [60]);
         this.btn_nextLevel.on(Laya.Event.CLICK, this, this.OnNextLevel);
-        this.btn_shop.on(Laya.Event.CLICK, this, this.OnPassLevel);
+        this.btn_passLevel.on(Laya.Event.CLICK, this, this.OnPassLevel);
         this.btn_pause.on(Laya.Event.CLICK, this, this.OnPause);
         this.player0.interval = 80;
         this.player_idle.interval = 80;
         this.player1.interval = 80;
         this.btn_pass.visible = false;
-        this.btn_pass.on(Laya.Event.CLICK, this, this.OnPassLevel);
+        this.btn_pass.on(Laya.Event.CLICK, this, this.PassLevel);
     }
 
     destroy()

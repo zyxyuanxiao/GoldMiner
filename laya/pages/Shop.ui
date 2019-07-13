@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":1,
-    "selecteID":4,
+    "selectedBox":24,
+    "selecteID":25,
     "props":{"width":1920,"sceneColor":"#000000","height":1080},
     "nodeParent":-1,
     "label":"View",
@@ -15,97 +15,53 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"skin":"Level/background_shop-sheet0.png","centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5},
+            "props":{"width":1920,"var":"image_back","height":1080,"centerY":0,"centerX":0,"anchorY":0.5,"anchorX":0.5},
             "nodeParent":1,
-            "label":"Image",
-            "isOpen":false,
+            "label":"Image(image_back)",
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":2,
             "child":[
                 {
-                    "type":"Image",
-                    "props":{"y":349,"x":371,"var":"btn_buyBomb","skin":"style1/shop_bomb-sheet1.png"},
+                    "x":30,
+                    "type":"Panel",
+                    "props":{"y":285,"right":100,"left":100,"height":421},
                     "nodeParent":2,
-                    "label":"Image(btn_buyBomb)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":3,
-                    "child":[
-                        ]
-                },
-                {
-                    "type":"Image",
-                    "props":{"y":349,"x":859,"var":"btn_buypower","skin":"style1/shop_power-sheet1.png"},
-                    "nodeParent":2,
-                    "label":"Image(btn_buypower)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":5,
-                    "child":[
-                        ]
-                },
-                {
-                    "type":"Image",
-                    "props":{"y":341,"x":1316,"var":"btn_buydiamond","skin":"style1/shop_jewel-sheet1.png"},
-                    "nodeParent":2,
-                    "label":"Image(btn_buydiamond)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":6,
-                    "child":[
-                        ]
-                },
-                {
-                    "type":"Image",
-                    "props":{"y":689,"x":590,"var":"buy_luck","skin":"style1/shop_bag-sheet1.png"},
-                    "nodeParent":2,
-                    "label":"Image(buy_luck)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":7,
-                    "child":[
-                        ]
-                },
-                {
-                    "type":"Image",
-                    "props":{"y":687,"x":1064,"var":"buy_stonebook","skin":"style1/shop_silver-sheet1.png"},
-                    "nodeParent":2,
-                    "label":"Image(buy_stonebook)",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":8,
-                    "child":[
-                        ]
-                },
-                {
-                    "type":"Image",
-                    "props":{"y":673,"x":89,"width":402,"var":"btn_buytime","skin":"style1/shop_silver-sheet0.png","height":334},
-                    "nodeParent":2,
-                    "label":"Image(btn_buytime)",
+                    "label":"Panel",
                     "isOpen":true,
                     "isDirectory":true,
                     "isAniNode":true,
                     "hasChild":true,
-                    "compId":16,
+                    "compId":24,
                     "child":[
                         {
-                            "type":"Image",
-                            "props":{"var":"icon_time","skin":"style1/shoptime.png","scaleY":0.5,"scaleX":0.5,"rotation":21,"centerY":-53,"centerX":0,"anchorY":0.5,"anchorX":0.5},
-                            "nodeParent":16,
-                            "label":"Image(icon_time)",
-                            "isDirectory":false,
+                            "x":45,
+                            "type":"List",
+                            "props":{"var":"shopItems","top":43,"spaceX":35,"right":0,"repeatY":1,"repeatX":4,"left":0,"height":380,"hScrollBarSkin":"comp/hscroll.png"},
+                            "nodeParent":24,
+                            "label":"List(shopItems)",
+                            "isOpen":true,
+                            "isDirectory":true,
                             "isAniNode":true,
-                            "hasChild":false,
-                            "compId":15,
+                            "hasChild":true,
+                            "compId":25,
                             "child":[
-                                ]
+                                {
+                                    "x":60,
+                                    "type":"UIView",
+                                    "source":"ShopItem.ui",
+                                    "props":{"renderType":"render"},
+                                    "nodeParent":25,
+                                    "label":"UIView",
+                                    "isDirectory":false,
+                                    "isAniNode":false,
+                                    "hasChild":false,
+                                    "compId":26,
+                                    "child":[
+                                        ]
+                                }]
                         }]
                 }]
         },
@@ -191,7 +147,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":168,"x":280,"var":"label_des","text":"石头书:当你挖到时候时，石头的价值提升至500%-800%","fontSize":50,"color":"#f8f8f8","bold":false},
+            "props":{"y":186,"x":280,"var":"label_des","text":"石头书:当你挖到时候时，石头的价值提升至500%-800%","fontSize":50,"color":"#f8f8f8","bold":false},
             "nodeParent":1,
             "label":"Label(label_des)",
             "isDirectory":false,
@@ -203,21 +159,8 @@
         },
         {
             "x":15,
-            "type":"Label",
-            "props":{"var":"label_price","text":"$125","right":37,"fontSize":185,"font":"Microsoft YaHei","color":"#ffffff","bottom":500},
-            "nodeParent":1,
-            "label":"Label(label_price)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":17,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
             "type":"Image",
-            "props":{"width":285,"var":"btn_buy","skin":"style1/button-sheet0.png","scaleY":1.2,"scaleX":1.2,"right":121,"height":125,"bottom":288},
+            "props":{"width":285,"var":"btn_buy","skin":"style1/button-sheet0.png","scaleY":1.2,"scaleX":1.2,"height":125,"centerX":-200,"bottom":120},
             "nodeParent":1,
             "label":"Image(btn_buy)",
             "isOpen":true,
@@ -243,7 +186,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"width":285,"var":"btn_play","skin":"style1/button-sheet0.png","scaleY":1.2,"scaleX":1.2,"right":121,"height":125,"bottom":114},
+            "props":{"width":285,"var":"btn_play","skin":"style1/button-sheet0.png","scaleY":1.2,"scaleX":1.2,"height":125,"centerX":200,"bottom":120},
             "nodeParent":1,
             "label":"Image(btn_play)",
             "isOpen":true,

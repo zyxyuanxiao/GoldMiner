@@ -1,6 +1,7 @@
 //记录玩家相关的数据
 class PlayerData{
     private static _Instance:PlayerData;
+    public static login:boolean = false;
     public static get Instance():PlayerData
     {
         if (PlayerData._Instance == null)
@@ -17,7 +18,7 @@ class PlayerData{
     MineBag:Array<number>;
     ExtraTime:number = 0;
     avatarUrl:string;//角色url
-    nickName:string;//角色昵称
+    nickName:string = "";//角色昵称
     gold:number = 0;
     level:number = 0;//默认第一关
     mute:boolean = false;

@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":90,
+    "selecteID":57,
     "props":{"width":1920,"sceneColor":"#000000","height":1080},
     "nodeParent":-1,
     "label":"View",
@@ -419,7 +419,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":199,"visible":false,"var":"nickName","text":"Winson","fontSize":32,"font":"Microsoft YaHei","color":"#f6f4f4","centerX":0},
+            "props":{"y":199,"visible":false,"var":"nickName","text":"Winson","fontSize":32,"font":"Microsoft YaHei","color":"#f6f4f4","centerX":-160},
             "nodeParent":1,
             "label":"Label(nickName)",
             "isDirectory":false,
@@ -461,13 +461,14 @@
             "props":{"width":200,"var":"debug_panel","top":450,"space":2,"right":-200,"height":400},
             "nodeParent":1,
             "label":"VBox(debug_panel)",
-            "isOpen":false,
+            "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
             "compId":74,
             "child":[
                 {
+                    "x":30,
                     "type":"Button",
                     "props":{"width":200,"var":"btn_openMeter","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"观察速度","height":85},
                     "nodeParent":74,
@@ -480,6 +481,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Button",
                     "props":{"width":200,"var":"btn_openDebug","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"打开调试","height":85},
                     "nodeParent":74,
@@ -492,6 +494,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Button",
                     "props":{"width":200,"var":"btn_nextLevel","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"下一关","height":85},
                     "nodeParent":74,
@@ -504,6 +507,7 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Button",
                     "props":{"width":200,"var":"btn_AddTime","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"增加时长","height":85},
                     "nodeParent":74,
@@ -516,10 +520,11 @@
                         ]
                 },
                 {
+                    "x":30,
                     "type":"Button",
-                    "props":{"width":200,"var":"btn_shop","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"过关","height":85},
+                    "props":{"width":200,"var":"btn_passLevel","stateNum":"3","skin":"comp/button.png","labelSize":35,"label":"过关","height":85},
                     "nodeParent":74,
-                    "label":"Button(btn_shop)",
+                    "label":"Button(btn_passLevel)",
                     "isDirectory":false,
                     "isAniNode":true,
                     "hasChild":false,

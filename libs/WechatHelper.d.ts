@@ -1,15 +1,13 @@
 declare module WechatHelper.third  {
     interface IManager {
-        Init(config: any);
         LoadZip(zipPath:string, zipName: string, onComplete: Function, onProgress: Function, onFail: Function, dontUzip?: boolean);
-        Login(onComplete:Function);
+        Login(onsuccess:Function, oncancel:Function, onalready:Function);
     }
     class WXManager implements IManager {
         constructor();
         static GetInstance(): WXManager;
-        public Init(config: any);
         public LoadZip(zipPath:string, zipName: string, onComplete: Function, onProgress: Function, onFail: Function, dontUzip?: boolean);
-        public Login(onComplete:Function);
+        public Login(onsuccess:Function, oncancel:Function, onalready:Function);
     }
 }
 

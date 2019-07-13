@@ -81,11 +81,13 @@ class PauseUiController extends ui.GamePauseUI
         PlayerData.Instance.mute = !PlayerData.Instance.mute;
         this.btn_mute.skin = PlayerData.Instance.mute ? "MainUI/soundbutton-sheet1.png" : "MainUI/soundbutton-sheet0.png";
         Laya.SoundManager.soundMuted = PlayerData.Instance.mute;
+        MainAudioPlayer.Instance.OnMuteChanged();
     }
 
     Mute()  {
         PlayerData.Instance.mute = true;
         this.btn_mute.skin = PlayerData.Instance.mute ? "MainUI/soundbutton-sheet1.png" : "MainUI/soundbutton-sheet0.png";
         Laya.SoundManager.soundMuted = PlayerData.Instance.mute;
+        MainAudioPlayer.Instance.OnMuteChanged();
     }
 }
