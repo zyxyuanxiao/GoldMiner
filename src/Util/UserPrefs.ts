@@ -16,20 +16,20 @@ class UserPrefs {
 
     public static GetInt(k: string, v: number): number {
         var rv: string = localStorage.getItem(k);
-        console.log("key:" + k + " return value:" + rv);
-        if (rv == "")
-            console.log("rv is nullstring");
-        else
-            console.log("rv is notnullstring");
+        // console.log("key:" + k + " return value:" + rv);
+        // if (rv == "")
+        //     console.log("rv is nullstring");
+        // else
+        //     console.log("rv is notnullstring");
         if (rv == null || rv == "") {
             if (isNaN(v))
                 return 0;
             return v;
         }
         var r: number = parseInt(rv);
-        console.log("rv:" + rv);
+        // console.log("rv:" + rv);
         if (isNaN(r)) {
-            console.log("data wrong:" + k + "Get int is Nan");
+            // console.log("data wrong:" + k + "Get int is Nan");
             if (isNaN(v))
                 return 0;
             return v;
@@ -39,7 +39,7 @@ class UserPrefs {
 
     public static SetDouble(k: string, v: number) {
         if (isNaN(v)) {
-            console.log("data wrong:" + k + "Set double is Nan");
+            // console.log("data wrong:" + k + "Set double is Nan");
             localStorage.setItem(k, "0");
             return;
         }
@@ -56,7 +56,7 @@ class UserPrefs {
 
         var f: number = parseFloat(rv);
         if (isNaN(f)) {
-            console.log("data wrong:" + k + "Get double is NaN");
+            // console.log("data wrong:" + k + "Get double is NaN");
             if (isNaN(v))
                 return 0;
             return v;
@@ -65,8 +65,8 @@ class UserPrefs {
     }
 
     public static SetInt(k: string, v: number) {
-        if (isNaN(v))
-            console.log("data wrong:" + k + "Set int is Nan");
+        // if (isNaN(v))
+        //     console.log("data wrong:" + k + "Set int is Nan");
         if (isNaN(v))
             localStorage.setItem(k, "0");
         else
@@ -82,8 +82,8 @@ class UserPrefs {
 
     public static SetIntCache(k:string, v:number)
     {
-        if (isNaN(v))
-            console.log("data wrong:" + k + "Set int is Nan");
+        // if (isNaN(v))
+        //     console.log("data wrong:" + k + "Set int is Nan");
         if (isNaN(v))
             UserPrefs.cache.set(k,0);
         else
@@ -106,7 +106,9 @@ class UserPrefs {
 
     public static SetString(k: string, v: string) {
         if (!v)
-            console.log("data wrong:" + k + "Set int is Nan");
+        {
+            //console.log("data wrong:" + k + "Set int is Nan");
+        }
         else
             localStorage.setItem(k, v);
     }

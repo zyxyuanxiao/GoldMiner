@@ -112,6 +112,7 @@ class StartUpState extends BaseGameState {
 
     OnLogin(user:any)
     {
-        Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
+        Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.RecordState);
+        // Main.Instance.GameStateManager.ChangeState(Main.Instance.GameStateManager.MenuState);
     }
 }

@@ -189,7 +189,7 @@ class MainAudioPlayer {
     }
 
     soundPool:Array<SoundWrapper> = new Array<SoundWrapper>();
-    playSound(path:string, count:number, h:Laya.Handler = null):SoundWrapper
+    playSound(path:string, count:number, h:Laya.Handler = null, local:boolean = false):SoundWrapper
     {
         if (Laya.Browser.onPC)
         {
@@ -202,7 +202,7 @@ class MainAudioPlayer {
         var audio = wx.createInnerAudioContext();
         if (audio == null)
             return;
-        audio.src = Laya.URL.basePath + path;// src 可以设置 http(s) 的路径，本地文件路径或者代码包文件路径
+        audio.src = (local ? "" : Laya.URL.basePath) + path;// src 可以设置 http(s) 的路径，本地文件路径或者代码包文件路径
         audio.loop = (count != 1);
         audio.play();
         var audioWrapper = new SoundWrapper(audio.src, audio);

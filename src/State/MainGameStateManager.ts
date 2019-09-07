@@ -9,6 +9,7 @@ class MainGameStateManager extends GameStateManager<BaseGameState, GameAction> {
     public GameBattleState:GameBattleState;
     public ShopState:ShopState;
     public LevelEditState:LevelEditState;
+    public RecordState:RecordState;
     public NullState:NullState;
     constructor() {
         super();
@@ -17,6 +18,7 @@ class MainGameStateManager extends GameStateManager<BaseGameState, GameAction> {
         this.GameBattleState = new GameBattleState(this);
         this.ShopState = new ShopState(this);
         this.LevelEditState = new LevelEditState(this);
+        this.RecordState = new RecordState(this);
         this.NullState = new NullState(this);
         MainGameStateManager.Instance = this;
         this.CheckAndOpenCommonRoomStatesFunct = this.CheckAndOpenCommonRoomStates;

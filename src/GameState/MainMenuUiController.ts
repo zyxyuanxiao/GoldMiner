@@ -8,7 +8,7 @@ class MainMenuUiController extends ui.MainMenuUI {
             (this.btn_edit.getChildByName("txt") as Laya.Label).text = "重新开始";
         if (!PlayerData.login)  {
             WechatHelper.WXManager.GetInstance().Login(function (user: any) {
-                console.log(user);
+                // console.log(user);
                 PlayerData.Instance.nickName = user.nickName;
                 PlayerData.Instance.avatarUrl = user.avatarUrl;
                 PlayerData.login = true;
@@ -16,7 +16,7 @@ class MainMenuUiController extends ui.MainMenuUI {
             }.bind(this), function ()  {
                 this.OnStart();
             }.bind(this), function (user:any)  {
-                console.log(user);
+                // console.log(user);
                 PlayerData.Instance.nickName = user.nickName;
                 PlayerData.Instance.avatarUrl = user.avatarUrl;
                 PlayerData.login = true;

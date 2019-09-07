@@ -21,8 +21,8 @@ class StringTool {
      * @returns {string}
      */
     static format(value: string, ...args: Array<any>): string {
-        for (var i: number = 0; i < args.length; i++) {
-            var key: string = "{" + i + "}";
+        for (let i: number = 0; i < args.length; i++) {
+            let key: string = "{" + i + "}";
             while (value.indexOf(key) > -1) {
                 value = value.replace(key, args[i]);
             }

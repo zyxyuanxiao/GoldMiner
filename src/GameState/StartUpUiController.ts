@@ -9,13 +9,7 @@ class StartUpUiController extends ui.StartUpUI {
      */
     InitView() {
         this.UpdateProgress(0.0);
-        this.OnResize();
-        //延迟再次执行
-        if (Laya.timer && Laya.timer.once) {
-            Laya.timer.once(1000,this,function(){
-                this.OnResize();
-            }.bind(this));
-        }
+        this.on(Laya.Event.RESIZE, this, this.OnResize);
     }
     /**
      * 更新进度

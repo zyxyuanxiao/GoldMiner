@@ -45,7 +45,7 @@ class MenuState extends BaseGameState
         super.OnExit(next, data);
         if (this.Controller != null)
         {
-            this.Controller.destroy();
+            this.Controller.destroy(true);
             delete this.Controller;
             this.Controller = null;
         }

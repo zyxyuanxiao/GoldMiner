@@ -6,11 +6,11 @@ class WeChatManager
     private _bannerAd: any = null;
     private isBannerLoaded: boolean = false;//当前是否加载完成
     private isShowBanner: boolean = false;//当前是否显示
-    // private _wxFuncMgr: WXFunctionManager;
+    fs:any;//文件管理器
     constructor() {
         WeChatManager.Instance = this;
         this.channelHandler = Laya.Browser.window.wx;
-        let self = this;
+        this.fs = this.channelHandler.getFileSystemManager();
     };
 
     public shareAppMessage()
